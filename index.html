@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="一級建築士試験の過去問題を使って効率的に学習できるアプリ">
+    <meta name="theme-color" content="#1a365d">
+    <title>一級建築士 学習アプリ</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- ナビゲーション -->
+        <nav class="nav">
+            <div class="nav-brand">
+                <span class="nav-icon">🏛️</span>
+                <span class="nav-title">一級建築士 学習アプリ</span>
+            </div>
+            <button class="nav-menu-btn" id="menuBtn" aria-label="メニュー">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+
+        <!-- サイドバー -->
+        <aside class="sidebar" id="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#" data-page="home" class="active"><span class="icon">🏠</span>ホーム</a></li>
+                <li><a href="#" data-page="study"><span class="icon">📖</span>学習する</a></li>
+                <li><a href="#" data-page="questions"><span class="icon">📝</span>問題管理</a></li>
+                <li><a href="#" data-page="stats"><span class="icon">📊</span>統計</a></li>
+                <li><a href="#" data-page="history"><span class="icon">📅</span>学習履歴</a></li>
+                <li><a href="#" data-page="settings"><span class="icon">⚙️</span>設定</a></li>
+            </ul>
+        </aside>
+
+        <!-- オーバーレイ -->
+        <div class="overlay" id="overlay"></div>
+
+        <!-- メインコンテンツ -->
+        <main class="main-content">
+            <!-- ホーム画面 -->
+            <section id="page-home" class="page active">
+                <div class="home-header">
+                    <h1>一級建築士試験 学習アプリ</h1>
+                    <p class="subtitle">過去問題で効率的に学習しましょう</p>
+                </div>
+
+                <div class="stats-overview">
+                    <div class="stat-card">
+                        <div class="stat-icon">📚</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="totalQuestions">0</span>
+                            <span class="stat-label">登録問題数</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="totalAnswered">0</span>
+                            <span class="stat-label">解答数</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="overallAccuracy">0%</span>
+                            <span class="stat-label">正答率</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-title">科目を選んで学習開始</h2>
+                <div class="subject-grid">
+                    <button class="subject-card" data-subject="1">
+                        <div class="subject-icon">🏢</div>
+                        <div class="subject-name">学科Ⅰ<br>計画</div>
+                        <div class="subject-stats">
+                            <span class="subject-count">0問</span>
+                            <span class="subject-accuracy">--</span>
+                        </div>
+                    </button>
+                    <button class="subject-card" data-subject="2">
+                        <div class="subject-icon">🌡️</div>
+                        <div class="subject-name">学科Ⅱ<br>環境・設備</div>
+                        <div class="subject-stats">
+                            <span class="subject-count">0問</span>
+                            <span class="subject-accuracy">--</span>
+                        </div>
+                    </button>
+                    <button class="subject-card" data-subject="3">
+                        <div class="subject-icon">📜</div>
+                        <div class="subject-name">学科Ⅲ<br>法規</div>
+                        <div class="subject-stats">
+                            <span class="subject-count">0問</span>
+                            <span class="subject-accuracy">--</span>
+                        </div>
+                    </button>
+                    <button class="subject-card" data-subject="4">
+                        <div class="subject-icon">🔧</div>
+                        <div class="subject-name">学科Ⅳ<br>構造</div>
+                        <div class="subject-stats">
+                            <span class="subject-count">0問</span>
+                            <span class="subject-accuracy">--</span>
+                        </div>
+                    </button>
+                    <button class="subject-card" data-subject="5">
+                        <div class="subject-icon">🔨</div>
+                        <div class="subject-name">学科Ⅴ<br>施工</div>
+                        <div class="subject-stats">
+                            <span class="subject-count">0問</span>
+                            <span class="subject-accuracy">--</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="quick-actions">
+                    <button class="btn btn-primary btn-large" id="startRandomStudy">
+                        <span class="btn-icon">🎲</span>
+                        全科目からランダム出題
+                    </button>
+                    <button class="btn btn-secondary btn-large" id="startWrongOnly">
+                        <span class="btn-icon">❌</span>
+                        間違えた問題のみ
+                    </button>
+                </div>
+            </section>
+
+            <!-- 学習画面 -->
+            <section id="page-study" class="page">
+                <div class="study-header">
+                    <button class="btn btn-ghost" id="backToHome">← 戻る</button>
+                    <div class="study-progress">
+                        <span id="currentNumber">1</span> / <span id="totalNumber">10</span>
+                    </div>
+                    <div class="study-subject" id="studySubject">学科Ⅰ（計画）</div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-meta">
+                        <span class="question-year" id="questionYear">令和6年</span>
+                        <span class="question-number" id="questionNum">問1</span>
+                    </div>
+                    <div class="question-text" id="questionText">
+                        問題文がここに表示されます。
+                    </div>
+                    <div class="choices" id="choices">
+                        <!-- 選択肢がここに動的に生成される -->
+                    </div>
+                </div>
+
+                <div class="answer-section hidden" id="answerSection">
+                    <div class="answer-result" id="answerResult">
+                        <!-- 正解/不正解の表示 -->
+                    </div>
+                    <div class="explanation" id="explanation">
+                        <h3>解説</h3>
+                        <div class="explanation-content" id="explanationContent">
+                            解説がここに表示されます。
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-large" id="nextQuestion">
+                        次の問題へ →
+                    </button>
+                </div>
+            </section>
+
+            <!-- 問題管理画面 -->
+            <section id="page-questions" class="page">
+                <div class="page-header">
+                    <h1>問題管理</h1>
+                    <button class="btn btn-primary" id="addQuestionBtn">
+                        <span class="btn-icon">➕</span>
+                        新規問題登録
+                    </button>
+                </div>
+
+                <div class="filter-bar">
+                    <select id="filterSubject" class="select">
+                        <option value="">すべての科目</option>
+                        <option value="1">学科Ⅰ（計画）</option>
+                        <option value="2">学科Ⅱ（環境・設備）</option>
+                        <option value="3">学科Ⅲ（法規）</option>
+                        <option value="4">学科Ⅳ（構造）</option>
+                        <option value="5">学科Ⅴ（施工）</option>
+                    </select>
+                    <select id="filterYear" class="select">
+                        <option value="">すべての年度</option>
+                    </select>
+                    <input type="search" id="searchQuestion" class="input" placeholder="問題を検索...">
+                </div>
+
+                <div class="questions-list" id="questionsList">
+                    <!-- 問題リストがここに動的に生成される -->
+                </div>
+            </section>
+
+            <!-- 問題登録/編集モーダル -->
+            <div class="modal" id="questionModal">
+                <div class="modal-content modal-large">
+                    <div class="modal-header">
+                        <h2 id="modalTitle">新規問題登録</h2>
+                        <button class="modal-close" id="closeModal">&times;</button>
+                    </div>
+                    <form id="questionForm" class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="qYear">年度</label>
+                                <select id="qYear" class="select" required>
+                                    <option value="">選択してください</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="qSubject">科目</label>
+                                <select id="qSubject" class="select" required>
+                                    <option value="">選択してください</option>
+                                    <option value="1">学科Ⅰ（計画）</option>
+                                    <option value="2">学科Ⅱ（環境・設備）</option>
+                                    <option value="3">学科Ⅲ（法規）</option>
+                                    <option value="4">学科Ⅳ（構造）</option>
+                                    <option value="5">学科Ⅴ（施工）</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="qNumber">問題番号</label>
+                                <input type="number" id="qNumber" class="input" min="1" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="qText">問題文</label>
+                            <textarea id="qText" class="textarea" rows="4" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>問題の図（任意）</label>
+                            <div class="image-upload">
+                                <input type="file" id="questionImages" accept="image/*" multiple>
+                                <div class="image-preview" id="questionImagePreview"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>選択肢</label>
+                            <div class="choices-input">
+                                <div class="choice-input">
+                                    <span class="choice-label">1.</span>
+                                    <input type="text" id="choice1" class="input" required>
+                                    <input type="radio" name="correctAnswer" value="1" required>
+                                    <span class="correct-label">正解</span>
+                                </div>
+                                <div class="choice-input">
+                                    <span class="choice-label">2.</span>
+                                    <input type="text" id="choice2" class="input" required>
+                                    <input type="radio" name="correctAnswer" value="2">
+                                    <span class="correct-label">正解</span>
+                                </div>
+                                <div class="choice-input">
+                                    <span class="choice-label">3.</span>
+                                    <input type="text" id="choice3" class="input" required>
+                                    <input type="radio" name="correctAnswer" value="3">
+                                    <span class="correct-label">正解</span>
+                                </div>
+                                <div class="choice-input">
+                                    <span class="choice-label">4.</span>
+                                    <input type="text" id="choice4" class="input" required>
+                                    <input type="radio" name="correctAnswer" value="4">
+                                    <span class="correct-label">正解</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="qExplanation">解説（任意）</label>
+                            <textarea id="qExplanation" class="textarea" rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>解説画像（任意）</label>
+                            <div class="image-upload">
+                                <input type="file" id="explanationImages" accept="image/*" multiple>
+                                <div class="image-preview" id="imagePreview"></div>
+                            </div>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button type="button" class="btn btn-ghost" id="cancelQuestion">キャンセル</button>
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 統計画面 -->
+            <section id="page-stats" class="page">
+                <div class="page-header">
+                    <h1>学習統計</h1>
+                </div>
+
+                <div class="stats-cards">
+                    <div class="stats-card-large">
+                        <h3>科目別正答率</h3>
+                        <div class="chart-container">
+                            <canvas id="subjectChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="stats-card-large">
+                        <h3>学習推移（直近30日）</h3>
+                        <div class="chart-container">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-details">
+                    <h3>科目別詳細</h3>
+                    <table class="stats-table">
+                        <thead>
+                            <tr>
+                                <th>科目</th>
+                                <th>問題数</th>
+                                <th>解答数</th>
+                                <th>正解数</th>
+                                <th>正答率</th>
+                            </tr>
+                        </thead>
+                        <tbody id="statsTableBody">
+                            <!-- 動的に生成 -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 学習履歴画面 -->
+            <section id="page-history" class="page">
+                <div class="page-header">
+                    <h1>学習履歴</h1>
+                </div>
+
+                <div class="history-calendar" id="historyCalendar">
+                    <!-- カレンダーが動的に生成される -->
+                </div>
+
+                <div class="history-list">
+                    <h3>最近の学習</h3>
+                    <div id="historyList">
+                        <!-- 履歴リストが動的に生成される -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 設定画面 -->
+            <section id="page-settings" class="page">
+                <div class="page-header">
+                    <h1>設定</h1>
+                </div>
+
+                <div class="settings-section">
+                    <h3>データ管理</h3>
+                    <div class="settings-item">
+                        <div class="settings-info">
+                            <span class="settings-label">データのエクスポート</span>
+                            <span class="settings-desc">問題データと学習履歴をJSONファイルとして保存します</span>
+                        </div>
+                        <button class="btn btn-secondary" id="exportData">エクスポート</button>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-info">
+                            <span class="settings-label">データのインポート</span>
+                            <span class="settings-desc">エクスポートしたJSONファイルから復元します</span>
+                        </div>
+                        <input type="file" id="importFile" accept=".json" hidden>
+                        <button class="btn btn-secondary" id="importData">インポート</button>
+                    </div>
+                    <div class="settings-item danger">
+                        <div class="settings-info">
+                            <span class="settings-label">すべてのデータを削除</span>
+                            <span class="settings-desc">問題データと学習履歴をすべて削除します（元に戻せません）</span>
+                        </div>
+                        <button class="btn btn-danger" id="deleteAllData">削除</button>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>アプリについて</h3>
+                    <div class="about-info">
+                        <p><strong>一級建築士 学習アプリ</strong></p>
+                        <p>バージョン 1.0.0</p>
+                        <p>過去問題を使って効率的に学習できるPWAアプリです。</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast通知 -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/questions.js"></script>
+    <script src="js/study.js"></script>
+    <script src="js/stats.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
