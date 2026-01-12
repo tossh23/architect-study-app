@@ -1,17 +1,16 @@
-const CACHE_NAME = 'architect-study-v1';
+const CACHE_NAME = 'architect-study-v2';
 const ASSETS = [
-    '/',
-    '/index.html',
-    '/css/style.css',
-    '/js/app.js',
-    '/js/db.js',
-    '/js/utils.js',
-    '/js/questions.js',
-    '/js/study.js',
-    '/js/stats.js',
-    '/manifest.json',
-    '/icons/icon-192.png',
-    '/icons/icon-512.png'
+    './',
+    './index.html',
+    './css/style.css',
+    './js/app.js',
+    './js/db.js',
+    './js/utils.js',
+    './js/questions.js',
+    './js/study.js',
+    './js/stats.js',
+    './manifest.json',
+    './icons/icon.svg'
 ];
 
 // インストール時にアセットをキャッシュ
