@@ -570,6 +570,7 @@ textarea {
     text-align: left;
     transition: var(--transition-fast);
     cursor: pointer;
+    color: var(--text-primary);
 }
 
 .choice-btn:hover:not(.disabled) {
