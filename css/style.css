@@ -695,6 +695,12 @@ textarea {
     font-size: var(--font-size-2xl);
 }
 
+.page-header-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
 .filter-bar {
     display: flex;
     gap: var(--space-md);

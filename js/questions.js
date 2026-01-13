@@ -23,6 +23,19 @@ const Questions = {
             this.openModal();
         });
 
+        // CSVインポートボタン
+        document.getElementById('importCsvBtn').addEventListener('click', () => {
+            document.getElementById('csvImportFile').click();
+        });
+
+        // CSVファイル選択
+        document.getElementById('csvImportFile').addEventListener('change', async (e) => {
+            if (e.target.files[0]) {
+                await this.importFromCsv(e.target.files[0]);
+                e.target.value = '';
+            }
+        });
+
         // モーダル閉じるボタン
         document.getElementById('closeModal').addEventListener('click', () => {
             this.closeModal();
@@ -348,5 +361,202 @@ const Questions = {
             <button type="button" class="remove-image" onclick="this.parentElement.remove()">×</button>
         `;
         preview.appendChild(item);
+    },
+
+    /**
+     * CSVからインポート
+     */
+    async importFromCsv(file) {
+        try {
+            // まずUTF-8で試す、失敗したらShift-JISで試す
+            let text;
+            try {
+                text = await file.text();
+                // 文字化けチェック（日本語が含まれるはずなのに含まれない場合）
+                if (!text.includes('計画') && !text.includes('環境') && !text.includes('問題')) {
+                    throw new Error('Encoding issue detected');
+                }
+            } catch (e) {
+                // Shift-JISで読み込み
+                const buffer = await file.arrayBuffer();
+                const decoder = new TextDecoder('shift-jis');
+                text = decoder.decode(buffer);
+            }
+
+            console.log('CSV content (first 500 chars):', text.substring(0, 500));
+
+            const questions = this.parseCsv(text);
+            console.log('Parsed questions count:', questions.length);
+
+            if (questions.length === 0) {
+                Utils.showToast('インポートできる問題がありませんでした', 'warning');
+                return;
+            }
+
+            let imported = 0;
+            let skipped = 0;
+
+            for (const q of questions) {
+                try {
+                    // 既存チェック
+                    const existing = await db.getQuestion(q.id);
+                    if (existing) {
+                        skipped++;
+                        continue;
+                    }
+                    await db.addQuestion(q);
+                    imported++;
+                } catch (error) {
+                    console.error('Import error for question:', q, error);
+                    skipped++;
+                }
+            }
+
+            Utils.showToast(`${imported}問をインポートしました（${skipped}問スキップ）`, 'success');
+            await this.loadQuestions();
+            await App.updateHomeStats();
+
+        } catch (error) {
+            console.error('CSV import error:', error);
+            Utils.showToast('CSVの読み込みに失敗しました', 'error');
+        }
+    },
+
+    /**
+     * CSVをパース
+     */
+    parseCsv(text) {
+        const lines = text.split('\n');
+        const questions = [];
+
+        console.log('Total lines in CSV:', lines.length);
+        console.log('First line (header):', lines[0]);
+        if (lines[1]) console.log('Second line (first data):', lines[1]);
+
+        // ヘッダー行をスキップ
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+
+            const cols = this.parseCsvLine(line);
+
+            if (i <= 3) {
+                console.log(`Line ${i} columns (${cols.length}):`, cols);
+            }
+
+            if (cols.length < 9) {
+                console.log(`Line ${i} skipped: not enough columns (${cols.length})`);
+                continue;
+            }
+
+            const [yearStr, subjectStr, numStr, hasImage, questionText, choice1, choice2, choice3, choice4, correctStr] = cols;
+
+            const year = this.parseYear(yearStr);
+            const subject = this.parseSubject(subjectStr);
+            const questionNumber = parseInt(numStr);
+            const correctAnswer = parseInt(correctStr);
+
+            if (i <= 3) {
+                console.log(`Line ${i} parsed: year=${year}, subject=${subject}, num=${questionNumber}, correct=${correctAnswer}`);
+            }
+
+            if (!year || !subject || !questionNumber || !correctAnswer) {
+                console.log(`Line ${i} skipped: invalid data - year=${year}, subject=${subject}, num=${questionNumber}, correct=${correctAnswer}`);
+                continue;
+            }
+
+            const question = {
+                id: Utils.generateQuestionId(year, subject, questionNumber),
+                year,
+                subject,
+                questionNumber,
+                questionText: questionText || '',
+                questionImages: [],
+                choices: [choice1 || '', choice2 || '', choice3 || '', choice4 || ''],
+                correctAnswer,
+                explanation: '',
+                explanationImages: [],
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+                hasImageNote: hasImage === '図あり'
+            };
+
+            questions.push(question);
+        }
+
+        return questions;
+    },
+
+    /**
+     * CSV行をパース（カンマ区切り、引用符対応）
+     */
+    parseCsvLine(line) {
+        const result = [];
+        let current = '';
+        let inQuotes = false;
+
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+
+            if (char === '"') {
+                inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+                result.push(current.trim());
+                current = '';
+            } else {
+                current += char;
+            }
+        }
+        result.push(current.trim());
+
+        return result;
+    },
+
+    /**
+     * 年度文字列をパース（H28 → 2016）
+     */
+    parseYear(yearStr) {
+        if (!yearStr) return null;
+
+        // H28, R6 などの形式
+        const match = yearStr.match(/^([HR])(\d+)$/i);
+        if (match) {
+            const era = match[1].toUpperCase();
+            const num = parseInt(match[2]);
+
+            if (era === 'H') {
+                return 1988 + num; // 平成
+            } else if (era === 'R') {
+                return 2018 + num; // 令和
+            }
+        }
+
+        // 数字のみの場合
+        const numOnly = parseInt(yearStr);
+        if (numOnly > 2000) return numOnly;
+        if (numOnly > 0 && numOnly <= 99) {
+            // 平成と仮定
+            return 1988 + numOnly;
+        }
+
+        return null;
+    },
+
+    /**
+     * 科目文字列をパース
+     */
+    parseSubject(subjectStr) {
+        if (!subjectStr) return null;
+
+        const s = subjectStr.trim();
+
+        if (s.includes('計画')) return 1;
+        if (s.includes('環境') || s.includes('設備')) return 2;
+        if (s.includes('法規')) return 3;
+        if (s.includes('構造')) return 4;
+        if (s.includes('施工')) return 5;
+
+        return null;
     }
 };
+
