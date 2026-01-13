@@ -13,6 +13,9 @@ const App = {
             // データベース初期化
             await db.init();
 
+            // 組み込み問題を自動ロード
+            await this.loadBuiltinQuestions();
+
             // Service Worker登録
             this.registerServiceWorker();
 
@@ -29,6 +32,36 @@ const App = {
         } catch (error) {
             console.error('App initialization failed:', error);
             Utils.showToast('アプリの初期化に失敗しました', 'error');
+        }
+    },
+
+    /**
+     * 組み込み問題を自動ロード
+     */
+    async loadBuiltinQuestions() {
+        if (typeof BUILTIN_QUESTIONS === 'undefined' || !BUILTIN_QUESTIONS.length) {
+            return;
+        }
+
+        let loaded = 0;
+        for (const q of BUILTIN_QUESTIONS) {
+            try {
+                const existing = await db.getQuestion(q.id);
+                if (!existing) {
+                    await db.addQuestion({
+                        ...q,
+                        createdAt: new Date().toISOString(),
+                        updatedAt: new Date().toISOString()
+                    });
+                    loaded++;
+                }
+            } catch (e) {
+                console.error('Error loading builtin question:', q.id, e);
+            }
+        }
+
+        if (loaded > 0) {
+            console.log(`Loaded ${loaded} builtin questions`);
         }
     },
 

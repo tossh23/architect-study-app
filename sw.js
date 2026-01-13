@@ -1,4 +1,4 @@
-const CACHE_NAME = 'architect-study-v2';
+const CACHE_NAME = 'architect-study-v3';
 const ASSETS = [
     './',
     './index.html',
@@ -9,6 +9,7 @@ const ASSETS = [
     './js/questions.js',
     './js/study.js',
     './js/stats.js',
+    './js/builtin-questions.js',
     './manifest.json',
     './icons/icon.svg'
 ];
