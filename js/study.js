@@ -97,38 +97,40 @@ const Study = {
         }
         document.getElementById('questionText').innerHTML = questionContent;
 
-        // 選択肢を生成
+        // 選択肢を生成（タップで消去法）
         const choicesContainer = document.getElementById('choices');
         choicesContainer.innerHTML = question.choices.map((choice, index) => `
-            <button class="choice-btn" data-choice="${index + 1}">
+            <div class="choice-item" data-choice="${index + 1}">
                 <span class="choice-number">${index + 1}</span>
                 <span class="choice-text">${choice}</span>
-            </button>
+            </div>
         `).join('');
 
-        // 選択肢クリックイベント（シングル/ダブルクリック対応）
-        choicesContainer.querySelectorAll('.choice-btn').forEach(btn => {
-            let lastClick = 0;
-            btn.addEventListener('click', (e) => {
-                const now = Date.now();
-                const timeDiff = now - lastClick;
+        // 回答ボタンを生成
+        choicesContainer.innerHTML += `
+            <div class="answer-buttons">
+                <span class="answer-label">回答:</span>
+                <button class="answer-btn" data-answer="1">1</button>
+                <button class="answer-btn" data-answer="2">2</button>
+                <button class="answer-btn" data-answer="3">3</button>
+                <button class="answer-btn" data-answer="4">4</button>
+            </div>
+        `;
 
-                if (timeDiff < 300 && timeDiff > 0) {
-                    // ダブルクリック: 消去法トグル
-                    e.preventDefault();
-                    if (!this.isAnswered) {
-                        btn.classList.toggle('eliminated');
-                    }
-                    lastClick = 0;
-                } else {
-                    // シングルクリック: 回答
-                    lastClick = now;
-                    setTimeout(() => {
-                        if (lastClick !== 0 && !this.isAnswered && !btn.classList.contains('eliminated')) {
-                            this.answer(parseInt(btn.dataset.choice));
-                        }
-                        lastClick = 0;
-                    }, 300);
+        // 選択肢タップで消去法トグル
+        choicesContainer.querySelectorAll('.choice-item').forEach(item => {
+            item.addEventListener('click', () => {
+                if (!this.isAnswered) {
+                    item.classList.toggle('eliminated');
+                }
+            });
+        });
+
+        // 回答ボタンクリックで回答
+        choicesContainer.querySelectorAll('.answer-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (!this.isAnswered) {
+                    this.answer(parseInt(btn.dataset.answer));
                 }
             });
         });
@@ -148,17 +150,20 @@ const Study = {
         const isCorrect = selectedChoice === question.correctAnswer;
 
         // 選択肢の表示を更新
-        const buttons = document.querySelectorAll('.choice-btn');
-        buttons.forEach(btn => {
-            const choice = parseInt(btn.dataset.choice);
-            btn.classList.add('disabled');
+        const items = document.querySelectorAll('.choice-item');
+        items.forEach(item => {
+            const choice = parseInt(item.dataset.choice);
+            item.style.cursor = 'default';
 
             if (choice === question.correctAnswer) {
-                btn.classList.add('correct');
+                item.classList.add('correct');
             } else if (choice === selectedChoice && !isCorrect) {
-                btn.classList.add('wrong');
+                item.classList.add('wrong');
             }
         });
+
+        // 回答ボタンを非表示
+        document.querySelector('.answer-buttons').classList.add('hidden');
 
         // 履歴を保存
         await db.addHistory({

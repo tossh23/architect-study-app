@@ -320,33 +320,43 @@ const Stats = {
         // 年度・科目別にグループ化
         const years = [...new Set(questions.map(q => q.year))].sort().reverse();
 
-        let html = '';
+        // 科目名
+        const subjectNames = ['計画', '環設', '法規', '構造', '施工'];
+
+        let html = `<table class="mastery-table">
+            <thead>
+                <tr>
+                    <th>年度</th>
+                    ${subjectNames.map(s => `<th>${s}</th>`).join('')}
+                </tr>
+            </thead>
+            <tbody>`;
+
         for (const year of years) {
-            html += `<div class="mastery-year">`;
-            html += `<h4>${Utils.toJapaneseYear(year)}</h4>`;
+            html += `<tr>`;
+            html += `<td class="mastery-year-cell">${Utils.toJapaneseYear(year)}</td>`;
 
             for (let subject = 1; subject <= 5; subject++) {
                 const subjectQuestions = questions.filter(q => q.year === year && q.subject === subject);
-                if (subjectQuestions.length === 0) continue;
-
-                // 問題番号順にソート
                 subjectQuestions.sort((a, b) => a.questionNumber - b.questionNumber);
 
-                html += `<div class="mastery-subject">`;
-                html += `<span class="mastery-subject-label">${Utils.getSubjectShortName(subject)}</span>`;
-                html += `<div class="mastery-grid">`;
-
-                for (const q of subjectQuestions) {
-                    const crown = this.getCrownForQuestion(q.id, history);
-                    html += `<div class="mastery-item" title="問${q.questionNumber}">`;
-                    html += `<span class="crown ${crown.class}">${crown.icon}</span>`;
+                html += `<td class="mastery-cell">`;
+                if (subjectQuestions.length > 0) {
+                    html += `<div class="mastery-grid-compact">`;
+                    for (const q of subjectQuestions) {
+                        const crown = this.getCrownForQuestion(q.id, history);
+                        html += `<span class="crown ${crown.class}" title="問${q.questionNumber}">${crown.icon}</span>`;
+                    }
                     html += `</div>`;
+                } else {
+                    html += '-';
                 }
-
-                html += `</div></div>`;
+                html += `</td>`;
             }
-            html += `</div>`;
+            html += `</tr>`;
         }
+
+        html += `</tbody></table>`;
 
         container.innerHTML = html || '<p class="text-muted">問題データがありません</p>';
     },
