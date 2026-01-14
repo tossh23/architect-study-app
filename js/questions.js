@@ -306,6 +306,16 @@ const Questions = {
     },
 
     /**
+     * 問題編集モーダルを開く（学習画面から）
+     */
+    async openEditModal(id) {
+        const question = await db.getQuestion(id);
+        if (question) {
+            this.openModal(question);
+        }
+    },
+
+    /**
      * 問題を削除
      */
     async deleteQuestion(id) {

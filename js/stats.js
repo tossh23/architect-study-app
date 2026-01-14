@@ -5,6 +5,7 @@
 const Stats = {
     subjectChart: null,
     progressChart: null,
+    yearChart: null,
 
     /**
      * 統計ページを初期化
@@ -19,10 +20,13 @@ const Stats = {
     async loadStats() {
         const stats = await db.getStatsBySubject();
         const history = await db.getAllHistory();
+        const questions = await db.getAllQuestions();
 
         this.renderSubjectChart(stats);
         this.renderProgressChart(history);
         this.renderStatsTable(stats);
+        await this.renderYearChart(questions, history);
+        await this.renderMasterySection(questions, history);
     },
 
     /**
@@ -240,6 +244,139 @@ const Stats = {
                 <td>${total.accuracy}%</td>
             </tr>
         `;
+    },
+
+    /**
+     * 年度別正答率チャートを描画
+     */
+    async renderYearChart(questions, history) {
+        const ctx = document.getElementById('yearChart');
+        if (!ctx) return;
+
+        // 年度を抽出してソート
+        const years = [...new Set(questions.map(q => q.year))].sort();
+        if (years.length === 0) return;
+
+        const labels = years.map(y => Utils.toJapaneseYear(y));
+        const accuracyData = [];
+
+        for (const year of years) {
+            const yearQuestions = questions.filter(q => q.year === year);
+            const yearQuestionIds = yearQuestions.map(q => q.id);
+            const yearHistory = history.filter(h => yearQuestionIds.includes(h.questionId));
+
+            const total = yearHistory.length;
+            const correct = yearHistory.filter(h => h.isCorrect).length;
+            const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
+            accuracyData.push(accuracy);
+        }
+
+        if (this.yearChart) {
+            this.yearChart.destroy();
+        }
+
+        this.yearChart = new Chart(ctx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '正答率 (%)',
+                    data: accuracyData,
+                    backgroundColor: '#8b5cf680',
+                    borderColor: '#8b5cf6',
+                    borderWidth: 2,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: { color: '#334155' },
+                        ticks: { color: '#94a3b8', callback: v => v + '%' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8' }
+                    }
+                }
+            }
+        });
+    },
+
+    /**
+     * 達成度（王冠）セクションを描画
+     */
+    async renderMasterySection(questions, history) {
+        const container = document.getElementById('masterySection');
+        if (!container) return;
+
+        // 年度・科目別にグループ化
+        const years = [...new Set(questions.map(q => q.year))].sort().reverse();
+
+        let html = '';
+        for (const year of years) {
+            html += `<div class="mastery-year">`;
+            html += `<h4>${Utils.toJapaneseYear(year)}</h4>`;
+
+            for (let subject = 1; subject <= 5; subject++) {
+                const subjectQuestions = questions.filter(q => q.year === year && q.subject === subject);
+                if (subjectQuestions.length === 0) continue;
+
+                // 問題番号順にソート
+                subjectQuestions.sort((a, b) => a.questionNumber - b.questionNumber);
+
+                html += `<div class="mastery-subject">`;
+                html += `<span class="mastery-subject-label">${Utils.getSubjectShortName(subject)}</span>`;
+                html += `<div class="mastery-grid">`;
+
+                for (const q of subjectQuestions) {
+                    const crown = this.getCrownForQuestion(q.id, history);
+                    html += `<div class="mastery-item" title="問${q.questionNumber}">`;
+                    html += `<span class="crown ${crown.class}">${crown.icon}</span>`;
+                    html += `</div>`;
+                }
+
+                html += `</div></div>`;
+            }
+            html += `</div>`;
+        }
+
+        container.innerHTML = html || '<p class="text-muted">問題データがありません</p>';
+    },
+
+    /**
+     * 問題の王冠を判定
+     */
+    getCrownForQuestion(questionId, history) {
+        // 直近2回の履歴を取得
+        const qHistory = history
+            .filter(h => h.questionId === questionId)
+            .sort((a, b) => new Date(b.answeredAt) - new Date(a.answeredAt))
+            .slice(0, 2);
+
+        if (qHistory.length === 0) {
+            return { icon: '○', class: 'crown-empty' }; // 未解答
+        }
+
+        const last1 = qHistory[0]?.isCorrect;
+        const last2 = qHistory[1]?.isCorrect;
+
+        if (qHistory.length >= 2 && last1 && last2) {
+            return { icon: '♛', class: 'crown-gold' }; // 2回連続正解
+        } else if (last1) {
+            return { icon: '♛', class: 'crown-silver' }; // 直近1回正解
+        } else if (qHistory.length >= 2 && !last1 && !last2) {
+            return { icon: '♛', class: 'crown-black' }; // 2回連続不正解
+        } else {
+            return { icon: '♛', class: 'crown-bronze' }; // 直近1回不正解
+        }
     }
 };
 

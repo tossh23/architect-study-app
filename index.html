@@ -57,21 +57,21 @@
 
                 <div class="stats-overview">
                     <div class="stat-card">
-                        <div class="stat-icon">📚</div>
+                        <div class="stat-icon">■</div>
                         <div class="stat-info">
                             <span class="stat-value" id="totalQuestions">0</span>
                             <span class="stat-label">登録問題数</span>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon">✅</div>
+                        <div class="stat-icon">◆</div>
                         <div class="stat-info">
                             <span class="stat-value" id="totalAnswered">0</span>
                             <span class="stat-label">解答数</span>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon">🎯</div>
+                        <div class="stat-icon">●</div>
                         <div class="stat-info">
                             <span class="stat-value" id="overallAccuracy">0%</span>
                             <span class="stat-label">正答率</span>
@@ -82,7 +82,7 @@
                 <h2 class="section-title">科目を選んで学習開始</h2>
                 <div class="subject-grid">
                     <button class="subject-card" data-subject="1">
-                        <div class="subject-icon">🏢</div>
+                        <div class="subject-icon">Ⅰ</div>
                         <div class="subject-name">学科Ⅰ<br>計画</div>
                         <div class="subject-stats">
                             <span class="subject-count">0問</span>
@@ -90,7 +90,7 @@
                         </div>
                     </button>
                     <button class="subject-card" data-subject="2">
-                        <div class="subject-icon">🌡️</div>
+                        <div class="subject-icon">Ⅱ</div>
                         <div class="subject-name">学科Ⅱ<br>環境・設備</div>
                         <div class="subject-stats">
                             <span class="subject-count">0問</span>
@@ -98,7 +98,7 @@
                         </div>
                     </button>
                     <button class="subject-card" data-subject="3">
-                        <div class="subject-icon">📜</div>
+                        <div class="subject-icon">Ⅲ</div>
                         <div class="subject-name">学科Ⅲ<br>法規</div>
                         <div class="subject-stats">
                             <span class="subject-count">0問</span>
@@ -106,7 +106,7 @@
                         </div>
                     </button>
                     <button class="subject-card" data-subject="4">
-                        <div class="subject-icon">🔧</div>
+                        <div class="subject-icon">Ⅳ</div>
                         <div class="subject-name">学科Ⅳ<br>構造</div>
                         <div class="subject-stats">
                             <span class="subject-count">0問</span>
@@ -114,7 +114,7 @@
                         </div>
                     </button>
                     <button class="subject-card" data-subject="5">
-                        <div class="subject-icon">🔨</div>
+                        <div class="subject-icon">Ⅴ</div>
                         <div class="subject-name">学科Ⅴ<br>施工</div>
                         <div class="subject-stats">
                             <span class="subject-count">0問</span>
@@ -125,11 +125,11 @@
 
                 <div class="quick-actions">
                     <button class="btn btn-primary btn-large" id="startRandomStudy">
-                        <span class="btn-icon">🎲</span>
+                        <span class="btn-icon">▶</span>
                         全科目からランダム出題
                     </button>
                     <button class="btn btn-secondary btn-large" id="startWrongOnly">
-                        <span class="btn-icon">❌</span>
+                        <span class="btn-icon">↺</span>
                         間違えた問題のみ
                     </button>
                 </div>
@@ -168,9 +168,14 @@
                             解説がここに表示されます。
                         </div>
                     </div>
-                    <button class="btn btn-primary btn-large" id="nextQuestion">
-                        次の問題へ →
-                    </button>
+                    <div class="answer-actions">
+                        <button class="btn btn-ghost" id="editCurrentQuestion">
+                            <span class="btn-icon">✎</span> 問題を編集
+                        </button>
+                        <button class="btn btn-primary btn-large" id="nextQuestion">
+                            次の問題へ →
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -181,11 +186,11 @@
                     <div class="page-header-actions">
                         <input type="file" id="csvImportFile" accept=".csv" hidden>
                         <button class="btn btn-secondary" id="importCsvBtn">
-                            <span class="btn-icon">📥</span>
+                            <span class="btn-icon">↓</span>
                             CSVインポート
                         </button>
                         <button class="btn btn-primary" id="addQuestionBtn">
-                            <span class="btn-icon">➕</span>
+                            <span class="btn-icon">+</span>
                             新規問題登録
                         </button>
                     </div>
@@ -344,6 +349,28 @@
                             <!-- 動的に生成 -->
                         </tbody>
                     </table>
+                </div>
+
+                <div class="stats-cards">
+                    <div class="stats-card-large">
+                        <h3>年度別正答率</h3>
+                        <div class="chart-container">
+                            <canvas id="yearChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-details">
+                    <h3>達成度（王冠）</h3>
+                    <p class="stats-legend">
+                        <span class="crown crown-gold">♛</span> 2回連続正解
+                        <span class="crown crown-silver">♛</span> 1回正解
+                        <span class="crown crown-bronze">♛</span> 1回不正解
+                        <span class="crown crown-black">♛</span> 2回連続不正解
+                    </p>
+                    <div class="mastery-section" id="masterySection">
+                        <!-- 動的に生成 -->
+                    </div>
                 </div>
             </section>
 

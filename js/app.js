@@ -152,6 +152,14 @@ const App = {
             Study.nextQuestion();
         });
 
+        // 問題を編集ボタン（学習中）
+        document.getElementById('editCurrentQuestion').addEventListener('click', () => {
+            const question = Study.getCurrentQuestion();
+            if (question) {
+                Questions.openEditModal(question.id);
+            }
+        });
+
         // 設定画面のボタン
         document.getElementById('exportData').addEventListener('click', async () => {
             await this.exportData();

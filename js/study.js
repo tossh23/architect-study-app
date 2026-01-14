@@ -106,11 +106,29 @@ const Study = {
             </button>
         `).join('');
 
-        // 選択肢クリックイベント
+        // 選択肢クリックイベント（シングル/ダブルクリック対応）
         choicesContainer.querySelectorAll('.choice-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                if (!this.isAnswered) {
-                    this.answer(parseInt(btn.dataset.choice));
+            let lastClick = 0;
+            btn.addEventListener('click', (e) => {
+                const now = Date.now();
+                const timeDiff = now - lastClick;
+
+                if (timeDiff < 300 && timeDiff > 0) {
+                    // ダブルクリック: 消去法トグル
+                    e.preventDefault();
+                    if (!this.isAnswered) {
+                        btn.classList.toggle('eliminated');
+                    }
+                    lastClick = 0;
+                } else {
+                    // シングルクリック: 回答
+                    lastClick = now;
+                    setTimeout(() => {
+                        if (lastClick !== 0 && !this.isAnswered && !btn.classList.contains('eliminated')) {
+                            this.answer(parseInt(btn.dataset.choice));
+                        }
+                        lastClick = 0;
+                    }, 300);
                 }
             });
         });
@@ -275,5 +293,15 @@ const Study = {
      */
     abort() {
         App.showPage('home');
+    },
+
+    /**
+     * 現在の問題を取得
+     */
+    getCurrentQuestion() {
+        if (this.currentIndex < this.questions.length) {
+            return this.questions[this.currentIndex];
+        }
+        return null;
     }
 };
