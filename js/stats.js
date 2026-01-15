@@ -375,7 +375,7 @@ const Stats = {
                 html += `<td class="mastery-cell">`;
                 if (q) {
                     const crown = this.getCrownForQuestion(q.id, history);
-                    html += `<span class="crown ${crown.class}">${crown.icon}</span>`;
+                    html += `<span class="crown ${crown.class} clickable" data-question-id="${q.id}" title="問${num}をクリックで編集">${crown.icon}</span>`;
                 } else {
                     html += '-';
                 }
@@ -387,6 +387,16 @@ const Stats = {
         html += `</tbody></table>`;
 
         container.innerHTML = html || '<p class="text-muted">問題データがありません</p>';
+
+        // 王冠クリックで問題を編集
+        container.querySelectorAll('.crown.clickable').forEach(crown => {
+            crown.addEventListener('click', () => {
+                const questionId = crown.dataset.questionId;
+                if (questionId) {
+                    Questions.openEditModal(questionId);
+                }
+            });
+        });
     },
 
     /**
