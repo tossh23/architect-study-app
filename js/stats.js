@@ -311,14 +311,48 @@ const Stats = {
     },
 
     /**
-     * 達成度（王冠）セクションを描画
+     * 達成度セクションを描画
      */
     async renderMasterySection(questions, history) {
         const container = document.getElementById('masterySection');
+        const yearFilter = document.getElementById('masteryYearFilter');
+        if (!container || !yearFilter) return;
+
+        // 年度リストを取得
+        const years = [...new Set(questions.map(q => q.year))].sort().reverse();
+
+        // フィルターの選択肢を生成（初回のみ）
+        if (yearFilter.options.length === 0) {
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = Utils.toJapaneseYear(year);
+                yearFilter.appendChild(option);
+            });
+
+            // フィルター変更時のイベント
+            yearFilter.addEventListener('change', () => {
+                this.updateMasteryTable(questions, history, parseInt(yearFilter.value));
+            });
+        }
+
+        // 初期表示は最新年度
+        const selectedYear = parseInt(yearFilter.value) || years[0];
+        this.updateMasteryTable(questions, history, selectedYear);
+    },
+
+    /**
+     * 達成度テーブルを更新
+     */
+    updateMasteryTable(questions, history, year) {
+        const container = document.getElementById('masterySection');
         if (!container) return;
 
-        // 年度・科目別にグループ化
-        const years = [...new Set(questions.map(q => q.year))].sort().reverse();
+        // 選択年度の問題を取得
+        const yearQuestions = questions.filter(q => q.year === year);
+
+        // 最大問題番号を取得（科目ごと）
+        const maxQuestionNum = Math.max(...yearQuestions.map(q => q.questionNumber), 0);
 
         // 科目名
         const subjectNames = ['計画', '環設', '法規', '構造', '施工'];
@@ -326,28 +360,22 @@ const Stats = {
         let html = `<table class="mastery-table">
             <thead>
                 <tr>
-                    <th>年度</th>
+                    <th>問</th>
                     ${subjectNames.map(s => `<th>${s}</th>`).join('')}
                 </tr>
             </thead>
             <tbody>`;
 
-        for (const year of years) {
+        for (let num = 1; num <= maxQuestionNum; num++) {
             html += `<tr>`;
-            html += `<td class="mastery-year-cell">${Utils.toJapaneseYear(year)}</td>`;
+            html += `<td class="mastery-num-cell">${num}</td>`;
 
             for (let subject = 1; subject <= 5; subject++) {
-                const subjectQuestions = questions.filter(q => q.year === year && q.subject === subject);
-                subjectQuestions.sort((a, b) => a.questionNumber - b.questionNumber);
-
+                const q = yearQuestions.find(q => q.subject === subject && q.questionNumber === num);
                 html += `<td class="mastery-cell">`;
-                if (subjectQuestions.length > 0) {
-                    html += `<div class="mastery-grid-compact">`;
-                    for (const q of subjectQuestions) {
-                        const crown = this.getCrownForQuestion(q.id, history);
-                        html += `<span class="crown ${crown.class}" title="問${q.questionNumber}">${crown.icon}</span>`;
-                    }
-                    html += `</div>`;
+                if (q) {
+                    const crown = this.getCrownForQuestion(q.id, history);
+                    html += `<span class="crown ${crown.class}">${crown.icon}</span>`;
                 } else {
                     html += '-';
                 }
