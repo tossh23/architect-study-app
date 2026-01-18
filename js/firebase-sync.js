@@ -58,18 +58,26 @@ const FirebaseSync = {
     },
 
     /**
-     * Googleログイン（リダイレクト方式）
+     * Googleログイン（ポップアップ方式）
      */
     async login() {
         try {
             const provider = new firebase.auth.GoogleAuthProvider();
-            // リダイレクト方式（PWA/モバイル対応）
-            await this.auth.signInWithRedirect(provider);
+            // ポップアップ方式でログイン
+            const result = await this.auth.signInWithPopup(provider);
+            if (result.user) {
+                console.log('Logged in:', result.user.displayName);
+                Utils.showToast('ログインしました', 'success');
+            }
         } catch (error) {
             console.error('Login error:', error);
             let message = 'ログインに失敗しました';
             if (error.code === 'auth/unauthorized-domain') {
-                message = 'ドメインが未承認です。Firebase Consoleで承認してください';
+                message = 'ドメインが未承認です';
+            } else if (error.code === 'auth/popup-blocked') {
+                message = 'ポップアップがブロックされました';
+            } else if (error.code === 'auth/popup-closed-by-user') {
+                message = 'ログインがキャンセルされました';
             } else if (error.code) {
                 message = `エラー: ${error.code}`;
             }
