@@ -56,7 +56,18 @@ const FirebaseSync = {
             Utils.showToast('ログインしました', 'success');
         } catch (error) {
             console.error('Login error:', error);
-            Utils.showToast('ログインに失敗しました', 'error');
+            // エラーコードに応じたメッセージ
+            let message = 'ログインに失敗しました';
+            if (error.code === 'auth/unauthorized-domain') {
+                message = 'ドメインが未承認です。Firebase Consoleで承認してください';
+            } else if (error.code === 'auth/popup-blocked') {
+                message = 'ポップアップがブロックされました。許可してください';
+            } else if (error.code === 'auth/popup-closed-by-user') {
+                message = 'ログインがキャンセルされました';
+            } else if (error.code) {
+                message = `エラー: ${error.code}`;
+            }
+            Utils.showToast(message, 'error');
         }
     },
 
