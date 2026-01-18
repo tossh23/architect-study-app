@@ -43,26 +43,45 @@ const App = {
             return;
         }
 
+        // 埋め込み問題のバージョン（問題数をバージョンとして使用）
+        const builtinVersion = `v${BUILTIN_QUESTIONS.length}`;
+        const storedVersion = localStorage.getItem('builtinQuestionsVersion');
+
+        // バージョンが同じなら何もしない
+        if (storedVersion === builtinVersion) {
+            console.log(`Builtin questions already loaded (${builtinVersion})`);
+            return;
+        }
+
+        console.log(`Updating builtin questions: ${storedVersion || 'none'} -> ${builtinVersion}`);
+
+        // 既存の全問題を削除
+        const existingQuestions = await db.getAllQuestions();
+        for (const q of existingQuestions) {
+            await db.deleteQuestion(q.id);
+        }
+        console.log(`Deleted ${existingQuestions.length} existing questions`);
+
+        // 新しい問題を登録
         let loaded = 0;
         for (const q of BUILTIN_QUESTIONS) {
             try {
-                const existing = await db.getQuestion(q.id);
-                if (!existing) {
-                    await db.addQuestion({
-                        ...q,
-                        createdAt: new Date().toISOString(),
-                        updatedAt: new Date().toISOString()
-                    });
-                    loaded++;
-                }
+                await db.addQuestion({
+                    ...q,
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString()
+                });
+                loaded++;
             } catch (e) {
                 console.error('Error loading builtin question:', q.id, e);
             }
         }
 
-        if (loaded > 0) {
-            console.log(`Loaded ${loaded} builtin questions`);
-        }
+        // バージョンを保存
+        localStorage.setItem('builtinQuestionsVersion', builtinVersion);
+        console.log(`Loaded ${loaded} builtin questions`);
+
+        Utils.showToast(`${loaded}問の問題データを読み込みました`, 'success');
     },
 
     /**

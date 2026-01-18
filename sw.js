@@ -1,4 +1,4 @@
-const CACHE_NAME = 'architect-study-v7';
+const CACHE_NAME = 'architect-study-v8';
 const ASSETS = [
     './',
     './index.html',
