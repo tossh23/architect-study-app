@@ -166,13 +166,19 @@ const Study = {
         document.querySelector('.answer-buttons').classList.add('hidden');
 
         // 履歴を保存
-        await db.addHistory({
+        const historyItem = {
             id: Utils.generateId(),
             questionId: question.id,
             answeredAt: new Date().toISOString(),
             selectedAnswer: selectedChoice,
             isCorrect: isCorrect
-        });
+        };
+        await db.addHistory(historyItem);
+
+        // Firebaseに同期
+        if (typeof FirebaseSync !== 'undefined' && FirebaseSync.isLoggedIn()) {
+            FirebaseSync.saveHistory(historyItem);
+        }
 
         // 結果を表示
         const resultSection = document.getElementById('answerSection');

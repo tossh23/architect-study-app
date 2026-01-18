@@ -404,6 +404,24 @@
                 </div>
 
                 <div class="settings-section">
+                    <h3>クラウド同期</h3>
+                    <div class="settings-item">
+                        <div class="settings-info">
+                            <span class="settings-label">Googleアカウント連携</span>
+                            <span class="settings-desc">ログインすると学習履歴がPCとスマホで同期されます</span>
+                        </div>
+                        <div class="sync-controls">
+                            <span id="userInfo" class="user-info hidden"></span>
+                            <span id="syncStatus" class="sync-status">未ログイン</span>
+                            <button class="btn btn-primary" id="loginBtn">
+                                <span class="btn-icon">🔐</span>ログイン
+                            </button>
+                            <button class="btn btn-secondary hidden" id="logoutBtn">ログアウト</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
                     <h3>データ管理</h3>
                     <div class="settings-item">
                         <div class="settings-info">
@@ -444,6 +462,11 @@
     <!-- Toast通知 -->
     <div class="toast-container" id="toastContainer"></div>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/builtin-questions.js"></script>
     <script src="js/db.js"></script>
@@ -451,6 +474,7 @@
     <script src="js/questions.js"></script>
     <script src="js/study.js"></script>
     <script src="js/stats.js"></script>
+    <script src="js/firebase-sync.js"></script>
     <script src="js/app.js"></script>
 </body>
 

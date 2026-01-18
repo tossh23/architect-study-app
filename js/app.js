@@ -28,6 +28,9 @@ const App = {
             // 問題管理を初期化
             await Questions.init();
 
+            // Firebase初期化（クラウド同期）
+            await FirebaseSync.init();
+
             console.log('App initialized successfully');
         } catch (error) {
             console.error('App initialization failed:', error);
@@ -177,6 +180,15 @@ const App = {
             if (question) {
                 Questions.openEditModal(question.id);
             }
+        });
+
+        // 設定画面のログインボタン
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            FirebaseSync.login();
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            FirebaseSync.logout();
         });
 
         // 設定画面のボタン

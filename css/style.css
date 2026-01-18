@@ -1277,6 +1277,32 @@ textarea {
     line-height: 1.8;
 }
 
+/* クラウド同期 */
+.sync-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.user-info {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.sync-status {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+}
+
+.sync-status.syncing {
+    color: var(--accent-success);
+    background: rgba(34, 197, 94, 0.15);
+}
+
 /* =============================================
    Toast Notifications
    ============================================= */
