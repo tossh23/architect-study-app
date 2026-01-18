@@ -21,7 +21,7 @@ const FirebaseSync = {
             storageBucket: "architect-study-app-3449d.firebasestorage.app",
             messagingSenderId: "888623618244",
             appId: "1:888623618244:web:579c102c6e5177738c9191",
-            databaseURL: "https://architect-study-app-3449d-default-rtdb.firebaseio.com"
+            databaseURL: "https://architect-study-app-3449d-default-rtdb.asia-southeast1.firebasedatabase.app"
         };
 
         // Firebase初期化
