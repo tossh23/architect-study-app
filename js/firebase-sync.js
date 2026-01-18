@@ -32,6 +32,17 @@ const FirebaseSync = {
         this.auth = firebase.auth();
         this.db = firebase.database();
 
+        // リダイレクト結果を取得
+        try {
+            const result = await this.auth.getRedirectResult();
+            if (result.user) {
+                console.log('Logged in via redirect:', result.user.displayName);
+                Utils.showToast('ログインしました', 'success');
+            }
+        } catch (error) {
+            console.error('Redirect result error:', error);
+        }
+
         // 認証状態の監視
         this.auth.onAuthStateChanged((user) => {
             this.user = user;
