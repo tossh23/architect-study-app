@@ -732,7 +732,7 @@ const BUILTIN_QUESTIONS = [
       "土地に定着する観覧のための工作物で、屋根を有しないものは、「建築物」に該当しない。",
       "レストランの調理室は、「居室」に該当する。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -750,7 +750,7 @@ const BUILTIN_QUESTIONS = [
       "避雷設備の設置の必要性を検討するに当たっての建築物の高さの算定において、建築物の屋上部分である昇降機塔で、その水平投影面積の合計が当該建築物の建築面積の 1/8 以内の場合であっても、その部分の高さは、当該建築物の高さに算入する。",
       "建築物の屋上部分で、水平投影面積の合計が当該建築物の建築面積の 1/8 の倉庫を設けたものは、当該建築物の階数に算入する。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -768,7 +768,7 @@ const BUILTIN_QUESTIONS = [
       "都市計画区域、準都市計画区域、準景観地区内又は都道府県知事が関係市町村の意見を聴いて指定する区域内のいずれにも該当しない区域及び地区において、木造、延べ面積100m?、地上2階建ての一戸建て住宅を建築する場合、確認済証の交付を受ける必要はない。",
       "都市計画区域内で、建築物の容積率の最低限度が定められている区域内における確認済証の交付を受けた建築物について、床面積の合計が減少する場合における床面積の変更がある場合は、あらためて確認済証の交付を受けなければならない。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -786,7 +786,7 @@ const BUILTIN_QUESTIONS = [
       "建築主は、指定確認検査機関から建築物の用途の変更に係る確認済証の交付を受けた場合において、工事完了届については、建築主事等に届け出なければならない。",
       "建築主は、鉄筋コンクリート造、延べ面積800m?、地上3階建ての寄宿舎の新築の工事において、2階の床及びこれを支持するはりに鉄筋を配置する工事の工程(特定行政庁が指定する工程はない。)を終えたときは、指定確認検査機関が中間検査を引き受けた場合を除き、建築主事の中間検査を申請しなければならない。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -822,7 +822,7 @@ const BUILTIN_QUESTIONS = [
       "延べ面積2,000m?、地上2階建てのスポーツの練習場の2階の居室から地上に通ずる屋内の廊下及び階段の部分には、非常用の照明装置を設けなくてもよい。",
       "全館避難安全検証法は、火災発生時において建築物からの避難が安全に行われることを「当該建築物からの避難に要する時間に基づく検証」又は「火災により生じた煙又はガスの高さに基づく検証」により確かめる方法である。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -840,7 +840,7 @@ const BUILTIN_QUESTIONS = [
       "避難階が地上1階であり、地上3階に居室を有する事務所の用途に供する建築物で、主要構造部を準耐火構造としたものにおいて、地上2階から3階に通ずる吹抜きとなっている部分の壁及び天井に面する部分の仕上げ及び下地をともに不燃材料とした場合については、吹抜きとなっている部分とその他の部分とを防火区画しなくてもよい。",
       "防火区画検証法は、開口部に設けられる防火設備について、屋内で発生が予測される火災による火熱が加えられた場合に、開口部が面する室において発生が予測される火災の継続時間以上、加熱面以外の面に火炎を出すことなく耐えることができることを確かめる方法である。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -858,7 +858,7 @@ const BUILTIN_QUESTIONS = [
       "「耐火建築物等としなければならない特殊建築物に関する技術的基準」に適合せず、建築基準法第3条第2項の適用を受けている既存の建築物に、火熱遮断壁等で区画され、かつ、所定の基準に適合する部分を増築する場合、既存部分に対して当該技術的基準の規定は適用されない。",
       "建築物の用途を変更して一時的に興行場として使用する場合において、安全上、防火上及び衛生上支障がないものとして1年以内の期限を定めて、特定行政庁の許可を受けたものについては、「出入口その他の避難施設に関する技術的基準」の規定は適用されない。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -894,7 +894,7 @@ const BUILTIN_QUESTIONS = [
       "高さ20mを超える建築物で、避雷設備が設けられておらず、建築基準法第3条第2項の適用を受けている建築物に、大規模の修繕を行う場合には、「避雷設備の技術的基準」に適合する避雷設備を設けなければならない。",
       "地階を除く階数が11以上である建築物の屋上に設ける冷房のための冷却塔設備は、防火上支障がないものとして国土交通大臣が定めた構造方法を用いる場合においては、主要な部分を不燃材料以外の材料で造ることができる。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -912,7 +912,7 @@ const BUILTIN_QUESTIONS = [
       "鉄筋コンクリート造の建築物において、鉄筋に対するコンクリートのかぶり厚さは、原則として、直接土に接する壁にあっては、4cm以上としなければならない。",
       "鉄骨造の建築物において、高力ボルト接合を行う場合、高力ボルト孔の径は、原則として、高力ボルトの径より2mmを超えて大きくしてはならない。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -948,7 +948,7 @@ const BUILTIN_QUESTIONS = [
       "鉄筋コンクリート造、高さ25mの建築物において、保有水平耐力計算を行う場合、外装材について、国土交通大臣が定める基準に従った構造計算によって風圧に対して構造耐力上安全であることを確かめなければならない。",
       "限界耐力計算を行う場合、構造耐力上主要な部分の断面に生ずる長期(常時及び積雪時)及び短期(積雪時及び暴風時)の各応力度が、それぞれ長期に生ずる力又は短期に生ずる力に対する各許容応力度を超えないことを確かめなければならない。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -966,7 +966,7 @@ const BUILTIN_QUESTIONS = [
       "密集市街地整備法による新設の事業計画のある幅員8mの道路で、3年以内にその事業が執行される予定のものとして特定行政庁が指定したものは、建築基準法上の道路である。",
       "自動車のみの交通の用に供する道路内に、休憩所を新築する場合は、原則として、特定行政庁の許可が必要である。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -984,7 +984,7 @@ const BUILTIN_QUESTIONS = [
       "「延べ面積800m?、平家建ての産業廃棄物処理施設の用途に供する建築物(廃プラスチック類の破砕施設で、1日当たりの処理能力が6tのもの)」は、工業地域内において、新築することができる。",
       "「延べ面積400m?、地上2階建ての幼保連携型認定こども園」は、工業専用地域内において、新築することができる。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -1020,7 +1020,7 @@ const BUILTIN_QUESTIONS = [
       "31.25 m",
       "32.50 m"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -1038,7 +1038,7 @@ const BUILTIN_QUESTIONS = [
       "「準防火地域」内においては、延べ面積1,300m?、地上2階建ての事務所の用途に供する建築物は、耐火建築物若しくは準耐火建築物又はこれらと同等以上の延焼防止時間となる建築物としなければならない。",
       "「準防火地域」内にある木造建築物等に附属する門又は塀で、高さ2mを超えるものは、延焼防止上支障のない構造としなければならない。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -1056,7 +1056,7 @@ const BUILTIN_QUESTIONS = [
       "地区計画等の区域内における建築物の敷地が特定行政庁の指定した予定道路に接する場合、特定行政庁が交通上、安全上、防火上及び衛生上支障がないと認めて許可した建築物については、当該予定道路を前面道路とみなして建築物の容積率の規定が適用される。",
       "建築協定書の作成に当たって、建築協定区域内の土地で借地権の目的となっている土地については、その土地の所有者及び借地権を有する者の合意がなければならない。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -1074,7 +1074,7 @@ const BUILTIN_QUESTIONS = [
       "主要構造部を耐火構造とした地上15階建てのホテルにおいて、15階の客室及びこれから地上に通ずる主たる廊下、階段その他の通路の壁及び天井の室内に面する部分の仕上げを準不燃材料でした場合、当該客室の各部分から避難階又は地上に通ずる直通階段の一に至る歩行距離は、60mとすることができる。",
       "1階を避難階とするホテルにおいて、3階以上の階にある床面積50m?の客室には、採光上有効な窓がある場合であっても、非常用の照明装置を設けなければならない。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -1825,7 +1825,7 @@ const BUILTIN_QUESTIONS = [
     "questionText": "工事現場の管理等に関する次の記述のうち、最も不適当なものはどれか。",
     "questionImages": [],
     "choices": [
-      "1,000m?以上の建設発生土を工事現場から搬出する建設工事において、元請建設工事事業者は、あらかじめ再生資源利用促進計画を作成し、その計画及び実施状況の記録を当該建設工事の完成日から1年間保存しなければならない。",
+      "1,000㎡以上の建設発生土を工事現場から搬出する建設工事において、元請建設工事事業者は、あらかじめ再生資源利用促進計画を作成し、その計画及び実施状況の記録を当該建設工事の完成日から1年間保存しなければならない。",
       "山留め支保工の切ばり及び腹起しの取付けについては、土止め支保工作業主任者を選任し、その者に作業の方法を決定させるとともに、作業を直接指揮させなければならない。",
       "特定元方事業者は、元方安全衛生管理者を選任し、その者に労働災害を防止するために講じる措置のうち、技術的事項を管理させなければならない。",
       "水質汚濁防止法の規定に基づく排水基準において、1日当たりの平均的な排出水の量が50m?以上である場合、海域に排出されるものの水素イオン濃度はpH5.0以上9.0以下にしなければならない。"
@@ -1866,7 +1866,7 @@ const BUILTIN_QUESTIONS = [
       "つり上げ荷重が3tのクレーンを設置するに当たり、事業者が、その工事開始日の30日前までに、クレーン設置届を労働基準監督署長あてに提出した。",
       "床面積の合計が500m?の建築物の新築工事において、建設工事に係る資材の再資源化等に関する法律で定める特定建設資材を用いるので、発注者が、工事に着手する日の7日前までに、使用する特定建設資材の種類等その他必要な事項を記載した届出書を特定行政庁あてに提出した。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -1884,7 +1884,7 @@ const BUILTIN_QUESTIONS = [
       "深さ10m程度の軟弱層の地盤調査において、スクリューウエイト貫入試験(旧スウェーデン式サウンディング試験)を行った。",
       "平板載荷試験において、試験地盤面は、直径30cmの円形の載荷板の中心から1.2mの範囲を水平に整地した。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -1902,7 +1902,7 @@ const BUILTIN_QUESTIONS = [
       "山留め壁と地下躯体との間に隙間がある山留め支保工の撤去において、切ばりの撤去に先立ち、必要強度、厚さ、養生期間に留意して、コンクリートにより盛替え梁を設けた。",
       "山留め支保工の架設において、切ばりに設置する盤圧計については、その軸力を正しく計測するため、両側の支保工の腹起しから最も離れた位置として、切ばり支点間の中央に設置した。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -1938,7 +1938,7 @@ const BUILTIN_QUESTIONS = [
       "スラブの鉄筋のスペーサーの配置は、特記がなかったので、上端筋、下端筋それぞれ、間隔は0.9m程度、端部は0.1m以内とした。",
       "柱及び梁において、主筋にD29以上の太物の異形鉄筋を使用するに当たり、付着割裂破壊を考慮し、主筋のかぶり厚さを主筋の呼び名の数値の1.5倍以上とした。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -1956,7 +1956,7 @@ const BUILTIN_QUESTIONS = [
       "支柱の高さが3.5mの型枠支保工において、2本のパイプサポートを2本のボルトを用いて継いだものを支柱とした。",
       "防水下地となるコンクリート面における型枠緊張材(丸セパB型)のコーン穴の処理については、水量の少ない硬練りモルタルでコンクリート面と同一になるように充填した。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -1992,7 +1992,7 @@ const BUILTIN_QUESTIONS = [
       "軽量コンクリート: 指定スランプ15cm/空気量5.0%, 測定値スランプ17.0cm/空気量6.5%",
       "高強度コンクリート: 指定スランプフロー60cm/空気量4.5%, 測定値スランプフロー50.0cm/空気量5.5%"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2028,7 +2028,7 @@ const BUILTIN_QUESTIONS = [
       "鉄筋貫通孔の孔径についての特記がなかったので、工作図において、異形鉄筋D25の孔径の最大値を38mmとした。",
       "完全溶込み溶接とする板厚の異なる突合せ継手において、部材の板厚差による段違いが12mmであったので、薄いほうの部材から厚いほうの部材へ溶接表面が滑らかに移行するように溶接した。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2046,7 +2046,7 @@ const BUILTIN_QUESTIONS = [
       "鉄骨鉄筋コンクリート造における鉄骨の工作図の作成において、鉄筋の主筋の貫通孔径については、同一の部位に種々の径があったので、混同を避けるため、設計担当者と打合せをして、最大径の鉄筋の貫通孔径に統一した。",
       "受入検査における溶接部の外観検査は、特記がなかったので、溶接部の全てについて、表面欠陥及び精度に対する目視検査を行い、基準を逸脱していると思われる箇所に対してのみ、適正な器具により測定した。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2082,7 +2082,7 @@ const BUILTIN_QUESTIONS = [
       "接着工法による合成高分子系シート防水工事において、加硫ゴム系シートの接合幅(重ね幅)については、平場部を100mmとし、平場と立上り部の取合い部を120mmとした。",
       "金属板による折板葺において、タイトフレームと受け梁との接合については、風による繰返し荷重による緩みを防止するため、ボルト接合とせずに隅肉溶接とした。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2154,7 +2154,7 @@ const BUILTIN_QUESTIONS = [
       "呼び径80の一般配管用ステンレス鋼鋼管を用いた給水管の横走り配管については、吊り金物による支持間隔を2.0mとした。",
       "飲料用貯水槽の間接排水管の管径が65mmであったので、排水口空間を150mmとした。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2172,7 +2172,7 @@ const BUILTIN_QUESTIONS = [
       "セメントモルタルによるタイル後張り工法におけるタイル面の清掃において、モルタルによる汚れが著しかったので、監理者の承認を得て、30倍程度に希釈した工業用塩酸を用いて酸洗いを行った。",
       "吹付け工法による断熱工事において、吹付け硬質ウレタンフォームの1層の吹付け厚さを30mm以下とした。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2262,7 +2262,7 @@ const BUILTIN_QUESTIONS = [
       "一級建築士、二級建築士及び木造建築士は、国土交通大臣の免許を受け、設計、工事監理その他の業務を行う者で、常に品位を保持し、建築物の質の向上に寄与するように、公正かつ誠実にその業務を行わなければならない。",
       "建築関連5団体によって制定された「地球環境・建築憲章」(2000年)では、持続可能な循環型社会の実現に向けての21世紀の目標として、「長寿命」、「自然共生」、「省エネルギー」、「省資源・循環」、「継承」に取り組むことを宣言している。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2298,7 +2298,7 @@ const BUILTIN_QUESTIONS = [
       "パリのノートルダム大聖堂(フランス)は、二重周歩廊をめぐらした内陣と階上廊を有する側廊が設けられた五廊式バシリカの平面に、バラ窓や双塔を西面にもつ、ゴシック様式の建築物である。",
       "ウェストミンスター宮殿(イギリス)は、広大かつ整然とした幾何学的庭園をもち、宮殿内は「鏡の間」に代表される豪華な室内装飾が随所に施された、バロック様式の建築物である。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2316,7 +2316,7 @@ const BUILTIN_QUESTIONS = [
       "住宅地において、防犯性を高めるため、オスカー・ニューマンによる「まもりやすい空間」の理論に基づき、パブリックからプライベートまでの段階的な空間構成を採用した。",
       "商業施設において、ソシオフーガルな関係での利用ができるよう、互いの視線が合わずに座れるベンチを休憩スペースに設置した。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2352,7 +2352,7 @@ const BUILTIN_QUESTIONS = [
       "高層集合住宅において、各階で更新ができるように、排水管の接合方法が工夫された特殊継手排水システムを採用したので、排水管及びパイプシャフトは専有部から点検する計画とした。",
       "建築物の耐震改修に当たり、確認済証が交付されていたが検査済証の交付を受けていなかったので、建築当時の建築基準法等への適合状況を調査するため、確認済証に添付された図書等を用いて図上調査・現地調査を実施した。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2370,7 +2370,7 @@ const BUILTIN_QUESTIONS = [
       "OSB (Oriented Strand Board)は、木材のストランド(切削片)を配向した層が互いに直交となるように積層接着したものであり、耐力壁にも使用されている。",
       "MDF (Medium Density Fiberboard)は、主に木材等の植物繊維を成形した繊維板であり、下地材、家具材料のほか、構造用の面材にも使用されている。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2388,7 +2388,7 @@ const BUILTIN_QUESTIONS = [
       "体育館の計画において、バレーボールの公式試合(日本バレーボール協会主催の競技会)が行えるようにするため、天井の高さを、10.5mとした。",
       "病院の療養病床の病棟計画において、患者が使用する廊下の有効幅員は、片側居室となる部分を2.0m、両側居室となる部分を3.0mとした。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2406,7 +2406,7 @@ const BUILTIN_QUESTIONS = [
       "市庁舎の主たる階段において、杖使用者等が円滑に上下移動できるよう、両側に段鼻から高さ650mmと 850mmの二段の手すりを設けた。",
       "特別養護老人ホームのサイン計画において、特に白内障の人に表示内容が分かりやすくなるよう、黒い表示板に白色の文字を用いた。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2424,7 +2424,7 @@ const BUILTIN_QUESTIONS = [
       "建築基準法に基づく建築協定は、住宅地としての環境や商店街としての利便を高度に維持増進することなどを目的としたもので、原則として、土地所有者等の全員の合意により結ばれる。",
       "都市緑地法に基づく緑地協定は、都市計画区域又は準都市計画区域内の地域の良好な環境を確保するため、緑地の保全及び緑化の推進に関する事項について、土地所有者等の相当部分の参加により結ばれる。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2460,7 +2460,7 @@ const BUILTIN_QUESTIONS = [
       "中野本町の家(伊東豊雄)は、鉄筋コンクリートの柱の上に鉄骨フレームを架け、上部をアルミやテントで覆った住宅である。",
       "私たちの家(林昌二・林雅子)は、庭と居間とが面する関係を保ちつつ、コンクリートブロック造の住宅を増改築することで、夫婦2人の住まいとした住宅である。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2478,7 +2478,7 @@ const BUILTIN_QUESTIONS = [
       "コレクティブハウスは、自ら居住する住宅を建設しようとする者が集まって結成した組合によって、事業計画の策定、建築物の設計、工事発注から住宅の管理・運営までを行うものである。",
       "デュアルリビングは、住宅内に接客用のリビング(フォーマルリビング)と家族用のリビング(ファミリーリビング)のような、異なる機能をもつ2つのリビングを設けるものである。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2514,7 +2514,7 @@ const BUILTIN_QUESTIONS = [
       "レスパイトケアは、在宅で介護をする者が一時的に介護から離れて休息等をとれるようにする支援のことであり、医療型短期入所(ショートステイ)は、一時預かりだけでなく、介護をする者・される者が家族以外の人々と交流できる場としても期待されている。",
       "地域包括ケアシステムは、重度な要介護状態となっても住み慣れた地域で自分らしい暮らしを続けることができるような仕組みのことであり、住まい・医療・介護・予防・生活支援が一体的に提供されるよう、地域の特性に応じた対応が重要である。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2568,7 +2568,7 @@ const BUILTIN_QUESTIONS = [
       "「工事監理」、「工事と設計図書との照合及び確認の結果報告等」及び「工事監理の結果報告」は、建築士法における、いわゆる「建築士の独占業務」に該当する。",
       "四会連合協定「建築設計・監理等業務委託契約約款」における監理者の権限は、基本的に発注者との個別の契約で定められるが、契約で特に定められた場合を除き、工事施工段階での設計変更の権限も含まれる。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2586,7 +2586,7 @@ const BUILTIN_QUESTIONS = [
       "工事費における複合単価は、材料、副資材、施工等をまとめた単価のことである。",
       "仕上の計測・計算において、木製間仕切下地を材料と施工手間に分離する場合の材料価格に対応する数量は、所要数量とする。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2604,7 +2604,7 @@ const BUILTIN_QUESTIONS = [
       "ライフサイクルマネジメントは、建築物の機能や効用の維持あるいは向上を適切なコストのもとで、建築物の企画から解体・廃棄処分まで管理実行することである。",
       "BIMは、3次元の建築モデルに部材の寸法、材料、コスト等の属性情報をもたせたデータベースであり、設計から施工、維持管理までの各工程での情報活用が可能である。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2874,7 +2874,7 @@ const BUILTIN_QUESTIONS = [
       "排水槽において、定期的に清掃及び保守点検を行うため、有効内径60cmの防臭密閉型マンホールを2か所設けた。",
       "雨水を便器洗浄水等で再利用した排水が下水道料金の対象となる地域において、雨水使用量を計測する量水器を設置した。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2892,7 +2892,7 @@ const BUILTIN_QUESTIONS = [
       "中小規模の事務所ビルにおいて、照明・コンセント用幹線の配電方式には、一般に、単相3線式100V/200Vを採用する。",
       "低圧受電となる戸建て住宅において、接地端子付きのコンセントの接地工事には、一般に、A種接地工事を採用する。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2910,7 +2910,7 @@ const BUILTIN_QUESTIONS = [
       "ガスタービンによる発電設備は、同一出力のディーゼル機関によるものと比べて、振動及び設置面積は小さくなるが、必要な燃焼用空気量は多くなる。",
       "車両が通行する場所に、地中電線路を直接埋設式により施設する場合、原則として、土被りは120cm以上とする。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -2964,7 +2964,7 @@ const BUILTIN_QUESTIONS = [
       "LEEDは、人の健康やウェルネスに着目した、建築物や街区の環境性能評価システムである。",
       "DR(デマンドレスポンス)は、電力需要側が供給状況に応じて電力消費パターンを変化させて、電力需給バランスを調整する仕組みである。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -4926,7 +4926,7 @@ const BUILTIN_QUESTIONS = [
       "材料(イ)の熱伝導率を小さくすると、材料(ア)の各部分の温度が上がる。",
       "材料(ア)と材料(イ)を入れ替えたとしても、室内表面結露の防止には効果がない。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -4980,7 +4980,7 @@ const BUILTIN_QUESTIONS = [
       "B=C>A",
       "C>B>A"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -5232,7 +5232,7 @@ const BUILTIN_QUESTIONS = [
       "建築物の自重、積載荷重等を支える最下階の床版は、「構造耐力上主要な部分」である。",
       "防火戸であって、これに通常の火災による火熱が加えられた場合に、加熱開始後1時間当該加熱面以外の面に火炎を出さないものとして、国土交通大臣の認定を受けたものは、「特定防火設備」である。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5268,7 +5268,7 @@ const BUILTIN_QUESTIONS = [
       "木造、延べ面積10m?、高さ8m、平家建ての倉庫の新築",
       "鉄骨造、延べ面積500m?、平家建ての事務所の一部(床面積200m?)の、診療所(患者の収容施設があるもの)への用途の変更(大規模の修繕又は大規模の模様替は伴わないものとする。)"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5286,7 +5286,7 @@ const BUILTIN_QUESTIONS = [
       "国際的な規模の会議の用に供することにより、1年を超えて使用する特別の必要がある仮設興行場を建築する場合は、特定行政庁の許可を受けなければならない。",
       "建築物である認証型式部材等で、その新築の工事が建築士である工事監理者によって設計図書のとおり実施されたことが確認されたものは、完了検査において、その認証に係る型式に適合するものとみなす。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5299,12 +5299,12 @@ const BUILTIN_QUESTIONS = [
     "questionText": "第一種住居地域において、図のような断面を有する住宅の1階の居室に設ける開口部(A)の採光に有効な部分の面積として、建築基準法上、正しいものは、次のうちどれか。ただし、開口部(A)の幅は2.0mとし、図に記載されていないことについては考慮しないものとする。",
     "questionImages": [],
     "choices": [
-      "4.0 m?",
-      "4.4 m?",
-      "6.4 m?",
-      "12.0 m?"
+      "4.0㎡",
+      "4.4㎡",
+      "6.4㎡",
+      "12.0㎡"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -5322,7 +5322,7 @@ const BUILTIN_QUESTIONS = [
       "防火地域及び準防火地域以外の区域内において、延べ面積2,000m?、地上3階建ての図書館を新築する場合は、耐火建築物としなければならない。",
       "延べ面積600m?、地上3階建ての物品販売業を営む店舗(耐火建築物以外のもの)は、その主要構造部に通常の火災による火熱が所定の特定避難時間(屋根及び階段は30分間)加えられた場合に、当該部分が構造耐力上支障のある変形、溶融、破壊その他の損傷を生じないものでなければならない。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5340,7 +5340,7 @@ const BUILTIN_QUESTIONS = [
       "診療所(特定階を有し、病室の床面積の合計が110m?で、主要構造部を準耐火構造としたもの)について、各階から避難階に通ずる直通階段(間仕切壁及び所定の防火設備により当該階段の部分以外の部分と区画されているもの)を1か所設けた。",
       "階避難安全検証法により、火災発生時において建築物の階からの避難が安全に行われることを検証するため、「当該階の各居室ごとに、当該居室で火災が発生した場合に当該居室の在室者の全てが当該居室から安全に避難できること」及び「当該階の各火災室ごとに、当該火災室で火災が発生した場合に当該階に存する者の全てが当該階から安全に避難できること」を確かめた。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5358,7 +5358,7 @@ const BUILTIN_QUESTIONS = [
       "非常災害があった場合において、非常災害区域等のうち準防火地域内にある学校の用途を変更して地方公共団体が災害救助のために使用する病院で、その災害が発生した日から1月以内に当該用途の変更に着手するものについては、建築基準法令の規定は適用されない。",
       "建築物の用途を変更して一時的に使用する興行場で、安全上、防火上及び衛生上支障がないものとして特定行政庁の許可を受けるものについては、排煙設備に関する規定は適用されない。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5394,7 +5394,7 @@ const BUILTIN_QUESTIONS = [
       "排煙設備を設置しなければならない居室に設ける排煙設備の排煙口で、煙感知器と連動する自動開放装置を設けたものについては、原則として、手動開放装置を設けなくてもよい。",
       "準耐火構造の床若しくは壁又は防火戸その他の政令で定める防火設備で、床面積200m?以内に区画された共同住宅の住戸の居室には、窓その他の開口部で開放できる部分(天井又は天井から下方80cm以内の距離にある部分に限る。)の面積の合計が、当該居室の床面積の1/50未満であっても、排煙設備を設けなくてもよい。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5412,7 +5412,7 @@ const BUILTIN_QUESTIONS = [
       "高さが60mを超える鉄骨造の建築物で、荷重及び外力によって建築物の各部分に連続的に生ずる力及び変形を把握することその他の所定の基準に従った構造計算によって安全性が確かめられたものとして国土交通大臣の認定を受けたものは、構造計算適合性判定の対象とならない。",
       "許容応力度等計算によって安全性を確かめる場合、外装材については、所定の構造計算によって風圧に対して構造耐力上安全であることを確かめなければならない。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5430,7 +5430,7 @@ const BUILTIN_QUESTIONS = [
       "設計基準強度が21N/mm?のコンクリートの場合、短期に生ずる力に対するせん断の許容応力度は、設計基準強度の1/30である。",
       "設計基準強度が21N/mm?のコンクリートの引張りに対する材料強度は、圧縮に対する材料強度の1/10である。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5448,7 +5448,7 @@ const BUILTIN_QUESTIONS = [
       "鉄筋コンクリート造の建築物において、原則として、コンクリートの打込み中及び打込み後5日間は、コンクリートの温度が2度を下らないようにし、かつ、乾燥、震動等によってコンクリートの凝結及び硬化が妨げられないように養生しなければならない。",
       "鉄骨造の建築物において、構造耐力上主要な部分である柱の脚部は、滑節構造である場合を除き、国土交通大臣が定める基準に従ったアンカーボルトによる緊結その他の構造方法により基礎に緊結しなければならない。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5497,10 +5497,10 @@ const BUILTIN_QUESTIONS = [
     "questionText": "図のような敷地において、準耐火建築物を新築する場合、建築基準法上、建築することができる建築面積の最大のものは、次のうちどれか。ただし、図に記載されているものを除き、地域、地区等及び特定行政庁の指定、許可等は考慮しないものとする。",
     "questionImages": [],
     "choices": [
-      "238.0 m?",
-      "273.0 m?",
-      "292.5 m?",
-      "308.0 m?"
+      "238.0㎡",
+      "273.0㎡",
+      "292.5㎡",
+      "308.0㎡"
     ],
     "correctAnswer": 4,
     "explanation": "",
@@ -5574,7 +5574,7 @@ const BUILTIN_QUESTIONS = [
       "老人ホームにおけるエレベーターの昇降路の部分又は共用の廊下若しくは階段の用に供する部分の床面積が、当該老人ホームの床面積の合計の1/3を超える場合においては、当該床面積の1/3を限度として、建築物の容積率の算定の基礎となる延べ面積に算入しないものとする。",
       "階段の幅が3mを超える劇場の階段で、蹴上げが15cm以下、かつ、踏面が30cm以上のものにあっては、その中間に手すりを設けなくてもよい。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5592,7 +5592,7 @@ const BUILTIN_QUESTIONS = [
       "一級建築士は、他の一級建築士の設計した設計図書の一部を変更しようとする場合は、当該一級建築士の承諾を求め、承諾が得られなかったときは、自己の責任において、その設計図書の一部を変更することができる。",
       "建築士は、設計及び工事監理に必要な知識及び技能の維持向上に努めるとともに、設計の委託者に対し、設計の内容に関して適切な説明を行うように努めなければならない。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5628,7 +5628,7 @@ const BUILTIN_QUESTIONS = [
       "一級建築士は、建築士事務所に所属しなくなった後、一級建築士定期講習の受講期間を超えた日以降に建築士事務所に所属した場合は、遅滞なく、一級建築士定期講習を受けなければならない。",
       "建築士事務所に属する建築士が、その業務における建築基準法の違反行為によって免許を取り消された場合、当該建築士事務所の開設者に課せられる処分は、「戒告」又は「1年以内の事務所の閉鎖命令」のいずれかである。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5646,7 +5646,7 @@ const BUILTIN_QUESTIONS = [
       "市街化区域内において、市街地再開発事業の施行として行う1,000m?の開発行為については、都道府県知事の許可を受ける必要はない。",
       "地区整備計画が定められている地区計画の区域内において、仮設建築物の建築を行おうとする者は、行為の種類、場所、着手予定日等を市町村長に届け出る必要はない。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5664,7 +5664,7 @@ const BUILTIN_QUESTIONS = [
       "延べ面積5,000m?、地上3階建ての耐火建築物であるホテルには、スプリンクラー設備を設置しなくてもよい。",
       "延べ面積5,000m?、地上2階建ての準耐火建築物である倉庫については、屋外消火栓設備を設置しなくてもよい。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5736,7 +5736,7 @@ const BUILTIN_QUESTIONS = [
       "スプリンクラー設備等の「消防用設備等」については、用途の変更に当たって、変更後の設置基準に適合させなければならない。",
       "用途の変更に当たって、工事に着手する前に建築確認の申請を行い、当該工事の完了後は完了検査の申請を行わなければならない。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -5754,7 +5754,7 @@ const BUILTIN_QUESTIONS = [
       "「建設業法」上、建設業者は、発注者から請負代金の額が7,000万円の事務所の建築一式工事を請け負った場合、当該工事を施工するときは、当該工事現場に置く主任技術者又は監理技術者を専任の者としなくてよい。",
       "「長期優良住宅の普及の促進に関する法律」上、構造及び設備が長期使用構造等に該当すると認められる既存住宅(区分所有住宅を除く。)の所有者は、長期優良住宅として国土交通省令で定める長期優良住宅維持保全計画を作成し、所管行政庁の認定を申請することができる。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -6762,7 +6762,7 @@ const BUILTIN_QUESTIONS = [
       "建築基準法は、国民の生命、健康及び財産の保護を図り、公共の福祉の増進に資することを目的として、建築物の敷地、構造、設備及び用途に関する平均的な基準を定めている。",
       "我が国において2050年までのカーボンニュートラルの実現のために、建築物においては、省エネルギー性能の確保や向上への取り組み、また、再生可能エネルギーの導入拡大等が求められている。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -6780,7 +6780,7 @@ const BUILTIN_QUESTIONS = [
       "ドイツのエンデ・ベックマン建築事務所による「帝都復興計画」では、築地・日比谷・霞が関一帯を含む広大な敷地に中央停車場を置き、三角形に構成された大街路や広場を含んだ計画が提案された。",
       "丹下健三研究室による「東京計画1960」では、これまでの求心・放射型の都市構造の閉鎖性に対して、東京湾に造成した人工地盤に向かって都市の中枢機能の拡大を可能とする都市構造が提案された。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -6798,7 +6798,7 @@ const BUILTIN_QUESTIONS = [
       "ジョン F. ケネディ国際空港 TWAターミナルビル(ニューヨーク、E.サーリネン、1962年)／長さ約105mの屋根は、4本のY字柱脚に支えられた4枚の鉄筋コンクリート造によるシェルで構成されている。",
       "ミレニアムドーム 2000(ロンドン、R.ロジャース、1999年)／直径約365m・最高高さ約50mの膜構造ドームは12本のマストの頂部からケーブルで吊られている。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -6978,7 +6978,7 @@ const BUILTIN_QUESTIONS = [
       "ヴィッラ・クゥクゥ (吉阪隆正、1957年)は、コンクリートの特性を生かした形態と彫りの深い開口をもち、外部に対して閉じることにより「閉鎖性」をつくり出したワンルーム形式の住宅である。",
       "正面のない家-H(坂倉準三建築研究所、1962年)は、襖を開くことでワンルームとなる正方形平面に方形屋根を架け、傘の骨のように組まれた木材を内部に現した住宅である。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7212,7 +7212,7 @@ const BUILTIN_QUESTIONS = [
       "夏至の日における可照時間は、南向き鉛直面より北向き鉛直面のほうが長い。",
       "4時間日影となる領域の面積は、建築面積と高さが同じ直方体の建築物で、ある壁面が東西方向に平行に配置されている場合、一般に、平面形状が正方形より東西に長い形状のほうが大きい。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7266,7 +7266,7 @@ const BUILTIN_QUESTIONS = [
       "人の可聴周波数の範囲はおよそ20Hzから20kHzであり、対応する波長の範囲は十数mから十数mmである。",
       "同種で同じ音圧レベルの音源の数が、ほぼ同じ位置において4つになると、音源が1つの場合に比べて、音圧レベルの値は約6dB増加する。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7482,7 +7482,7 @@ const BUILTIN_QUESTIONS = [
       "地階を除く階数は、3である。",
       "階数は、5である。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -7500,7 +7500,7 @@ const BUILTIN_QUESTIONS = [
       "天井面から50cm下方に突出した垂れ壁で、不燃材料で造られたものは、「防煙壁」に該当する。",
       "既存建築物に設けられている木造の屋外階段を全て鉄骨造に取り替えることは、「大規模の模様替」に該当する。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7518,7 +7518,7 @@ const BUILTIN_QUESTIONS = [
       "共同住宅の新築工事を施工するために現場に設ける延べ面積50m?、平家建ての工事管理事務所の新築",
       "鉄筋コンクリート造、延べ面積800m?、地上3階建てのホテルから共同住宅への用途の変更(大規模の修繕又は大規模の模様替を伴わないもの)"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7536,7 +7536,7 @@ const BUILTIN_QUESTIONS = [
       "建築主は、確認済証の交付を受けた建築物について、当該建築物の建築設備の材料、位置又は能力の変更(性能が低下する材料の変更及び能力が減少する変更を除く。)をして、当該建築物を建築しようとする場合において、変更後も建築物の計画が建築基準関係規定に適合することが明らかなものは、あらためて、確認済証の交付を受ける必要はない。",
       "建築主は、鉄骨造、延べ面積500m?、地上3階建ての事務所を新築する場合において、完了検査の申請が建築主事により受理された日から7日を経過したときは、検査済証の交付を受ける前においても、仮に、当該建築物又は建築物の部分を使用することができる。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7554,7 +7554,7 @@ const BUILTIN_QUESTIONS = [
       "居室の内装の仕上げに第三種ホルムアルデヒド発散建築材料を使用するときは、原則として、当該材料を使用する内装の仕上げの部分の面積に所定の数値を乗じて得た面積については、当該居室の床面積を超えないようにしなければならない。",
       "老人福祉施設における防火上主要な間仕切壁で、小屋裏又は天井裏に達する準耐火構造としたものは、125 Hz、500 Hz、2,000Hzの振動数の音に対して、それぞれ透過損失25dB、40dB、50dB以上の遮音性能としなければならない。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7572,7 +7572,7 @@ const BUILTIN_QUESTIONS = [
       "地上15階建ての事務所の12階部分で、執務室の壁及び天井の室内に面する部分の仕上げを難燃材料でし、かつ、その下地を難燃材料で造ったものは、床面積の合計200m?以内ごとに防火区画しなければならない。",
       "1階及び2階を集会場(当該用途に供する部分の各階の客席部分の床面積の合計が1,000m?)とし、3階以上の階を事務所とする地上10階建ての建築物においては、原則として、当該集会場部分と事務所部分とを防火区画しなければならない。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7590,7 +7590,7 @@ const BUILTIN_QUESTIONS = [
       "主要構造部を耐火構造とした地上5階建ての共同住宅(住戸の居室以外の居室はないものとする。)で、各階に住戸(各住戸の居室の床面積の合計50m?)が4戸あるものに直通階段を1か所設けた。",
       "主要構造部を耐火構造とした地上6階建ての事務所で、各階の居室の床面積の合計が200m?で、かつ、各階に避難上有効なバルコニーを設けたものに、避難階段の構造に適合する屋外の直通階段を1か所設けた。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7626,7 +7626,7 @@ const BUILTIN_QUESTIONS = [
       "地下街の各構えが接する地下道の幅員は、5m以上でなければならない。",
       "建築物の高さ31m以下の部分にある3階以上の各階において、道に面する外壁面に直径1m以上の円が内接できる窓で、格子その他の屋外からの進入を妨げる構造を有しないものを、当該壁面の長さ10m以内ごとに設けている場合には、非常用の進入口を設けなくてもよい。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7662,7 +7662,7 @@ const BUILTIN_QUESTIONS = [
       "建築物の地上部分に作用する地震力について、許容応力度等計算を行う場合における標準せん断力係数は0.2以上又は0.3以上とし、必要保有水平耐力を計算する場合における標準せん断力係数は1.0以上としなければならない。",
       "限界耐力計算を行う場合、構造耐力上主要な部分の断面に生ずる長期(常時及び積雪時)及び短期(積雪時、暴風時及び地震時)の各応力度が、それぞれ長期に生ずる力又は短期に生ずる力に対する各許容応力度を超えないことを確かめなければならない。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7680,7 +7680,7 @@ const BUILTIN_QUESTIONS = [
       "高さ3mの鉄筋コンクリート造の塀に使用するコンクリート(軽量骨材は使用しないものとする。)の四週圧縮強度は、12 N/mm?以上とする必要はない。",
       "異形鉄筋をせん断補強以外に用いる場合の引張りに対する材料強度は、異形鉄筋の圧縮に対する材料強度と同じ値である。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7698,7 +7698,7 @@ const BUILTIN_QUESTIONS = [
       "鉄筋コンクリート造の建築物において、構造耐力上主要な部分である柱の主筋は帯筋と緊結する必要はない。",
       "鉄骨造の建築物において、特定天井の構造は、構造耐力上安全なものとして、国土交通大臣が定めた構造方法を用いるもの又は国土交通大臣の認定を受けたものとする必要はない。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7716,7 +7716,7 @@ const BUILTIN_QUESTIONS = [
       "道路内にある建築物については、高架の道路の路面下に設けるものを除き、道路高さ制限は適用されない。",
       "特定行政庁から位置の指定を受けた幅員6mの私道を廃止する場合は、特定行政庁の許可が必要である。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7734,7 +7734,7 @@ const BUILTIN_QUESTIONS = [
       "近隣商業地域内において、「延べ面積500m? (作業場の床面積の合計が400m?)、平家建ての、原動機を使用する自動車修理工場」は、新築することができる。",
       "商業地域内において、「延べ面積2,000m?、平家建ての圧縮天然ガスの製造工場(内燃機関の燃料として自動車に充填するための圧縮天然ガスに係るもの)」は、新築することができる。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7752,7 +7752,7 @@ const BUILTIN_QUESTIONS = [
       "準防火地域内においては、延べ面積180m?、地上3階建ての一戸建て住宅の用途に供する建築物は、耐火建築物若しくは準耐火建築物又はこれらと同等以上の延焼防止時間となる建築物としなければならない。",
       "準防火地域内においては、延べ面積1,200m?、地上2階建ての倉庫の用途に供する建築物は、耐火建築物又はこれと同等以上の延焼防止時間となる建築物としなければならない。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7765,12 +7765,12 @@ const BUILTIN_QUESTIONS = [
     "questionText": "図のような敷地において、建築基準法上、新築することができる建築物の容積率(同法第52条に規定する容積率)の最高限度は、次のうちどれか。ただし、図に記載されているものを除き、地域、地区等及び特定行政庁の指定、許可等は考慮しないものとする。",
     "questionImages": [],
     "choices": [
-      "30/10",
-      "40/10",
-      "45/10",
-      "53/10"
+      "10月30日",
+      "Oct-40",
+      "Oct-45",
+      "Oct-53"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -7788,7 +7788,7 @@ const BUILTIN_QUESTIONS = [
       "24.25 m",
       "26.25 m"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -7806,7 +7806,7 @@ const BUILTIN_QUESTIONS = [
       "建築基準法の規定による許可には、建築物又は建築物の敷地を交通上、安全上、防火上又は衛生上支障がないものとするための条件等を付することができる。",
       "建築基準法令の規定による指定確認検査機関の処分に不服がある者は、当該処分に係る建築物について建築確認をする権限を有する建築主事が置かれた市町村又は都道府県の建築審査会に対して審査請求をすることができる。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7824,7 +7824,7 @@ const BUILTIN_QUESTIONS = [
       "既存の地上5階建ての病院(5階における当該用途に供する部分の床面積の合計が1,600m?のもの)に設けた非常用の照明装置に用いる照明カバーの取替えの工事の施工中に、当該建築物を使用する場合においては、当該建築主は、あらかじめ、工事の施工中における建築物の安全上、防火上又は避難上の措置に関する計画を作成して特定行政庁に届け出なければならない。",
       "敷地が準工業地域内に400m?、工業地域内に600m?と二つの用途地域にわたる場合、当該敷地には、特定行政庁の許可を受けなければ病院を新築することができない。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7842,7 +7842,7 @@ const BUILTIN_QUESTIONS = [
       "一級建築士でなければ設計をしてはならない建築物の工事監理については、一級建築士の指導を受けている場合であっても、二級建築士は行うことができない。",
       "構造設計一級建築士の関与が義務付けられた建築物の工事監理については、構造設計一級建築士以外の一級建築士であっても行うことができる。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -7860,7 +7860,7 @@ const BUILTIN_QUESTIONS = [
       "管理建築士が建築基準法の違反によって免許取消しや業務停止等の処分を受けた場合、その処分が自宅の設計など建築士事務所の業務によらないものであっても、当該建築士事務所は閉鎖処分の対象となる。",
       "一級建築士事務所に置かれる管理建築士となるための業務要件としては、一級建築士として3年以上の建築物の設計や工事監理等に従事することが求められる。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -8022,7 +8022,7 @@ const BUILTIN_QUESTIONS = [
       "N=12a^2σy, M=42a^3σy",
       "N=12a^2σy, M=52a^3σy"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -8040,7 +8040,7 @@ const BUILTIN_QUESTIONS = [
       "δB=δC<δA",
       "δC<δA=δB"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -8058,7 +8058,7 @@ const BUILTIN_QUESTIONS = [
       "wl:P=2:1",
       "wl:P=3:1"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -8076,7 +8076,7 @@ const BUILTIN_QUESTIONS = [
       "C点の曲げモーメントは0である。",
       "E点の鉛直反力Vは Mp/l である。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -8094,7 +8094,7 @@ const BUILTIN_QUESTIONS = [
       "NC < NA < NB",
       "NC < NB < NA"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -8112,7 +8112,7 @@ const BUILTIN_QUESTIONS = [
       "図の選択肢3",
       "図の選択肢4"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -8130,7 +8130,7 @@ const BUILTIN_QUESTIONS = [
       "TB = TC < TA",
       "TC < TA < TB"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -9138,7 +9138,7 @@ const BUILTIN_QUESTIONS = [
       "ホテルのフロントカウンターの計画において、一般用の高さを100cmとし、車椅子使用者用の高さを70cmとした。",
       "事務所ビルの事務室の計画において、椅子に座ったときの視界を遮るためのパーティションの高さを、120cmとした。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -9156,7 +9156,7 @@ const BUILTIN_QUESTIONS = [
       "人と車椅子使用者がすれ違えるように、傾斜路の有効幅Cを、1,500mmとした。",
       "白杖等による危険の認知、車椅子のキャスター等の脱輪防止のため、側壁がない傾斜路及び踊り場側端の立ち上がりDを、50mmとした。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -9174,7 +9174,7 @@ const BUILTIN_QUESTIONS = [
       "TMOとは、商業・業務機能が集積した地区において、「中心市街地活性化基本計画」等をもとに活性化事業等を推進する民間主体の組織のことである。",
       "サウンディング型市場調査とは、地方公共団体等の事業完了後に、住民との意見交換等を通し、事業に対しての様々な意見や改善点を把握する調査のことである。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -9192,7 +9192,7 @@ const BUILTIN_QUESTIONS = [
       "香川県高松市では、タウンマネジメント・プログラムにより、第三セクターを設立し、地域住民や事業者、地権者を主体としたまちづくりが実践されている。",
       "福岡県北九州市では、民間自立型による家守事業者の設立や定期的なリノベーションスクールの開催により、遊休不動産を活用した「リノベーションまちづくり」が実践されている。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -9210,7 +9210,7 @@ const BUILTIN_QUESTIONS = [
       "岩手県下に多く見られた曲り屋造りとは、L字型の平面形状を有し、突出部は厩で母屋の土間とつながる民家形式の一つである。",
       "輪中とは、河川の氾濫する低湿地帯で、周囲に堤防を築き、集落と耕地を守る水防のための集落形態のことである。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -9228,7 +9228,7 @@ const BUILTIN_QUESTIONS = [
       "陸前高田のみんなの家(岩手県)は、東日本大震災の津波で立ち枯れたスギの丸太を用い、被災した人々の集いの場としてつくられた集会場である。",
       "グループハウス尼崎(兵庫県)は、阪神・淡路大震災後に被災者を対象に建設された、高齢者向け住戸と一般向け住戸で構成され、サポート拠点(サポートセンター)を併設した災害公営住宅である。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -9246,7 +9246,7 @@ const BUILTIN_QUESTIONS = [
       "太田市美術館・図書館(群馬県)は、建築物の屋内外を巡るスロープや階段、テラス、緑化された屋上を備え、駅前からは施設の賑わいが見え、また、施設からは街が眺められるように計画された。",
       "代官山ヒルサイドテラス(東京都)は、建築群が内包する広場や路地等を主要素として外部空間を形成し、周囲の純和式建築物や庭園とゲートによってつながるように計画された。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -9264,7 +9264,7 @@ const BUILTIN_QUESTIONS = [
       "石巻市庁舎(宮城県)は、百貨店を転用したもので、既存エスカレーターをそのまま活用し、売り場は執務スペースへ、映画館は議場へと改修された。",
       "大田区役所本庁舎(東京都)は、1960年代に建てられた民間の事務所ビルを転用したもので、外部及び内部デザインを継承しながら、3階エントランスは各種イベントに対応できるように、設備改修が施された。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -9282,7 +9282,7 @@ const BUILTIN_QUESTIONS = [
       "二つのユニットを有する個室ユニットケア型特別養護老人ホームにおいて、隣接するユニットの共同生活室は共用として、二つのユニットが一体的に使えるようにした。",
       "個室ユニットケア型特別養護老人ホームにおいて、入居者の個室内にトイレを設けない場合、排泄リズムの重なる場合が多いことを配慮し、個室からトイレに至る動線を短くし、トイレを個室3部屋に対し一つ以上設けた。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -9300,7 +9300,7 @@ const BUILTIN_QUESTIONS = [
       "千葉市美術館(千葉県)は、昭和初期に銀行として建設された既存建築物全体を新築の建築物で覆う「鞘堂」という日本古来の方式により整備したものである。",
       "ロームシアター京都(旧京都会館)(京都府)は、昭和30年代に建設された既存建築物を保存し、意匠的な要素を再現しながら、増築と一部建て替えを行うことで、機能拡充が図られたものである。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -9318,7 +9318,7 @@ const BUILTIN_QUESTIONS = [
       "設計者は、設計図書の定めにより、工事施工段階において行うことに合理性がある工事材料、設備機器等及びそれらの色、柄、形状等の選定に関して、設計意図の観点からの検討を行い、必要な助言を建築主に対して行う。",
       "工事監理者は、設計図書の定めにより、工事施工者が作成し、提出する施工図、製作見本、見本施工等が設計図書の内容に適合しているかについて検討し、建築主に報告する。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -9336,7 +9336,7 @@ const BUILTIN_QUESTIONS = [
       "鉄骨の数量において、1か所当たり0.5m?以下のダクト孔による鋼材の欠除については、原則として、ないものとして計測・計算する。",
       "仕上改修において、設計図書に改修に必要な余幅の図示がないときは、適切な余幅を加えて計測・計算することができる。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -9354,7 +9354,7 @@ const BUILTIN_QUESTIONS = [
       "フロントローディングとは、施工段階や維持管理段階における問題点の早期発見や作業全体の効率化を目指し、設計段階で各種の技術検討を行うことである。",
       "CRE戦略とは、企業が保有している不動産について、企業価値向上の観点から、経営戦略的視点に立って見直しを行い、不動産投資の効率性を最大限向上させるための考え方である。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -9930,7 +9930,7 @@ const BUILTIN_QUESTIONS = [
       "1,980 cm",
       "2,250 cm"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -10015,10 +10015,10 @@ const BUILTIN_QUESTIONS = [
     "questionText": "図のような敷地において、建築基準法上、新築することができる建築物の容積率(同法第52条に規定する容積率)の最高限度は、次のうちどれか。ただし、図に記載されているものを除き、地域、地区等及び特定行政庁の指定、許可等は考慮しないものとする。",
     "questionImages": [],
     "choices": [
-      "28/10",
-      "31/10",
-      "37/10",
-      "40/10"
+      "10月28日",
+      "10月31日",
+      "Oct-37",
+      "Oct-40"
     ],
     "correctAnswer": 3,
     "explanation": "",
@@ -10272,7 +10272,7 @@ const BUILTIN_QUESTIONS = [
       "引張+26, 圧縮-34, せん断0.50",
       "引張+16, 圧縮-24, せん断0.75"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -10308,7 +10308,7 @@ const BUILTIN_QUESTIONS = [
       "α=3/2",
       "α=2"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -10326,7 +10326,7 @@ const BUILTIN_QUESTIONS = [
       "図の水平荷重Pは、2Mp/l である。",
       "図のせん断力Qcは、4Mp/l である。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -10344,7 +10344,7 @@ const BUILTIN_QUESTIONS = [
       "δC < δA = δB",
       "δC < δA < δB"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -10362,7 +10362,7 @@ const BUILTIN_QUESTIONS = [
       "Peは、柱の材端条件が「両端ピンの場合」に比べて「一端自由他端固定の場合」のほうが大きくなる。",
       "Peは、柱の材端条件が「一端ピン他端固定の場合」に比べて「両端ピンの場合」のほうが小さくなる。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10398,7 +10398,7 @@ const BUILTIN_QUESTIONS = [
       "地震時の短期に生ずる力については、特定行政庁が指定する多雪区域においては、積雪荷重を考慮する。",
       "屋根葺き材等に対して定められるピーク風力係数は、局部風圧の全風向の場合における最大値に基づいて定められている。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10416,7 +10416,7 @@ const BUILTIN_QUESTIONS = [
       "X方向の壁率比は、0.5である。",
       "Y方向の壁率比は、0.5である。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -10434,7 +10434,7 @@ const BUILTIN_QUESTIONS = [
       "圧縮力と引張力の両方を負担する筋かいとして、厚さ3cm、幅9cmの木材を使用した。",
       "地上3階建ての建築物において、構造耐力上主要な1階の柱の小径は、13.5cmを下回らないようにした。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10452,7 +10452,7 @@ const BUILTIN_QUESTIONS = [
       "耐力壁の壁筋の間隔を小さくすると、一般に、耐力壁のひび割れの進展を抑制できる。",
       "柱梁接合部のせん断終局耐力は、一般に、柱梁接合部のコンクリートの圧縮強度が大きくなると増大する。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10488,7 +10488,7 @@ const BUILTIN_QUESTIONS = [
       "梁の短期許容せん断力の算定において、主筋のせん断力の負担を無視して計算を行った。",
       "柱の短期許容せん断力の算定において、軸圧縮応力度の効果を無視して計算を行った。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10524,7 +10524,7 @@ const BUILTIN_QUESTIONS = [
       "ラーメン架構の靱性を高めるため、塑性化が想定される部位に降伏比が小さい材料を採用した。",
       "梁の横座屈を防止するための横補剛材を梁の全長にわたって均等間隔に設けることができなかったので、梁の端部に近い部分を主として横補剛する方法を採用した。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10542,7 +10542,7 @@ const BUILTIN_QUESTIONS = [
       "基準強度が同じ溶接部について、完全溶込み溶接とすみ肉溶接におけるそれぞれののど断面に対する許容せん断応力度を、同じ値とした。",
       "角形鋼管柱とH形鋼梁の柱梁仕口部において、梁のフランジ、ウェブとも完全溶込み溶接としたので、梁端接合部の最大曲げ耐力にはスカラップによる断面欠損の有無を考慮しないこととした。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10560,7 +10560,7 @@ const BUILTIN_QUESTIONS = [
       "曲げ剛性に余裕のあるラーメン架構の梁において、梁せいを小さくするために、建築構造用圧延鋼材SN400Bの代わりにSN490Bを用いた。",
       "小梁として、冷間成形角形鋼管を使用したので、横座屈が生じないものとして曲げモーメントに対する断面検定を行った。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10578,7 +10578,7 @@ const BUILTIN_QUESTIONS = [
       "「ルート2」で計算する場合、地階を除き水平力を負担する筋かいの水平力分担率に応じて、地震時の応力を割り増して許容応力度計算を行う必要がある。",
       "「ルート3」で計算する場合、構造特性係数Dsの算定において、柱梁接合部パネルの耐力を考慮する必要はない。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10596,7 +10596,7 @@ const BUILTIN_QUESTIONS = [
       "粘性土地盤において、粘土の粒径は、シルトの粒径に比べて大きい。",
       "地盤の許容支持力度は、標準貫入試験によるN値が同じ場合、一般に、砂質土地盤に比べて粘性土地盤のほうが大きい。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10614,7 +10614,7 @@ const BUILTIN_QUESTIONS = [
       "粘性土を支持層とする場合は、即時沈下だけではなく、圧密沈下も考慮する必要がある。",
       "圧密沈下は、有効応力の増加に伴って、主に土粒子が変形することにより生じる。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10632,7 +10632,7 @@ const BUILTIN_QUESTIONS = [
       "常時作用する荷重として、地下外壁に作用する水圧を、地下水位からの三角形分布として求めた。",
       "地下外壁の断面設計に用いる静止土圧係数を、土質試験により信頼性の高い結果が得られなかったので、土質にかかわらず0.5とした。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10650,7 +10650,7 @@ const BUILTIN_QUESTIONS = [
       "プレキャストプレストレストコンクリート造の梁を、PC鋼材の緊張により柱と圧着接合する場合、目地モルタルの脱落を防止するために、スターラップ状の曲げ拘束筋やワイヤーメッシュ等による補強を行うことが必要である。",
       "プレストレストコンクリート合成梁では、引張応力が生じるプレキャストプレストレストコンクリート部分と、残りの現場打ち鉄筋コンクリート部分とが一体で挙動できるように、両者を結合する鉄筋を設ける必要がある。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10668,7 +10668,7 @@ const BUILTIN_QUESTIONS = [
       "鉄骨鉄筋コンクリート造の埋込み型柱脚の曲げ終局耐力は、柱脚の鉄骨断面の曲げ終局耐力と、柱脚の埋め込み部分の支圧力による曲げ終局耐力の累加により求めることができる。",
       "鉄骨鉄筋コンクリート造の柱では、格子形の非充腹形鉄骨を用いた場合に比べて、フルウェブの充腹形鉄骨を用いた場合のほうが、靱性の向上が期待できる。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10686,7 +10686,7 @@ const BUILTIN_QUESTIONS = [
       "免震構造用の積層ゴムにおいて、積層ゴムを構成するゴム1層の厚みを大きくすることは、一般に、鉛直支持能力を向上させる効果がある。",
       "制振構造に用いられる鋼材ダンパー等の履歴減衰型の制振部材は、鋼材等の履歴エネルギー吸収能力を利用するものであり、大地震時には層間変形が小さい段階から当該部材を塑性化させることが有効である。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10722,7 +10722,7 @@ const BUILTIN_QUESTIONS = [
       "大きいスパンの建築物において、柱を鉄筋コンクリート造、梁を鉄骨造とする場合、異種構造の部材間における応力の伝達を考慮して設計する必要がある。",
       "1階にピロティ階を有する鉄筋コンクリート造建築物において、ピロティ階の独立柱の曲げ降伏による層崩壊を想定する場合、当該階については、地震入力エネルギーの集中を考慮した十分な保有水平耐力を確保する必要がある。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -10740,7 +10740,7 @@ const BUILTIN_QUESTIONS = [
       "木材の基準強度は、一般に、せん断に対する基準強度(Fs)に比べて曲げに対する基準強度(Fb)のほうが大きい。",
       "木材の曲げ強度は、樹種が同一の場合、一般に、気乾比重が大きいものほど小さい。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -11262,7 +11262,7 @@ const BUILTIN_QUESTIONS = [
       "建築士は、違反建築物の建築等の法令違反行為について、指示をする、相談に応じる等の行為をしてはならない。",
       "建築士は、設計者ではなく施工者として建築基準関係規定に違反する工事を行った場合であっても、建築士法により業務停止処分を受けることがある。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -11280,7 +11280,7 @@ const BUILTIN_QUESTIONS = [
       "光浄院客殿(安土桃山時代)は、欄間や長押をはじめ、建具や金具、釘隠や引手などに技巧を凝らし、様々な意匠が施された数寄屋風の建築物である。",
       "旧開智学校校舎(明治時代)は、アーチや隅石等の洋風の意匠と唐破風等の和風の意匠が混在した擬洋風の建築物である。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -11316,7 +11316,7 @@ const BUILTIN_QUESTIONS = [
       "車椅子使用者用の観覧席は、複数の車椅子使用者が利用できる専用スペースとして、異なる場所に分散して2箇所設けた。",
       "屋内階段において、高齢者が段差の存在を知覚できるように、踏面と段鼻との輝度比を1.0とした。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -11334,7 +11334,7 @@ const BUILTIN_QUESTIONS = [
       "地震時の躯体の層間変位を考慮して、上部又は下部のファスナーをスライドさせて追従させるパネル方式のメタルカーテンウォールを採用した。",
       "外装にカーテンウォールを使用するに当たり、シーリング材の耐久年数は、外壁の耐久年数よりも短いことが多いので、雨水が浸入した場合の排水機構を設けた。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -11388,7 +11388,7 @@ const BUILTIN_QUESTIONS = [
       "競技場の観客席の固定座席の計画において、座席の幅(1人分の間口)を45cmとし、前後間隔(椅子の背の間隔)を85cmとした。",
       "屋内駐車場の計画において、一方通行の小型自動車の車路のうち、車路に接して駐車料金の徴収施設が設けられている場所で、歩行者の通行の用に供しない部分の幅員を、2.5mとした。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -11406,7 +11406,7 @@ const BUILTIN_QUESTIONS = [
       "点状ブロックCを、階段手前30cmの位置に敷設した。",
       "階段の有効幅員Dは、手すりの幅10cmはないものとみなし、140cmとした。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -11424,7 +11424,7 @@ const BUILTIN_QUESTIONS = [
       "BRTは、バス専用道路などを活用して高い定時性を確保し、連節車両を用いることや停車時間短縮の工夫を取り入れること等により、高い輸送能力を確保するバス交通システムである。",
       "フリンジパーキングは、都市中心部の周辺に駐車場を整備し、そこから公共交通機関等により都市中心部までアクセスするシステムであり、都市中心部への車の流入の抑制等を目的とするものである。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -11442,7 +11442,7 @@ const BUILTIN_QUESTIONS = [
       "岡山県倉敷市では、本瓦葺塗屋造りの町屋、土蔵造りの蔵、白漆喰になまこ塀が建ち並ぶ倉敷川畔を「美観地区」とし、景観の保全を図っている。",
       "鹿児島県南九州市の知覧では、「パタン・ランゲージ」に範をとったまちづくり規範により、明治時代の大火からの復興によって形成された、蔵造りの歴史的町並み景観の保全が実践されている。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -11496,7 +11496,7 @@ const BUILTIN_QUESTIONS = [
       "丸の内ビルディング(東京都、2002年)の高層階のオフィスゾーンは、中央にアトリウムを設け、事務室沿いの廊下をアトリウムに面して配置しており、その廊下から建築物のどこの位置に自分がいるのかを把握することができる。",
       "ROKI Global Innovation Center(静岡県、2013年)は、執務スペースが階段状に積層する立体的なワンルーム空間に、ガラスをはめこんだ木と鉄のハイブリッドトラスの屋根をかけ、自然光を通すフィルターを使用した天幕を設けている。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -11514,7 +11514,7 @@ const BUILTIN_QUESTIONS = [
       "苅田町立図書館本館(福岡県、1990年)は、多様な閲覧席と豊富な資料を備え、開架書架群に沿ってベンチ、和室、屋外読書スペースなどを設けることで、来館者が長い時間を過ごせるように計画した図書館である。",
       "ぎふメディアコスモス(岐阜県、2015年)は、木造格子屋根をもつ市立中央図書館や、市民活動交流センター、多文化交流プラザ及び展示ギャラリー等からなる複合施設である。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -11532,7 +11532,7 @@ const BUILTIN_QUESTIONS = [
       "4床病室の計画において、隣り合うベッドとベッドとの間に幅1m以上のスペースを確保するためには、病室面積は32m?以上が目安となる。",
       "回復期リハビリテーションは、疾患に応じ90日から180日をかけて身体の機能や日常生活動作(ADL)の改善を図ることを目的としている。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -11550,7 +11550,7 @@ const BUILTIN_QUESTIONS = [
       "放課後等デイサービス事業所において、屋外遊びを豊かにするために、学校と連携して校庭等を有効に活用した。",
       "義務教育学校(小中一貫校)の特別支援学級関係室においては、9年間の系統性・連続性のある教育活動や一貫した支援を効果的に行えるように、小学校と中学校の配置や室構成を計画した。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -11568,7 +11568,7 @@ const BUILTIN_QUESTIONS = [
       "監理技術者は、工事現場における建設工事を適正に実施するため、当該建設工事の施工計画の作成、工程管理、品質管理等を行うとともに当該建設工事の施工に従事する者の技術上の指導監督の職務を誠実に行う必要がある。",
       "施工管理技士は、施工技術の向上を図るため、建設業者の施工する建設工事に従事し又はしようとする者を対象として行う技術検定に合格した者である。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -11586,7 +11586,7 @@ const BUILTIN_QUESTIONS = [
       "鉄筋の所要数量は、その設計数量の5%割増しを標準とする。",
       "耐火被覆は、耐火被覆材の材種、材質、形状、寸法、工法、耐火時間及び部位(柱、梁)ごとに区分して計測・計算する。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13512,7 +13512,7 @@ const BUILTIN_QUESTIONS = [
       "パッシブデザインは、建築物自体の配置・形状、窓の大きさ等を工夫することにより、建築物内外に生じる熱や空気や光等の流れを制御し、暖房・冷房・照明効果等を積極的に得る手法をいう。",
       "スマートシティは、広義では、都市が抱える諸課題に対して、情報通信技術等を活用しつつ、マネジメント(計画、整備、管理・運営等)が行われ、全体の最適化が図られる持続可能な都市又は地区をいう。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13530,7 +13530,7 @@ const BUILTIN_QUESTIONS = [
       "賀茂別雷神社本殿・権殿(京都府)は、切妻造り、平入りの形式をもち、前面の屋根を延長して向拝を設けた、流造りの例である。",
       "春日大社本殿(奈良県)は、本殿と拝殿との間を石の間でつないだ、権現造りの例である。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13548,7 +13548,7 @@ const BUILTIN_QUESTIONS = [
       "サン・カルロ・アッレ・クァットロ・フォンターネ聖堂(イタリア)は、楕円形のドームと、凹凸の湾曲面や曲線が使用されたファサードをもつバロック建築である。",
       "コルドバの大モスク(スペイン)は、紅白縞文様の2段のアーチを伴って林立する柱による内部空間をもち、現在はキリスト教文化とイスラム教文化とが混在している建築物である。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13584,7 +13584,7 @@ const BUILTIN_QUESTIONS = [
       "住宅地の計画において、ラドバーン方式は、心理的効果を考慮した設計によって、犯罪抑止効果を高める手法である。",
       "ゲーテッド・コミュニティは、住宅地をフェンスや壁等で囲い、出入口にゲートを設けて、住民以外の人や車両の出入りを制限した居住地区である。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13674,7 +13674,7 @@ const BUILTIN_QUESTIONS = [
       "二地域居住は、都市住民が農山漁村等の地域にも同時に生活拠点をもつこと等をいう。",
       "パークアンドライドシステムは、中心市街地をバリアフリー化して車椅子や電動スクーター等を貸し出し、歩行困難者の外出の機会の拡大だけでなく、市街地の活性化を促す仕組みの一つである。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13692,7 +13692,7 @@ const BUILTIN_QUESTIONS = [
       "ポツダム広場再開発計画(ベルリン)は、第二次世界大戦とその後の東西分断により長年更地であった敷地に、複合機能をもたせたプロジェクトである。",
       "門司港レトロ地区(北九州市)は、門司港周辺の歴史的建造物群と関門海峡や門司港の景観を活かした街並みが形成されている地区である。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13728,7 +13728,7 @@ const BUILTIN_QUESTIONS = [
       "テラスハウスは、区画された専用庭をもつ住戸を、境界壁を介して連続させた接地型の低層集合住宅である。",
       "コーポラティブハウスは、自ら居住する住宅を建設しようとする者が組合を結成し、共同して事業計画を定め、建築物の設計、工事発注等を行って住宅を取得し、管理していく方式である。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13746,7 +13746,7 @@ const BUILTIN_QUESTIONS = [
       "搬出入のためのサービスヤードにおいて、ウィング式の大型トラックが停車するスペースの、床から天井までの高さは5m以上とすることが望ましい。",
       "車椅子使用者用の客席は、車椅子使用者が選択できるように、2箇所以上の異なる位置に分散して設けることが望ましい。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13764,7 +13764,7 @@ const BUILTIN_QUESTIONS = [
       "海の博物館展示棟(三重県)は、主要構造部の柱や梁には、鋼材を内蔵した集成材を使用し、外壁にはガラスカーテンウォールと木製ルーバーを使用した建築物である。",
       "出雲ドーム(島根県)は、集成材とケーブル等で構成された立体張弦アーチと、膜屋根を組み合わせた架構をもつ建築物である。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13782,7 +13782,7 @@ const BUILTIN_QUESTIONS = [
       "1看護単位当たりの病床数は、80床を標準とする。",
       "療養病床における患者の利用する廊下の幅は、医療法に基づき、片側に病室がある場合、内法による測定で1.8m以上とする。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13800,7 +13800,7 @@ const BUILTIN_QUESTIONS = [
       "フォートワース現代美術館(安藤忠雄)は、平行に並べられた長方形の室によって展示室が構成され、その展示室には日差しへの配慮から深い庇が掛けられている。",
       "アスペン美術館(坂茂)は、建築物の中央部にアトリウムがあり、アトリウムに面した螺旋状のスロープによって、最上階から地上階まで連続した空間となるように計画されている。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13818,7 +13818,7 @@ const BUILTIN_QUESTIONS = [
       "建築士法に定められた、設計又は工事監理の契約を締結する際に行う重要事項(業務の内容及びその履行に関する事項)の説明等は、管理建築士以外の建築士が行ってはならない。",
       "工事監理業務においては、一般に、民法における「善良な管理者の注意義務(善管注意義務)」が求められており、この義務を怠り損害が生じた場合には、監理業務委託契約書に明記されていなくても過失責任が問われることがある。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13836,7 +13836,7 @@ const BUILTIN_QUESTIONS = [
       "鉄骨の溶接の数量において、原則として、溶接の種類に区分し、溶接断面形状ごとに長さを求め、すみ肉溶接脚長6mmに換算した延べ長さとする。",
       "全面がガラスである建具類のガラスの数量において、かまち、方立、桟等の見付幅が0.1mを超えるものがあるときは、その面積を差し引いた面積とする。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13854,7 +13854,7 @@ const BUILTIN_QUESTIONS = [
       "BCPは、企業が災害や事故で被害を受けても、重要な業務が中断しないこと、中断しても可能な限り短い期間で再開すること等、事業の継続を追求するための計画である。",
       "CRE戦略は、国や地方公共団体の事業コストの削減や、より質の高い公共サービスの提供を目的として、民間の資金、経営能力及び技術的能力を活用して公共施設等の設計、建設、維持管理及び運営を行う手法である。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13872,7 +13872,7 @@ const BUILTIN_QUESTIONS = [
       "空気齢は、流入口から室内に入った所定量の空気が、室内のある地点に到達するまでに経過する平均時間である。",
       "作用温度(OT)は、一般に、発汗の影響が小さい環境下における熱環境に関する指標として用いられ、空気温度と平均放射温度の重み付け平均で表される。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13890,7 +13890,7 @@ const BUILTIN_QUESTIONS = [
       "0.015 kg/kg(DA)",
       "0.020 kg/kg(DA)"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13908,7 +13908,7 @@ const BUILTIN_QUESTIONS = [
       "QB > QC > QA",
       "QC > QB > QA"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -13944,7 +13944,7 @@ const BUILTIN_QUESTIONS = [
       "不特定多数の者が利用する大規模量販店等において、売場の避難出口の扉は、廊下等の有効幅員に配慮しつつ、外開きにすることが望ましい。",
       "避難時に利用する階段室への出入口の有効幅員は、一般に、流動係数を考慮し、階段の有効幅員よりも狭くする。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13962,7 +13962,7 @@ const BUILTIN_QUESTIONS = [
       "直射日光の色温度は、正午頃より日没前頃のほうが高い。",
       "ライトシェルフは、その上面で反射した昼光を室内の奥に導くことから、室内照度の均斉度を高めることができる。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -13980,7 +13980,7 @@ const BUILTIN_QUESTIONS = [
       "I(cd)=25  r(m)=0.5  θ(度)=0  点Pにおける水平面照度(lx)=100",
       "I(cd)=50  r(m)=0.5  θ(度)=60  点Pにおける水平面照度(lx)=200"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -13998,7 +13998,7 @@ const BUILTIN_QUESTIONS = [
       "JISの物体色の色名における有彩色の系統色名は、基本色名に「明度に関する修飾語」、「彩度に関する修飾語」及び「色相に関する修飾語」の3種類の語を付記して色を表示する。",
       "照度と色温度の関係において、一般に、低照度では色温度の低い光色が好まれ、高照度では色温度の高い光色が好まれる。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -14016,7 +14016,7 @@ const BUILTIN_QUESTIONS = [
       "室容積が同じ場合であっても、一般に、西洋音楽のためのコンサートホールとオペラハウスとでは、最適残響時間が異なる。",
       "学校の普通教室においては、平均吸音率が0.2程度となるように、吸音対策を施すことが望ましい。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -14034,7 +14034,7 @@ const BUILTIN_QUESTIONS = [
       "乾式二重床を採用する場合は、床板とスラブとの間の空気層をバネとする共振系が形成されることから、低周波数域において床衝撃音の遮断性能が低下することがある。",
       "壁の音響透過損失を10dB増加させるためには、壁の音響透過率を現状の1/10にする必要がある。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -14070,7 +14070,7 @@ const BUILTIN_QUESTIONS = [
       "空調機のウォーミングアップ制御は、一般に、外気ダンパーを全閉にするとともに還気ダンパーを全開にする制御等を行い、空調の立ち上がり時間を短縮する方法である。",
       "中央熱源空調方式は、在館者それぞれの要望に対応することができないことから、パーソナル空調方式としては採用されない。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -14088,7 +14088,7 @@ const BUILTIN_QUESTIONS = [
       "天井から下向きに軸流吹出し口を設置する事務室の計画に当たり、居住域の上面における風速が0.5m/s以下となるようにした。",
       "水蓄熱槽の性能を十分に発揮させるために、槽内の高温水と低温水とを可能な限り分離させた。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -14142,7 +14142,7 @@ const BUILTIN_QUESTIONS = [
       "幹線に使用する配線方式において、バスダクト方式は、負荷の増設に対応しにくいことから、小容量の電力供給に限られている。",
       "無停電電源装置(UPS)は、整流器、蓄電池、インバータ等により構成され、瞬間的な電圧降下時や停電時においても安定した電力供給を維持するためのものである。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -14160,7 +14160,7 @@ const BUILTIN_QUESTIONS = [
       "事務室の照明計画において、ランプのサイズが小さく高輝度のLEDランプを使用するに当たり、グレアに配慮して、光源が直接目に入らないようにした。",
       "事務室の照明計画において、ブラインドの自動制御により昼光を利用し、かつ、照度センサーを用いた照明の制御も併せて行うことにより、消費電力が少なくなるようにした。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -14196,7 +14196,7 @@ const BUILTIN_QUESTIONS = [
       "分流式下水道の区域において、雨水管の敷地境界部には、下水道本管からの害虫等の侵入防止を目的として、雨水トラップを設ける必要がある。",
       "空調用の蓄熱槽の水は、必要な措置が講じられている場合には、消防用水として使用することができる。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -14214,7 +14214,7 @@ const BUILTIN_QUESTIONS = [
       "冷凍機に使用される代替冷媒のフロン(HFC)は、オゾン破壊係数は0(ゼロ)であるが、地球温暖化係数が高い温室効果ガスの一種である。",
       "CASBEEの評価においては、BEEの値が小さいほど建築物の環境性能が高いと判断される。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -16572,7 +16572,7 @@ const BUILTIN_QUESTIONS = [
       "主要構造部を準耐火構造とした延べ面積 200m?、地上3階建ての一戸建ての住宅においては、吹抜きとなっている部分とその他の部分とを防火区画しなければならない。",
       "有料老人ホームの用途に供する建築物の当該用途に供する部分(天井は強化天井でないもの)については、原則として、その防火上主要な間仕切壁を準耐火構造とし、小屋裏又は天井裏に達せしめなければならない。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -16590,7 +16590,7 @@ const BUILTIN_QUESTIONS = [
       "耐火建築物である延べ面積700m?、地上3階建ての図書館において、3階部分にある図書室の壁及び天井の室内に面する部分の仕上げを、難燃材料とした。",
       "耐火建築物である地上2階建ての劇場において、客席の床面積の合計を500m?としたので、客席の壁及び天井の室内に面する部分の仕上げを、難燃材料とした。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -16608,7 +16608,7 @@ const BUILTIN_QUESTIONS = [
       "床面積の合計が3000m?の地上5階建ての物品販売業を営む店舗には、各階の売場及び屋上広場に通ずる2以上の直通階段を設け、これを避難階段又は特別避難階段としなければならない。",
       "主要構造部が耐火構造である地上20階建ての共同住宅において、階段室、昇降機の昇降路、廊下等が所定の方法で区画され、各住戸の床面積の合計が200m? (住戸以外は100m?)以内ごとに防火区画されている場合には、15階以上の階に通ずる直通階段は、特別避難階段としなくてもよい。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -16644,7 +16644,7 @@ const BUILTIN_QUESTIONS = [
       "準耐火構造の床若しくは壁又は防火戸その他の政令で定める防火設備で床面積200m?以内に区画された共同住宅の住戸には、窓その他の開口部で開放できる部分の面積にかかわらず、排煙設備を設けなくてもよい。",
       "建築物(換気設備を設けるべき調理室等を除く。)に設ける自然換気設備の給気口は、居室の天井の高さの 1/2 を超える高さの位置に設け、常時外気に開放された構造としなければならない。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -16698,7 +16698,7 @@ const BUILTIN_QUESTIONS = [
       "1695 cm",
       "2100 cm"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -16716,7 +16716,7 @@ const BUILTIN_QUESTIONS = [
       "工事を施工するために2年間現場に設ける事務所の敷地は、道路に2m以上接しなければならない。",
       "幅員4mの農道に2m以上接する敷地においては、特定行政庁が交通上、安全上、防火上及び衛生上支障がないと認めて許可した建築物は、建築することができる。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -16770,7 +16770,7 @@ const BUILTIN_QUESTIONS = [
       "23.10 m",
       "25.00 m"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -16806,7 +16806,7 @@ const BUILTIN_QUESTIONS = [
       "患者用の廊下の幅は、両側に居室がある場合、1.6m以上としなければならない。",
       "入院患者の談話のために使用される居室には、原則として、採光のための窓その他の開口部を設けなければならない。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -16824,7 +16824,7 @@ const BUILTIN_QUESTIONS = [
       "建築協定には、建築物に附属する門及び塀の意匠に関する基準を定めることができる。",
       "建築協定区域隣接地の区域内の土地に係る土地の所有者等は、建築協定の認可等の公告があった日以後いつでも、当該土地に係る土地の所有者等の過半数の合意により、特定行政庁に対して書面でその意思を表示することによって、当該建築協定に加わることができる。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -16842,7 +16842,7 @@ const BUILTIN_QUESTIONS = [
       "構造設計一級建築士の関与が義務付けられた建築物については、工事監理において、構造設計図書との照合に係る部分についても、構造設計一級建築士以外の一級建築士が行うことができる。",
       "一級建築士定期講習を受けたことがない一級建築士は、一級建築士の免許を受けた日の次の年度の開始の日から起算して3年を超えた日以降に建築士事務所に所属した場合には、所属した日から3年以内に一級建築士定期講習を受けなければならない。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -16860,7 +16860,7 @@ const BUILTIN_QUESTIONS = [
       "管理建築士が総括する技術的事項には、他の建築士事務所との提携及び提携先に行わせる業務の範囲の案の作成が含まれる。",
       "都道府県知事は、建築士法の施行に関し必要があると認めるときは、一級建築士事務所の開設者又は管理建築士に対し、必要な報告を求め、又は当該職員をして建築士事務所に立ち入り、図書等の物件を検査させることができる。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -16878,7 +16878,7 @@ const BUILTIN_QUESTIONS = [
       "建築士事務所に属する建築士が、その属する建築士事務所の業務として行った行為により建築基準法の規定に違反し、懲戒処分を受けたときは、都道府県知事は、当該建築士事務所の登録を取り消すことができる。",
       "建築士事務所に属する者で建築士でないものが、当該建築士事務所の業務として、建築士でなければできない建築物の設計をしたときは、都道府県知事は、当該建築士事務所の登録を取り消すことができる。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -16914,7 +16914,7 @@ const BUILTIN_QUESTIONS = [
       "各階から避難階又は地上に直通する2の階段が設けられた地上3階建ての工場で、各階の収容人員が100人のものについては、原則として、3階に避難器具を設置しなければならない。",
       "延べ面積6000m?、地上5階建てのホテルについては、連結送水管を設置しなければならない。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -16932,7 +16932,7 @@ const BUILTIN_QUESTIONS = [
       "この法律の施行の際現に存する特定建築物に、専ら車椅子を使用している者の利用に供するエレベーターを設置する場合において、当該エレベーターが所定の基準に適合し、所管行政庁が防火上及び避難上支障がないと認めたときは、建築基準法の一部の規定の適用については、当該エレベーターの構造は耐火構造とみなされる。",
       "建築物移動等円滑化基準への適合が求められる建築物において、案内所を設ける場合には、当該建築物内の移動等円滑化の措置がとられたエレベーター等の配置を表示した案内板を設けなくてもよい。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17004,7 +17004,7 @@ const BUILTIN_QUESTIONS = [
       "「建築物のエネルギー消費性能の向上に関する法律」に基づき、建築物エネルギー消費性能適合性判定を受けた者は、建築基準法に基づく確認申請書を建築主事に提出するときに、併せて適合判定通知書又はその写しを提出しなければならない。",
       "「建築物のエネルギー消費性能の向上に関する法律」に基づき、建築物エネルギー消費性能向上計画の認定を受けたときは、当該建築物の新築等のうち、建築物エネルギー消費性能適合性判定を受けなければならないものについては、原則として、適合判定通知書の交付を受けたものとみなされる。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17181,7 +17181,7 @@ const BUILTIN_QUESTIONS = [
     "choices": [
       "X方向: 0.5 - Y方向: 1.0",
       "X方向: 0.8 - Y方向: 1.0",
-      "X方向: 0.5 - Y方向: 1.0",
+      "X方向: 1.0 - Y方向: 0.5",
       "X方向: 1.0 - Y方向: 0.8"
     ],
     "correctAnswer": 1,
@@ -17580,7 +17580,7 @@ const BUILTIN_QUESTIONS = [
       "建築物の解体工事の事前調査においてPCBを含有する蛍光灯安定器が発見された場合、その安定器は、建築物の所有者の責任において保管・処分するため、当該所有者に引き渡すこととなっている。",
       "建設工事に係る資材の再資源化等に関する法律において、特定建設資材には、「コンクリート」、「コンクリート及び鉄から成る建設資材」、「木材」及び「アスファルト・コンクリート」が該当する。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17598,7 +17598,7 @@ const BUILTIN_QUESTIONS = [
       "防水工事において、アスファルトルーフィングの保管については、雨露や湿気の影響を受けにくい屋内の乾燥した場所に、たて積みとした。",
       "鉄骨工事における吹付けロックウールの耐火被覆の施工において、吹付け厚さの確認に用いる確認ピンについては、施工後もそのまま存置した。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17616,7 +17616,7 @@ const BUILTIN_QUESTIONS = [
       "騒音規制法に基づく「特定建設作業実施届出書」 - 工事施工者 - 作業の開始の日の7日前まで - 労働基準監督署長",
       "消防法に基づく「消防用設備等設置届出書」 - 特定防火対象物の関係者 - 工事が完了した日から10日以内 - 消防長又は消防署長"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17634,7 +17634,7 @@ const BUILTIN_QUESTIONS = [
       "単管足場の壁つなぎの設置間隔を、垂直方向5.0m、水平方向5.4mとし、地上第一の壁つなぎが地上より4.5mの位置に設けられていることを確認した。",
       "特定建設作業に該当する杭打ち作業により発生する著しい振動について、近隣に影響を及ぼす振動の規制基準の管理のための測定場所を、特定建設作業場所の敷地境界線とした。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17652,7 +17652,7 @@ const BUILTIN_QUESTIONS = [
       "掘削工事において、盤ぶくれの発生が予測されたので、止水性のあるソイルセメント壁を、盤ぶくれの原因となる被圧滯水層の砂礫層に延長して根入れした。",
       "粘性土地盤に設置した山留め壁の撤去に当たり、地盤沈下を引き起こすおそれがあったので、鋼矢板を引き抜いた跡に直ちに砂を充填した。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17688,7 +17688,7 @@ const BUILTIN_QUESTIONS = [
       "機械式継手を用いる大梁の主筋の配筋において、隣り合う鉄筋の継手位置をずらして配筋するに当たり、カップラーの中心間で400mm以上、かつ、カップラー端部の間のあきが40mm以上となるように組み立てた。",
       "D22の主筋のガス圧接継手の外観検査において、鉄筋中心軸の偏心量の合格基準値を5mmとした。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17706,7 +17706,7 @@ const BUILTIN_QUESTIONS = [
       "外壁の地中部分等の水密を要する部分の貫通孔に用いるスリーブについては、特記がなかったので、硬質ポリ塩化ビニル管が使用されていることを確認した。",
       "防水下地となるコンクリート面における型枠緊張材(丸セパB型)のコーン穴の処理については、水量の少ない硬練りモルタルでコンクリート面と同一になるように充填されていることを確認した。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17724,7 +17724,7 @@ const BUILTIN_QUESTIONS = [
       "調合管理強度 36N/mm? スランプ 21cmと指定された高性能AE減水剤を使用したコンクリートにおいて、現場受入れ時のスランプ試験の結果が19.0cmであったので、合格とした。",
       "構造体コンクリート強度の検査において、標準養生による3個の供試体の材齢28日における圧縮強度の平均値がコンクリートの設計基準強度以上であったので、合格とした。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17760,7 +17760,7 @@ const BUILTIN_QUESTIONS = [
       "プレキャスト部材を現場打ちコンクリートに接合する部分については、現場打ちコンクリート部分の精度に影響されるため、「プレキャスト部材の位置の許容差」を、特記がなかったので、「現場打ちコンクリート部分の位置の許容差」と同じ値とした。",
       "プレキャスト部材の組立精度の検査は、柱・壁の垂直部材と梁・床の水平部材とも、それぞれ±10mmを判定基準として行った。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17778,7 +17778,7 @@ const BUILTIN_QUESTIONS = [
       "溶接接合において、引張強さ490N/mm?以上の高張力鋼及び厚さ25mm以上の鋼材の組立溶接を被覆アーク溶接(手溶接)とするので、低水素系溶接棒を使用した。",
       "スタッド溶接において、スタッドの仕上り精度については、仕上り高さを指定された寸法の±5mm、スタッドの傾きを15度以内として管理した。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17796,7 +17796,7 @@ const BUILTIN_QUESTIONS = [
       "完全溶込み溶接部の内部欠陥の検査については、浸透探傷試験により行った。",
       "溶融亜鉛めっき高力ボルト接合において、ナット回転法で行ったので、締付け完了後、ナットの回転量が不足しているものについては、所定の回転量まで追締めを行った。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17814,7 +17814,7 @@ const BUILTIN_QUESTIONS = [
       "構造用合板による大壁造の耐力壁において、山形プレートを用いて土台と柱とを接合する箇所については、山形プレート部分の構造用合板を切り欠き、その近傍の釘打ちについては増し打ちを行った。",
       "軸組構法(壁構造系)において、基礎と土台とを緊結するアンカーボルトの埋込み位置の許容誤差を、±5mmとした。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17832,7 +17832,7 @@ const BUILTIN_QUESTIONS = [
       "シーリング工事において、外部に面するシーリング材の施工に先立ち行う接着性試験については、特記がなかったので、簡易接着性試験とした。",
       "シーリング工事において、2成分形シーリング材については、1組の作業班が1日に行った施工箇所を1ロットとして、ロットごとにサンプルを別に作製し硬化の過程や硬化状態を確認した。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17868,7 +17868,7 @@ const BUILTIN_QUESTIONS = [
       "軽量鉄骨壁下地工事において、振れ止めについては、JISによる建築用鋼製下地材を使用し、床ランナーから上部ランナーまでの高さが3000mmであったので、床ランナー下端から1500mmの位置に1段目の振れ止めを設けた。",
       "はめ込み構法によるガラス工事において、サッシ枠が地震による面内変形を受けた場合におけるガラスの割れの防止のため、サッシ枠四周のエッジクリアランス(はめ込み溝底とガラスエッジとの間の寸法)を確認した。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17886,7 +17886,7 @@ const BUILTIN_QUESTIONS = [
       "外壁乾式工法による石張り工事の施工図等において、石材の形状と寸法については、特記がなかったので、形状が正方形に近い矩形で、1枚の面積が0.8m?以下、有効厚さが30mm以上70mm以下であることを確認した。",
       "カーテンウォール工事において、躯体付け金物の取付け位置の寸法許容差については、特記がなかったので、鉛直方向を±10mm、水平方向を±25mmとした。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17922,7 +17922,7 @@ const BUILTIN_QUESTIONS = [
       "塗装工事において、屋外に露出する亜鉛めっき鋼面への錆止め塗料塗りについては、特記がなかったので、一液形変性エポキシ樹脂さび止めペイントを使用した。",
       "外壁乾式工法による石張り工事において、目地に用いるシーリング材については、特記がなかったので、シリコーン系シーリング材を使用した。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17940,7 +17940,7 @@ const BUILTIN_QUESTIONS = [
       "既存鉄筋コンクリート造建築物の耐震補強のための鉄骨枠付きプレースの設置工事において、鉄骨枠内に使用するグラウト材の品質管理における圧縮強度試験については、供試体の材齢を3日及び28日として管理を行った。",
       "鉄筋コンクリート造の新設耐震壁の増設工事において、本体打込み式の改良型の金属系アンカーを使用するに当たり、ドリルで穿孔する穿孔深さについては、有効埋込み深さと同じ深さとした。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17958,7 +17958,7 @@ const BUILTIN_QUESTIONS = [
       "コンクリート打放し仕上げ外壁のひび割れ部の改修工事において、自動式低圧エポキシ樹脂注入工法で行うに当たり、エポキシ樹脂注入材の注入完了後、注入材が硬化する前に速やかに注入器具を撤去した。",
       "アルミニウム製建具のかぶせ工法による改修工事において、新規建具と鉄筋コンクリート造の躯体との取合い部に用いるシーリング材については、目地深さが所定の寸法であり、新規建具と躯体間の挙動が少ないことが確認できたので、ボンドブレーカーを省略し三面接着とした。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -17976,7 +17976,7 @@ const BUILTIN_QUESTIONS = [
       "ラミネーション (鉄骨工事) - 鋼材の製造において、種々の酸化物、けい酸塩、硫化物の非金属介在物や気泡等が圧延によって圧延方向に延ばされ層状に分布することによってできる内部の層状欠陥",
       "強化ガラス (ガラス工事) - フロート板ガラスを強化炉で約650℃まで加熱した後、ガラスの両表面に空気を吹き付け急冷してガラス表面付近に強い圧縮応力層を形成し耐風圧強度を約3倍に高めたガラス"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20370,7 +20370,7 @@ const BUILTIN_QUESTIONS = [
       "一方通行の小型自動車の車路のうち、車路に接して駐車料金の徴収施設が設けられている場所で、歩行者の通行の用に供しない部分の幅員を、2.75mとした。",
       "小型自動車の車路の屈曲部の内法半径を、5mとした。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20388,7 +20388,7 @@ const BUILTIN_QUESTIONS = [
       "バスターミナルの誘導車路の屈曲部の計画において、全長12m程度の大型バスの最小回転半径を、12mとした。",
       "大規模量販店の計画において、売場の客用通路の幅員は、主要な避難通路を3.0mとし、それ以外の通路を1.8mとした。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20424,7 +20424,7 @@ const BUILTIN_QUESTIONS = [
       "川越一番街(埼玉県)では、「パタン・ランゲージ」に範をとった町づくり規範により、歴史的町並みの景観の保全が実践されている。",
       "くまもとアートポリス(熊本県)は、環境デザインに対する関心を高め、都市環境・建築文化等の向上を図るために、「コミッショナー」が設計者を推薦する手法が採用された事業である。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20460,7 +20460,7 @@ const BUILTIN_QUESTIONS = [
       "ヒラルディ邸(ルイス・バラガン)は、不整形敷地に建つ地上4階建ての医院併用住宅であり、台形の平面をもつ医院と矩形の平面をもつ住居は、中庭のスロープによって繋がれている。",
       "フィッシャー邸(ルイス・カーン)は、二つの矩形のボリュームが45度の角度をもって接合され、一方には2層の個室群が配置され、もう一方には2層分の高さの居間をもつ、幾何学的な構成の住宅である。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20478,7 +20478,7 @@ const BUILTIN_QUESTIONS = [
       "NEXT21(大阪府大阪市)は、二段階供給方式(スケルトン・インフィル分離方式)と環境共生をテーマにし、住戸の外壁等の規格化・部品化による可変性の確保や屋上植栽等が試みられた集合住宅である。",
       "幕張ベイタウンパティオス4番街(千葉県千葉市)は、壁面線の位置・高さ、壁面率等についての「都市デザインガイドライン」に沿って設計された集合住宅であり、街区型の形式に特徴がある。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20568,7 +20568,7 @@ const BUILTIN_QUESTIONS = [
       "工事施工者の行う工事が設計図書の内容に適合しているかについて、設計図書に定めのある方法による確認のほか、目視による確認、抽出による確認、工事施工者から提出される品質管理記録の確認等、確認対象工事に応じた合理的方法により確認を行う。",
       "工事と設計図書との照合及び確認の結果、工事が設計図書のとおりに実施されていないと認めるときは、直ちに、工事施工者に対して、その旨を指摘し、当該工事を設計図書のとおりに実施するよう求め、工事施工者がこれに従わないときは、その旨を建築主に報告する。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20586,7 +20586,7 @@ const BUILTIN_QUESTIONS = [
       "39本",
       "40本"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -20640,7 +20640,7 @@ const BUILTIN_QUESTIONS = [
       "木造住宅における最上階の天井部分のみに断熱材を施した屋根において、野地板面の結露を防止するため、小屋裏に換気口を設けた。",
       "暖房設備から室内に発生する水蒸気の量を抑制するため、暖房設備を密閉型燃焼器具の代わりに開放型燃焼器具とした。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20658,7 +20658,7 @@ const BUILTIN_QUESTIONS = [
       "40 m3/(h・人)",
       "50 m3/(h・人)"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20676,7 +20676,7 @@ const BUILTIN_QUESTIONS = [
       "壁体表面の対流熱伝達率は、風速が大きいほど大きくなる。",
       "グラスウールの熱伝導率は、一般に、かさ比重(密度)が大きいほど大きくなる。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20694,7 +20694,7 @@ const BUILTIN_QUESTIONS = [
       "中央部に光庭となるボイド空間を設けた超高層集合住宅において、ボイド空間を取り囲む開放廊下を避難経路とする場合、煙の拡散を防ぐために下層部分からボイド空間への給気を抑制する必要がある。",
       "等価可燃物量は、可燃物発熱量が等価な木材の重量に換算した量である。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20712,7 +20712,7 @@ const BUILTIN_QUESTIONS = [
       "建築物の高さのみを3倍にしても、B点の日影には影響しない。",
       "建築物の高さのみを現状より高くしても、4時間日影線は変化しない。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": true
@@ -20730,7 +20730,7 @@ const BUILTIN_QUESTIONS = [
       "配光曲線は、光源の各方向に対する輝度の分布を示すものである。",
       "光幕反射を減らすためには、光が視線方向に正反射する位置に光源を配置しないことが重要である。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20748,7 +20748,7 @@ const BUILTIN_QUESTIONS = [
       "演色性は、視対象の色の見え方に及ぼす光源の性質であり、光源の分光分布に依存する。",
       "面色や開口色は、空間的な定位や肌理(きめ)を感じられない色の見え方である。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20766,7 +20766,7 @@ const BUILTIN_QUESTIONS = [
       "セイビン(Sabine)の残響式によると、残響時間は、容積が1000m3で等価吸音面積200m2の室より、容積が500m3で等価吸音面積120m2の室のほうが短い。",
       ""
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20784,7 +20784,7 @@ const BUILTIN_QUESTIONS = [
       "単層壁による遮音において、同一の材料で壁の厚さを薄くしていくと、コインシデンス効果による遮音性能の低下の影響範囲は、より低い周波数域へ拡大する。",
       "窓に複層ガラスを用いると、共鳴周波数付近においては、同一面密度の単板ガラスより、遮音性能が劣ることがある。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20802,7 +20802,7 @@ const BUILTIN_QUESTIONS = [
       "吸収冷凍機は、一般に、同一容量の遠心冷凍機に比べて、機内(冷媒循環系)の圧力が低い。",
       "吸収冷凍機は、一般に、同一容量の遠心冷凍機に比べて、消費電力が少ない。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20820,7 +20820,7 @@ const BUILTIN_QUESTIONS = [
       "データセンターの空気調和設備の特徴は、「年間連続運転」、「年間冷房」、「顕熱負荷が主体」等であり、計画地の気象条件等によっては、外気冷房や冷却塔フリークーリングが効果的な省エネルギー手法として考えられる。",
       "データセンターのエネルギー効率を定量的に評価する指標PUE (Power Usage Effectiveness)は、「データセンター全体のエネルギー消費量」を「ICT機器のエネルギー消費量」で除した値である。"
     ],
-    "correctAnswer": 4,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20838,7 +20838,7 @@ const BUILTIN_QUESTIONS = [
       "隣接した二つの防煙区画において、一般に、防煙垂れ壁を介して一方の区画を自然排煙、他方の区画を機械排煙とすることはできない。",
       "機械排煙設備において、天井の高さが3m未満の居室に設ける排煙口の設置高さ(下端高さ)は、一般に、天井から80cm以内、かつ、防煙垂れ壁の下端より上の部分とする。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20856,7 +20856,7 @@ const BUILTIN_QUESTIONS = [
       "給水管を、硬質塩化ビニルライニング鋼管とし、管端防食継手を使用すれば、赤水の発生を防止することができる。",
       "給湯用ボイラーは、常に缶水が新鮮な補給水と入れ替わるため、空気調和設備用温水ボイラーに比べて腐食しやすい。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20892,7 +20892,7 @@ const BUILTIN_QUESTIONS = [
       "照度計算に用いられる保守率は、ランプの経年劣化やほこり等による照明器具の効率の低下をあらかじめ見込んだ定数である。",
       "病院の手術室・診察室において使用する照明設備は、事務室において使用する照明設備に比べて、演色性の高い光源とすることが望ましい。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20928,7 +20928,7 @@ const BUILTIN_QUESTIONS = [
       "補助散水栓は、屋内消火栓のうち2号消火栓(広範囲型を除く。)と同等の放水量を有し、スプリンクラー設備へ配管接続する。",
       "開放型スプリンクラーヘッドは、天井が高く種々の可燃物がある舞台部等に用いる。"
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20946,7 +20946,7 @@ const BUILTIN_QUESTIONS = [
       "乗用エレベーターは、一般に、火災発生時の乗客の避難を図るため、火災時管制運転により速やかに最寄階に停止させる計画とする。",
       "非常用エレベーターを2基設置する必要がある場合、避難上及び消火上有効な間隔を保って配置する。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -20964,7 +20964,7 @@ const BUILTIN_QUESTIONS = [
       "コージェネレーションシステムの原動機としては、ガスエンジン、ディーゼルエンジン、ガスタービン等が使用される。",
       "エレベーターの電力消費は、電力回生制御の有無により変化するが、巻上機のギアの有無には影響されない。"
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 4,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
@@ -21504,7 +21504,7 @@ const BUILTIN_QUESTIONS = [
       "「都市計画法」に基づき、まちづくりの推進を図る活動を行うことを目的とする特定非営利活動法人は、所定の土地の区域について、都道府県に対し、都市計画区域の整備、開発及び保全の方針の変更を提案することができる。",
       "「浄化槽法」に基づき、浄化槽管理者等は、浄化槽の保守点検又は浄化槽の清掃について、都道府県知事から、必要な助言、指導又は勧告を受けることがある。"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 3,
     "explanation": "",
     "explanationImages": [],
     "hasImageNote": false
