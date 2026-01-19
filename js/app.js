@@ -42,16 +42,21 @@ const App = {
      * 問題データを読み込み（Firebase優先、フォールバックでビルトイン）
      */
     async loadQuestions() {
-        // ログイン済みの場合はFirebaseから読み込み
-        if (FirebaseSync.isLoggedIn()) {
+        // まずFirebaseから読み込みを試行（ログイン不要）
+        try {
             const firebaseQuestions = await FirebaseSync.loadQuestions();
 
             if (firebaseQuestions && firebaseQuestions.length > 0) {
                 // Firebaseから読み込んだ問題でローカルDBを更新
-                const currentVersion = `firebase_${firebaseQuestions.length}`;
+                const currentVersion = `firebase_${firebaseQuestions.length}_${Date.now()}`;
                 const storedVersion = localStorage.getItem('questionsVersion');
 
-                if (storedVersion !== currentVersion) {
+                // Firebaseの問題数が変わったか、前回ビルトインだった場合は更新
+                const needsUpdate = !storedVersion ||
+                    !storedVersion.startsWith('firebase_') ||
+                    storedVersion.split('_')[1] !== String(firebaseQuestions.length);
+
+                if (needsUpdate) {
                     console.log(`Syncing questions from Firebase: ${firebaseQuestions.length} questions`);
 
                     // ローカルDBをクリアして再登録
@@ -68,11 +73,13 @@ const App = {
                         });
                     }
 
-                    localStorage.setItem('questionsVersion', currentVersion);
-                    Utils.showToast(`${firebaseQuestions.length}問を同期しました`, 'success');
+                    localStorage.setItem('questionsVersion', `firebase_${firebaseQuestions.length}`);
+                    console.log(`Loaded ${firebaseQuestions.length} questions from Firebase`);
                 }
                 return;
             }
+        } catch (error) {
+            console.log('Could not load from Firebase, using builtin:', error.message);
         }
 
         // Firebaseに問題がない場合、ビルトイン問題を使用
