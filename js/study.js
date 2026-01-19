@@ -137,6 +137,12 @@ const Study = {
 
         // 解答セクションを非表示
         document.getElementById('answerSection').classList.add('hidden');
+
+        // 問題を編集ボタン（管理者のみ表示）
+        const editBtn = document.getElementById('editCurrentQuestion');
+        if (editBtn) {
+            editBtn.style.display = FirebaseSync.isAdmin() ? '' : 'none';
+        }
     },
 
     /**

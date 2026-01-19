@@ -12,6 +12,29 @@ const Questions = {
         this.setupEventListeners();
         this.populateYearFilters();
         await this.loadQuestions();
+
+        // 管理者でない場合は編集関連ボタンを非表示
+        this.updateAdminUI();
+    },
+
+    /**
+     * 管理者UIを更新（管理者のみ編集可能）
+     */
+    updateAdminUI() {
+        const isAdmin = FirebaseSync.isAdmin();
+
+        // 新規登録ボタン
+        const addBtn = document.getElementById('addQuestion');
+        if (addBtn) addBtn.style.display = isAdmin ? '' : 'none';
+
+        // CSVインポートボタン
+        const importBtn = document.getElementById('importCsv');
+        if (importBtn) importBtn.style.display = isAdmin ? '' : 'none';
+
+        // 編集・削除ボタン（問題リスト内）
+        document.querySelectorAll('.question-actions').forEach(el => {
+            el.style.display = isAdmin ? '' : 'none';
+        });
     },
 
     /**
@@ -141,6 +164,7 @@ const Questions = {
      */
     renderQuestionsList(questions) {
         const container = document.getElementById('questionsList');
+        const isAdmin = FirebaseSync.isAdmin();
 
         if (questions.length === 0) {
             container.innerHTML = `
@@ -163,10 +187,12 @@ const Questions = {
                     </div>
                     <div class="question-item-text">${q.questionText}</div>
                 </div>
+                ${isAdmin ? `
                 <div class="question-item-actions">
                     <button class="btn btn-ghost" onclick="Questions.editQuestion('${q.id}')">編集</button>
                     <button class="btn btn-ghost" onclick="Questions.deleteQuestion('${q.id}')">削除</button>
                 </div>
+                ` : ''}
             </div>
         `).join('');
     },
