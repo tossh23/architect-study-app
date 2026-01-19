@@ -13,8 +13,11 @@ const App = {
             // データベース初期化
             await db.init();
 
-            // 組み込み問題を自動ロード
-            await this.loadBuiltinQuestions();
+            // Firebase初期化（先に実行してログイン状態を確認）
+            await FirebaseSync.init();
+
+            // 問題データを読み込み（Firebase優先、フォールバックでビルトイン）
+            await this.loadQuestions();
 
             // Service Worker登録
             this.registerServiceWorker();
@@ -28,9 +31,6 @@ const App = {
             // 問題管理を初期化
             await Questions.init();
 
-            // Firebase初期化（クラウド同期）
-            await FirebaseSync.init();
-
             console.log('App initialized successfully');
         } catch (error) {
             console.error('App initialization failed:', error);
@@ -39,52 +39,79 @@ const App = {
     },
 
     /**
-     * 組み込み問題を自動ロード
+     * 問題データを読み込み（Firebase優先、フォールバックでビルトイン）
      */
-    async loadBuiltinQuestions() {
+    async loadQuestions() {
+        // ログイン済みの場合はFirebaseから読み込み
+        if (FirebaseSync.isLoggedIn()) {
+            const firebaseQuestions = await FirebaseSync.loadQuestions();
+
+            if (firebaseQuestions && firebaseQuestions.length > 0) {
+                // Firebaseから読み込んだ問題でローカルDBを更新
+                const currentVersion = `firebase_${firebaseQuestions.length}`;
+                const storedVersion = localStorage.getItem('questionsVersion');
+
+                if (storedVersion !== currentVersion) {
+                    console.log(`Syncing questions from Firebase: ${firebaseQuestions.length} questions`);
+
+                    // ローカルDBをクリアして再登録
+                    const existingQuestions = await db.getAllQuestions();
+                    for (const q of existingQuestions) {
+                        await db.deleteQuestion(q.id);
+                    }
+
+                    for (const q of firebaseQuestions) {
+                        await db.addQuestion({
+                            ...q,
+                            createdAt: q.createdAt || new Date().toISOString(),
+                            updatedAt: q.updatedAt || new Date().toISOString()
+                        });
+                    }
+
+                    localStorage.setItem('questionsVersion', currentVersion);
+                    Utils.showToast(`${firebaseQuestions.length}問を同期しました`, 'success');
+                }
+                return;
+            }
+        }
+
+        // Firebaseに問題がない場合、ビルトイン問題を使用
+        await this.loadBuiltinQuestionsToLocal();
+    },
+
+    /**
+     * ビルトイン問題をローカルDBに読み込み
+     */
+    async loadBuiltinQuestionsToLocal() {
         if (typeof BUILTIN_QUESTIONS === 'undefined' || !BUILTIN_QUESTIONS.length) {
             return;
         }
 
-        // 埋め込み問題のバージョン（問題数をバージョンとして使用）
-        const builtinVersion = `v${BUILTIN_QUESTIONS.length}`;
-        const storedVersion = localStorage.getItem('builtinQuestionsVersion');
+        const builtinVersion = `builtin_${BUILTIN_QUESTIONS.length}`;
+        const storedVersion = localStorage.getItem('questionsVersion');
 
-        // バージョンが同じなら何もしない
         if (storedVersion === builtinVersion) {
             console.log(`Builtin questions already loaded (${builtinVersion})`);
             return;
         }
 
-        console.log(`Updating builtin questions: ${storedVersion || 'none'} -> ${builtinVersion}`);
+        console.log(`Loading builtin questions: ${BUILTIN_QUESTIONS.length}`);
 
-        // 既存の全問題を削除
         const existingQuestions = await db.getAllQuestions();
         for (const q of existingQuestions) {
             await db.deleteQuestion(q.id);
         }
-        console.log(`Deleted ${existingQuestions.length} existing questions`);
 
-        // 新しい問題を登録
-        let loaded = 0;
         for (const q of BUILTIN_QUESTIONS) {
-            try {
-                await db.addQuestion({
-                    ...q,
-                    createdAt: new Date().toISOString(),
-                    updatedAt: new Date().toISOString()
-                });
-                loaded++;
-            } catch (e) {
-                console.error('Error loading builtin question:', q.id, e);
-            }
+            await db.addQuestion({
+                ...q,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            });
         }
 
-        // バージョンを保存
-        localStorage.setItem('builtinQuestionsVersion', builtinVersion);
-        console.log(`Loaded ${loaded} builtin questions`);
-
-        Utils.showToast(`${loaded}問の問題データを読み込みました`, 'success');
+        localStorage.setItem('questionsVersion', builtinVersion);
+        console.log(`Loaded ${BUILTIN_QUESTIONS.length} builtin questions`);
     },
 
     /**

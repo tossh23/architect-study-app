@@ -232,6 +232,12 @@ const Questions = {
      * 問題を保存
      */
     async saveQuestion() {
+        // 管理者権限チェック
+        if (!FirebaseSync.isAdmin()) {
+            Utils.showToast('問題の編集は管理者のみ可能です', 'error');
+            return;
+        }
+
         const year = parseInt(document.getElementById('qYear').value);
         const subject = parseInt(document.getElementById('qSubject').value);
         const questionNumber = parseInt(document.getElementById('qNumber').value);
@@ -278,6 +284,14 @@ const Questions = {
         }
 
         try {
+            // Firebaseに保存（管理者のみ）
+            const firebaseSaved = await FirebaseSync.saveQuestion(question);
+            if (!firebaseSaved) {
+                Utils.showToast('Firebaseへの保存に失敗しました', 'error');
+                return;
+            }
+
+            // ローカルDBにも保存
             if (this.currentEditingId) {
                 await db.updateQuestion(question);
                 Utils.showToast('問題を更新しました', 'success');
@@ -319,10 +333,19 @@ const Questions = {
      * 問題を削除
      */
     async deleteQuestion(id) {
+        // 管理者権限チェック
+        if (!FirebaseSync.isAdmin()) {
+            Utils.showToast('問題の削除は管理者のみ可能です', 'error');
+            return;
+        }
+
         const confirmed = await Utils.confirm('この問題を削除しますか？');
         if (!confirmed) return;
 
         try {
+            // Firebaseから削除
+            await FirebaseSync.deleteQuestion(id);
+            // ローカルDBからも削除
             await db.deleteQuestion(id);
             Utils.showToast('問題を削除しました', 'success');
             await this.loadQuestions();

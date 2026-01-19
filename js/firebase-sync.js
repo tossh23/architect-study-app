@@ -1,12 +1,16 @@
 /**
  * Firebase連携モジュール
- * 学習履歴のクラウド同期を担当
+ * 学習履歴と問題データのクラウド同期を担当
  */
 const FirebaseSync = {
+    // 管理者UID（問題編集可能なユーザー）
+    ADMIN_UID: 'tkBmB3Gqcdgj9qV24ozUZ0uvkDh2',
+
     db: null,
     auth: null,
     user: null,
     historyRef: null,
+    questionsRef: null,
     unsubscribe: null,
 
     /**
@@ -191,5 +195,103 @@ const FirebaseSync = {
      */
     isLoggedIn() {
         return !!this.user;
+    },
+
+    /**
+     * 管理者かどうかを判定
+     */
+    isAdmin() {
+        return this.user && this.user.uid === this.ADMIN_UID;
+    },
+
+    /**
+     * Firebaseから問題データを読み込み
+     */
+    async loadQuestions() {
+        if (!this.db) return null;
+
+        try {
+            this.questionsRef = this.db.ref('questions');
+            const snapshot = await this.questionsRef.once('value');
+            const data = snapshot.val();
+
+            if (data) {
+                // オブジェクトを配列に変換
+                const questions = Object.values(data);
+                console.log(`Loaded ${questions.length} questions from Firebase`);
+                return questions;
+            }
+            return null;
+        } catch (error) {
+            console.error('Error loading questions from Firebase:', error);
+            return null;
+        }
+    },
+
+    /**
+     * 問題をFirebaseに保存（管理者のみ）
+     */
+    async saveQuestion(question) {
+        if (!this.isAdmin()) {
+            console.error('Only admin can save questions');
+            return false;
+        }
+
+        try {
+            await this.db.ref(`questions/${question.id}`).set(question);
+            console.log('Question saved to Firebase:', question.id);
+            return true;
+        } catch (error) {
+            console.error('Error saving question to Firebase:', error);
+            return false;
+        }
+    },
+
+    /**
+     * 問題をFirebaseから削除（管理者のみ）
+     */
+    async deleteQuestion(questionId) {
+        if (!this.isAdmin()) {
+            console.error('Only admin can delete questions');
+            return false;
+        }
+
+        try {
+            await this.db.ref(`questions/${questionId}`).remove();
+            console.log('Question deleted from Firebase:', questionId);
+            return true;
+        } catch (error) {
+            console.error('Error deleting question from Firebase:', error);
+            return false;
+        }
+    },
+
+    /**
+     * ビルトイン問題をFirebaseにアップロード（初回のみ）
+     */
+    async uploadBuiltinQuestions() {
+        if (!this.isAdmin()) {
+            Utils.showToast('管理者のみ実行できます', 'error');
+            return;
+        }
+
+        if (typeof BUILTIN_QUESTIONS === 'undefined' || !BUILTIN_QUESTIONS.length) {
+            Utils.showToast('埋め込み問題がありません', 'error');
+            return;
+        }
+
+        try {
+            Utils.showToast('問題をアップロード中...', 'info');
+
+            for (const q of BUILTIN_QUESTIONS) {
+                await this.db.ref(`questions/${q.id}`).set(q);
+            }
+
+            Utils.showToast(`${BUILTIN_QUESTIONS.length}問をFirebaseにアップロードしました`, 'success');
+            console.log('Uploaded', BUILTIN_QUESTIONS.length, 'questions to Firebase');
+        } catch (error) {
+            console.error('Error uploading questions:', error);
+            Utils.showToast('アップロードに失敗しました', 'error');
+        }
     }
 };
