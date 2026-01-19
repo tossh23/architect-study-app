@@ -47,39 +47,34 @@ const App = {
             const firebaseQuestions = await FirebaseSync.loadQuestions();
 
             if (firebaseQuestions && firebaseQuestions.length > 0) {
-                // Firebaseから読み込んだ問題でローカルDBを更新
-                const currentVersion = `firebase_${firebaseQuestions.length}_${Date.now()}`;
-                const storedVersion = localStorage.getItem('questionsVersion');
+                console.log(`Loading ${firebaseQuestions.length} questions from Firebase`);
 
-                // Firebaseの問題数が変わったか、前回ビルトインだった場合は更新
-                const needsUpdate = !storedVersion ||
-                    !storedVersion.startsWith('firebase_') ||
-                    storedVersion.split('_')[1] !== String(firebaseQuestions.length);
-
-                if (needsUpdate) {
-                    console.log(`Syncing questions from Firebase: ${firebaseQuestions.length} questions`);
-
-                    // ローカルDBをクリアして再登録
-                    const existingQuestions = await db.getAllQuestions();
-                    for (const q of existingQuestions) {
-                        await db.deleteQuestion(q.id);
-                    }
-
-                    for (const q of firebaseQuestions) {
-                        await db.addQuestion({
-                            ...q,
-                            createdAt: q.createdAt || new Date().toISOString(),
-                            updatedAt: q.updatedAt || new Date().toISOString()
-                        });
-                    }
-
-                    localStorage.setItem('questionsVersion', `firebase_${firebaseQuestions.length}`);
-                    console.log(`Loaded ${firebaseQuestions.length} questions from Firebase`);
+                // ローカルDBをクリアして再登録（常に最新に更新）
+                const existingQuestions = await db.getAllQuestions();
+                for (const q of existingQuestions) {
+                    await db.deleteQuestion(q.id);
                 }
+
+                for (const q of firebaseQuestions) {
+                    await db.addQuestion({
+                        ...q,
+                        createdAt: q.createdAt || new Date().toISOString(),
+                        updatedAt: q.updatedAt || new Date().toISOString()
+                    });
+                }
+
+                localStorage.setItem('questionsVersion', `firebase_${firebaseQuestions.length}`);
+                console.log(`Synced ${firebaseQuestions.length} questions from Firebase`);
                 return;
             }
         } catch (error) {
-            console.log('Could not load from Firebase, using builtin:', error.message);
+            console.log('Could not load from Firebase, using local cache:', error.message);
+            // Firebaseに接続できない場合はローカルキャッシュを使用
+            const localQuestions = await db.getAllQuestions();
+            if (localQuestions.length > 0) {
+                console.log(`Using ${localQuestions.length} cached questions`);
+                return;
+            }
         }
 
         // Firebaseに問題がない場合、ビルトイン問題を使用
