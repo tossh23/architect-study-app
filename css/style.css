@@ -611,6 +611,38 @@ textarea {
     margin-bottom: var(--space-sm);
 }
 
+/* 選択肢画像 */
+.choice-item .choice-image {
+    max-width: 200px;
+    max-height: 80px;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+}
+
+/* 選択肢画像プレビュー削除ボタン */
+.choice-image-item {
+    position: relative;
+    display: inline-block;
+}
+
+.remove-choice-image {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent-danger);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .choice-item:hover {
     background: var(--bg-tertiary);
 }
@@ -1022,6 +1054,37 @@ textarea {
 .correct-label {
     font-size: var(--font-size-sm);
     color: var(--text-muted);
+}
+
+/* 選択肢画像アップロード */
+.choice-input-group {
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+
+.choice-image-upload {
+    margin-top: var(--space-xs);
+    padding-left: 28px;
+}
+
+.choice-image-upload input[type="file"] {
+    font-size: var(--font-size-sm);
+}
+
+.choice-image-preview {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-xs);
+}
+
+.choice-image-preview img {
+    max-width: 100px;
+    max-height: 60px;
+    border-radius: var(--radius-sm);
+    object-fit: contain;
+    background: var(--bg-card);
 }
 
 /* Image Upload */

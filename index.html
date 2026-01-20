@@ -262,31 +262,55 @@
                         </div>
 
                         <div class="form-group">
-                            <label>選択肢</label>
+                            <label>選択肢（テキストまたは画像）</label>
                             <div class="choices-input">
-                                <div class="choice-input">
-                                    <span class="choice-label">1.</span>
-                                    <input type="text" id="choice1" class="input" required>
-                                    <input type="radio" name="correctAnswer" value="1" required>
-                                    <span class="correct-label">正解</span>
+                                <div class="choice-input-group">
+                                    <div class="choice-input">
+                                        <span class="choice-label">1.</span>
+                                        <input type="text" id="choice1" class="input" placeholder="テキストまたは画像">
+                                        <input type="radio" name="correctAnswer" value="1" required>
+                                        <span class="correct-label">正解</span>
+                                    </div>
+                                    <div class="choice-image-upload">
+                                        <input type="file" id="choiceImage1" accept="image/*">
+                                        <div class="choice-image-preview" id="choiceImagePreview1"></div>
+                                    </div>
                                 </div>
-                                <div class="choice-input">
-                                    <span class="choice-label">2.</span>
-                                    <input type="text" id="choice2" class="input" required>
-                                    <input type="radio" name="correctAnswer" value="2">
-                                    <span class="correct-label">正解</span>
+                                <div class="choice-input-group">
+                                    <div class="choice-input">
+                                        <span class="choice-label">2.</span>
+                                        <input type="text" id="choice2" class="input" placeholder="テキストまたは画像">
+                                        <input type="radio" name="correctAnswer" value="2">
+                                        <span class="correct-label">正解</span>
+                                    </div>
+                                    <div class="choice-image-upload">
+                                        <input type="file" id="choiceImage2" accept="image/*">
+                                        <div class="choice-image-preview" id="choiceImagePreview2"></div>
+                                    </div>
                                 </div>
-                                <div class="choice-input">
-                                    <span class="choice-label">3.</span>
-                                    <input type="text" id="choice3" class="input" required>
-                                    <input type="radio" name="correctAnswer" value="3">
-                                    <span class="correct-label">正解</span>
+                                <div class="choice-input-group">
+                                    <div class="choice-input">
+                                        <span class="choice-label">3.</span>
+                                        <input type="text" id="choice3" class="input" placeholder="テキストまたは画像">
+                                        <input type="radio" name="correctAnswer" value="3">
+                                        <span class="correct-label">正解</span>
+                                    </div>
+                                    <div class="choice-image-upload">
+                                        <input type="file" id="choiceImage3" accept="image/*">
+                                        <div class="choice-image-preview" id="choiceImagePreview3"></div>
+                                    </div>
                                 </div>
-                                <div class="choice-input">
-                                    <span class="choice-label">4.</span>
-                                    <input type="text" id="choice4" class="input" required>
-                                    <input type="radio" name="correctAnswer" value="4">
-                                    <span class="correct-label">正解</span>
+                                <div class="choice-input-group">
+                                    <div class="choice-input">
+                                        <span class="choice-label">4.</span>
+                                        <input type="text" id="choice4" class="input" placeholder="テキストまたは画像">
+                                        <input type="radio" name="correctAnswer" value="4">
+                                        <span class="correct-label">正解</span>
+                                    </div>
+                                    <div class="choice-image-upload">
+                                        <input type="file" id="choiceImage4" accept="image/*">
+                                        <div class="choice-image-preview" id="choiceImagePreview4"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -97,6 +97,13 @@ const Questions = {
             await this.previewImages(e.target.files, 'imagePreview');
         });
 
+        // 選択肢画像プレビュー
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById(`choiceImage${i}`).addEventListener('change', async (e) => {
+                await this.previewChoiceImage(e.target.files[0], `choiceImagePreview${i}`);
+            });
+        }
+
         // モーダル外クリックで閉じる
         document.getElementById('questionModal').addEventListener('click', (e) => {
             if (e.target.id === 'questionModal') {
@@ -211,6 +218,12 @@ const Questions = {
         form.reset();
         preview.innerHTML = '';
         questionPreview.innerHTML = '';
+
+        // 選択肢画像プレビューをクリア
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById(`choiceImagePreview${i}`).innerHTML = '';
+        }
+
         this.currentEditingId = null;
 
         if (question) {
@@ -237,6 +250,15 @@ const Questions = {
             }
             if (question.explanationImages && question.explanationImages.length > 0) {
                 this.displayExistingImages(question.explanationImages, 'imagePreview');
+            }
+
+            // 選択肢画像を表示
+            if (question.choiceImages) {
+                for (let i = 0; i < 4; i++) {
+                    if (question.choiceImages[i]) {
+                        this.displayChoiceImage(question.choiceImages[i], `choiceImagePreview${i + 1}`);
+                    }
+                }
             }
         } else {
             title.textContent = '新規問題登録';
@@ -291,6 +313,14 @@ const Questions = {
             explanationImages.push(img.src);
         });
 
+        // 選択肢画像を収集
+        const choiceImages = [];
+        for (let i = 1; i <= 4; i++) {
+            const preview = document.getElementById(`choiceImagePreview${i}`);
+            const img = preview.querySelector('img');
+            choiceImages.push(img ? img.src : null);
+        }
+
         const question = {
             id: this.currentEditingId || Utils.generateQuestionId(year, subject, questionNumber),
             year,
@@ -299,6 +329,7 @@ const Questions = {
             questionText,
             questionImages,
             choices,
+            choiceImages,
             correctAnswer,
             explanation,
             explanationImages,
@@ -406,6 +437,40 @@ const Questions = {
         images.forEach(src => {
             this.addImageToPreview(src, containerId);
         });
+    },
+
+    /**
+     * 選択肢画像プレビューを表示
+     */
+    async previewChoiceImage(file, containerId) {
+        if (!file) return;
+
+        try {
+            const base64 = await Utils.fileToBase64(file);
+            this.displayChoiceImage(base64, containerId);
+        } catch (error) {
+            console.error('Choice image load error:', error);
+        }
+    },
+
+    /**
+     * 選択肢画像を表示
+     */
+    displayChoiceImage(src, containerId) {
+        const preview = document.getElementById(containerId);
+        preview.innerHTML = `
+            <div class="choice-image-item">
+                <img src="${src}" alt="選択肢画像">
+                <button type="button" class="remove-choice-image" onclick="Questions.removeChoiceImage('${containerId}')">&times;</button>
+            </div>
+        `;
+    },
+
+    /**
+     * 選択肢画像を削除
+     */
+    removeChoiceImage(containerId) {
+        document.getElementById(containerId).innerHTML = '';
     },
 
     /**

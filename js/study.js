@@ -99,12 +99,19 @@ const Study = {
 
         // 選択肢を生成（タップで消去法）
         const choicesContainer = document.getElementById('choices');
-        choicesContainer.innerHTML = question.choices.map((choice, index) => `
-            <div class="choice-item" data-choice="${index + 1}">
-                <span class="choice-number">${index + 1}</span>
-                <span class="choice-text">${choice}</span>
-            </div>
-        `).join('');
+        choicesContainer.innerHTML = question.choices.map((choice, index) => {
+            const choiceImage = question.choiceImages && question.choiceImages[index];
+            const choiceContent = choiceImage
+                ? `<img src="${choiceImage}" alt="選択肢${index + 1}" class="choice-image">`
+                : `<span class="choice-text">${choice}</span>`;
+
+            return `
+                <div class="choice-item" data-choice="${index + 1}">
+                    <span class="choice-number">${index + 1}</span>
+                    ${choiceContent}
+                </div>
+            `;
+        }).join('');
 
         // 回答ボタンを生成
         choicesContainer.innerHTML += `
