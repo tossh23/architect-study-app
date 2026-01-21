@@ -249,6 +249,18 @@ const Study = {
             explanationContent.innerHTML = '<p class="no-explanation">解説は登録されていません</p>';
         }
 
+        // メモを読み込み
+        const memoTextarea = document.getElementById('questionMemo');
+        const savedMemo = this.getMemo(question.id);
+        memoTextarea.value = savedMemo || '';
+
+        // メモ保存ボタンの設定
+        const saveMemoBtn = document.getElementById('saveMemo');
+        saveMemoBtn.onclick = () => {
+            this.saveMemo(question.id, memoTextarea.value);
+            Utils.showToast('メモを保存しました', 'success');
+        };
+
         // 次の問題ボタンのテキストを更新
         const nextBtn = document.getElementById('nextQuestion');
         if (this.currentIndex >= this.questions.length - 1) {
@@ -346,5 +358,26 @@ const Study = {
             return this.questions[this.currentIndex];
         }
         return null;
+    },
+
+    /**
+     * メモを取得
+     */
+    getMemo(questionId) {
+        const memos = JSON.parse(localStorage.getItem('memos') || '{}');
+        return memos[questionId] || '';
+    },
+
+    /**
+     * メモを保存
+     */
+    saveMemo(questionId, memo) {
+        const memos = JSON.parse(localStorage.getItem('memos') || '{}');
+        if (memo.trim()) {
+            memos[questionId] = memo;
+        } else {
+            delete memos[questionId];
+        }
+        localStorage.setItem('memos', JSON.stringify(memos));
     }
 };
