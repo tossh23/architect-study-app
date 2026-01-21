@@ -928,6 +928,44 @@ textarea {
     margin-bottom: var(--space-md);
 }
 
+/* Mastery Grid - 達成度表示 */
+.mastery-controls {
+    margin-bottom: var(--space-lg);
+}
+
+.mastery-subject {
+    margin-bottom: var(--space-xl);
+}
+
+.mastery-subject h4 {
+    margin-bottom: var(--space-sm);
+    color: var(--text-secondary);
+    font-size: var(--font-size-lg);
+}
+
+.mastery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+.mastery-grid .crown {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-lg);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fast);
+}
+
+.mastery-grid .crown:hover {
+    transform: scale(1.2);
+    background: var(--bg-tertiary);
+}
+
 /* =============================================
    Modal
    ============================================= */
