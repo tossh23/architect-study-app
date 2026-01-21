@@ -130,6 +130,12 @@ const FirebaseSync = {
                 syncStatus.classList.remove('syncing');
             }
         }
+
+        // 管理者専用UI要素の表示制御
+        const isAdmin = this.isAdmin();
+        document.querySelectorAll('.admin-only').forEach(el => {
+            el.style.display = isAdmin ? '' : 'none';
+        });
     },
 
     /**

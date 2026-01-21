@@ -337,20 +337,20 @@ const App = {
     },
 
     /**
-     * 全データを削除
+     * 学習履歴を削除
      */
     async deleteAllData() {
         const confirmed = await Utils.confirm(
-            'すべてのデータを削除しますか？この操作は元に戻せません。'
+            '学習履歴を削除しますか？問題データは保持されます。'
         );
 
         if (!confirmed) return;
 
         try {
-            await db.deleteAllData();
+            await db.deleteHistoryData();
+            localStorage.removeItem('memos'); // メモも削除
             await this.updateHomeStats();
-            await Questions.loadQuestions();
-            Utils.showToast('すべてのデータを削除しました', 'success');
+            Utils.showToast('学習履歴を削除しました', 'success');
         } catch (error) {
             console.error('Delete error:', error);
             Utils.showToast('削除に失敗しました', 'error');

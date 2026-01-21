@@ -304,12 +304,11 @@ class Database {
     }
 
     /**
-     * 全データを削除
+     * 学習履歴を削除（問題データは保持）
      */
-    async deleteAllData() {
-        const transaction = this.db.transaction(['questions', 'history'], 'readwrite');
+    async deleteHistoryData() {
+        const transaction = this.db.transaction(['history'], 'readwrite');
 
-        transaction.objectStore('questions').clear();
         transaction.objectStore('history').clear();
 
         return new Promise((resolve, reject) => {

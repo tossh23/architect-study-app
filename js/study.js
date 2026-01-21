@@ -51,6 +51,25 @@ const Study = {
     },
 
     /**
+     * 指定した1問だけを解く
+     */
+    startWithQuestion(question) {
+        this.mode = 'single';
+        this.selectedSubject = null;
+        this.currentIndex = 0;
+        this.isAnswered = false;
+        this.questions = [question];
+
+        // 学習画面のヘッダーを更新
+        this.updateHeader();
+
+        // 問題を表示
+        this.showQuestion();
+
+        return true;
+    },
+
+    /**
      * ヘッダーを更新
      */
     updateHeader() {

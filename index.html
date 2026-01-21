@@ -36,7 +36,8 @@
             <ul class="sidebar-menu">
                 <li><a href="#" data-page="home" class="active"><span class="icon">🏠</span>ホーム</a></li>
                 <li><a href="#" data-page="study"><span class="icon">📖</span>学習する</a></li>
-                <li><a href="#" data-page="questions"><span class="icon">📝</span>問題管理</a></li>
+                <li><a href="#" data-page="mastery"><span class="icon">👑</span>達成度</a></li>
+                <li class="admin-only"><a href="#" data-page="questions"><span class="icon">📝</span>問題管理</a></li>
                 <li><a href="#" data-page="stats"><span class="icon">📊</span>統計</a></li>
                 <li><a href="#" data-page="history"><span class="icon">📅</span>学習履歴</a></li>
                 <li><a href="#" data-page="settings"><span class="icon">⚙️</span>設定</a></li>
@@ -383,10 +384,16 @@
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="stats-details">
+            <!-- 達成度画面 -->
+            <section id="page-mastery" class="page">
+                <div class="page-header">
+                    <h1>達成度</h1>
+                </div>
+
+                <div class="mastery-controls">
                     <div class="mastery-header">
-                        <h3>達成度</h3>
                         <select id="masteryYearFilter" class="select">
                             <!-- 動的に生成 -->
                         </select>
@@ -397,9 +404,9 @@
                         <span class="crown crown-bronze">♛</span> 1回不正解
                         <span class="crown crown-black">♛</span> 2回連続不正解
                     </p>
-                    <div class="mastery-section" id="masterySection">
-                        <!-- 動的に生成 -->
-                    </div>
+                </div>
+                <div class="mastery-section" id="masterySection">
+                    <!-- 動的に生成 -->
                 </div>
             </section>
 
@@ -464,8 +471,8 @@
                     </div>
                     <div class="settings-item danger">
                         <div class="settings-info">
-                            <span class="settings-label">すべてのデータを削除</span>
-                            <span class="settings-desc">問題データと学習履歴をすべて削除します（元に戻せません）</span>
+                            <span class="settings-label">学習履歴を削除</span>
+                            <span class="settings-desc">学習履歴を削除します（問題データは保持されます）</span>
                         </div>
                         <button class="btn btn-danger" id="deleteAllData">削除</button>
                     </div>

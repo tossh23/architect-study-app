@@ -388,12 +388,17 @@ const Stats = {
 
         container.innerHTML = html || '<p class="text-muted">問題データがありません</p>';
 
-        // 王冠クリックで問題を編集
+        // 王冠クリックで問題を解く
         container.querySelectorAll('.crown.clickable').forEach(crown => {
-            crown.addEventListener('click', () => {
+            crown.addEventListener('click', async () => {
                 const questionId = crown.dataset.questionId;
                 if (questionId) {
-                    Questions.openEditModal(questionId);
+                    // 指定した問題を1問だけ解くモードで学習開始
+                    const question = await db.getQuestion(questionId);
+                    if (question) {
+                        Study.startWithQuestion(question);
+                        App.showPage('study');
+                    }
                 }
             });
         });
@@ -565,7 +570,7 @@ const History = {
             if (!question) return '';
 
             return `
-                <div class="history-item">
+                <div class="history-item clickable" data-question-id="${h.questionId}">
                     <div class="history-date">${Utils.formatDate(h.answeredAt)}</div>
                     <div class="history-content">
                         ${Utils.toJapaneseYear(question.year)} ${Utils.getSubjectShortName(question.subject)} 問${question.questionNumber}
@@ -576,5 +581,17 @@ const History = {
                 </div>
             `;
         }).join('');
+
+        // 履歴クリックで問題を解く
+        container.querySelectorAll('.history-item.clickable').forEach(item => {
+            item.addEventListener('click', async () => {
+                const questionId = item.dataset.questionId;
+                const question = questions.find(q => q.id === questionId);
+                if (question) {
+                    Study.startWithQuestion(question);
+                    App.showPage('study');
+                }
+            });
+        });
     }
 };
