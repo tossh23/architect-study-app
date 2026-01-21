@@ -26,7 +26,7 @@ const Stats = {
         this.renderProgressChart(history);
         this.renderStatsTable(stats);
         await this.renderYearChart(questions, history);
-        await this.renderMasterySection(questions, history);
+        // 達成度は別ページ（Mastery）に移動
     },
 
     /**

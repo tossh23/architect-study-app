@@ -933,8 +933,13 @@ textarea {
     margin-bottom: var(--space-lg);
 }
 
+.mastery-section {
+    width: 100%;
+}
+
 .mastery-subject {
     margin-bottom: var(--space-xl);
+    width: 100%;
 }
 
 .mastery-subject h4 {
@@ -947,6 +952,7 @@ textarea {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-xs);
+    width: 100%;
 }
 
 .mastery-grid .crown {
