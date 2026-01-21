@@ -434,6 +434,96 @@ const Stats = {
 };
 
 /**
+ * 達成度ページモジュール
+ */
+const Mastery = {
+    /**
+     * 達成度ページを初期化
+     */
+    async init() {
+        const questions = await db.getAllQuestions();
+        const history = await db.getAllHistory();
+        await this.renderMasteryPage(questions, history);
+    },
+
+    /**
+     * 達成度ページを描画
+     */
+    async renderMasteryPage(questions, history) {
+        const years = [...new Set(questions.map(q => q.year))].sort((a, b) => b - a);
+        const filterSelect = document.getElementById('masteryYearFilter');
+
+        // 年度フィルターを設定
+        filterSelect.innerHTML = '<option value="all">すべての年度</option>' +
+            years.map(year => `<option value="${year}">${Utils.toJapaneseYear(year)}</option>`).join('');
+
+        // イベントリスナーを再設定
+        filterSelect.onchange = () => {
+            this.updateMasteryTable(questions, history, filterSelect.value);
+        };
+
+        // 初期表示
+        this.updateMasteryTable(questions, history, 'all');
+    },
+
+    /**
+     * 達成度テーブルを更新
+     */
+    updateMasteryTable(questions, history, year) {
+        const container = document.getElementById('masterySection');
+
+        let filteredQuestions = questions;
+        if (year !== 'all') {
+            filteredQuestions = questions.filter(q => q.year === parseInt(year));
+        }
+
+        // 科目でグループ化
+        const subjects = {};
+        for (let i = 1; i <= 5; i++) {
+            subjects[i] = filteredQuestions.filter(q => q.subject === i)
+                .sort((a, b) => b.year - a.year || a.questionNumber - b.questionNumber);
+        }
+
+        let html = '';
+        for (let subjectId = 1; subjectId <= 5; subjectId++) {
+            const subjectQuestions = subjects[subjectId];
+            if (subjectQuestions.length === 0) continue;
+
+            html += `
+                <div class="mastery-subject">
+                    <h4>${Utils.getSubjectShortName(subjectId)}</h4>
+                    <div class="mastery-grid">
+            `;
+
+            for (const q of subjectQuestions) {
+                const crown = Stats.getCrownForQuestion(q.id, history);
+                html += `<span class="crown ${crown.class} clickable" 
+                    data-question-id="${q.id}" 
+                    title="${Utils.toJapaneseYear(q.year)} 問${q.questionNumber}">${crown.icon}</span>`;
+            }
+
+            html += `</div></div>`;
+        }
+
+        container.innerHTML = html || '<p class="text-muted">問題データがありません</p>';
+
+        // 王冠クリックで問題を解く
+        container.querySelectorAll('.crown.clickable').forEach(crown => {
+            crown.addEventListener('click', async () => {
+                const questionId = crown.dataset.questionId;
+                if (questionId) {
+                    const question = await db.getQuestion(questionId);
+                    if (question) {
+                        Study.startWithQuestion(question);
+                        App.showPage('study');
+                    }
+                }
+            });
+        });
+    }
+};
+
+/**
  * 履歴ページモジュール
  */
 const History = {

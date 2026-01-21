@@ -269,6 +269,8 @@ const App = {
         // ページごとの初期化
         if (page === 'stats') {
             await Stats.init();
+        } else if (page === 'mastery') {
+            await Mastery.init();
         } else if (page === 'history') {
             await History.init();
         } else if (page === 'home') {
