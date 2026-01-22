@@ -928,48 +928,56 @@ textarea {
     margin-bottom: var(--space-md);
 }
 
-/* Mastery Grid - 達成度表示 */
+/* Mastery Table - 達成度表示 */
 .mastery-controls {
     margin-bottom: var(--space-lg);
 }
 
-.mastery-section {
+.mastery-table-container {
     width: 100%;
+    overflow-x: auto;
 }
 
-.mastery-subject {
-    margin-bottom: var(--space-xl);
+.mastery-table {
     width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
 }
 
-.mastery-subject h4 {
-    margin-bottom: var(--space-sm);
+.mastery-table th,
+.mastery-table td {
+    padding: var(--space-xs) var(--space-sm);
+    text-align: center;
+    border-bottom: 1px solid var(--bg-tertiary);
+    min-width: 40px;
+}
+
+.mastery-table th {
+    background: var(--bg-tertiary);
     color: var(--text-secondary);
-    font-size: var(--font-size-lg);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    position: sticky;
+    top: 0;
 }
 
-.mastery-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-xs);
-    width: 100%;
+.mastery-table .mastery-row-header {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: var(--font-size-sm);
 }
 
-.mastery-grid .crown {
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: var(--font-size-lg);
+.mastery-table .crown {
     cursor: pointer;
-    border-radius: var(--radius-sm);
+    font-size: var(--font-size-lg);
     transition: var(--transition-fast);
 }
 
-.mastery-grid .crown:hover {
-    transform: scale(1.2);
-    background: var(--bg-tertiary);
+.mastery-table .crown:hover {
+    transform: scale(1.3);
 }
 
 /* =============================================

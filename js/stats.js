@@ -454,58 +454,84 @@ const Mastery = {
         const filterSelect = document.getElementById('masteryYearFilter');
 
         // 年度フィルターを設定
-        filterSelect.innerHTML = '<option value="all">すべての年度</option>' +
-            years.map(year => `<option value="${year}">${Utils.toJapaneseYear(year)}</option>`).join('');
+        filterSelect.innerHTML = years.map(year =>
+            `<option value="${year}">${Utils.toJapaneseYear(year)}</option>`
+        ).join('');
 
         // イベントリスナーを再設定
         filterSelect.onchange = () => {
             this.updateMasteryTable(questions, history, filterSelect.value);
         };
 
-        // 初期表示
-        this.updateMasteryTable(questions, history, 'all');
+        // 初期表示（最新年度）
+        const initialYear = years[0] || 2024;
+        filterSelect.value = initialYear;
+        this.updateMasteryTable(questions, history, initialYear);
     },
 
     /**
-     * 達成度テーブルを更新
+     * 達成度テーブルを更新（行=問題番号、列=学科）
      */
     updateMasteryTable(questions, history, year) {
         const container = document.getElementById('masterySection');
 
-        let filteredQuestions = questions;
-        if (year !== 'all') {
-            filteredQuestions = questions.filter(q => q.year === parseInt(year));
+        // 指定年度の問題をフィルタ
+        const yearQuestions = questions.filter(q => q.year === parseInt(year));
+
+        if (yearQuestions.length === 0) {
+            container.innerHTML = '<p class="text-muted">この年度の問題データがありません</p>';
+            return;
         }
 
-        // 科目でグループ化
-        const subjects = {};
+        // 問題番号の最大値を取得（各科目）
+        const maxQuestionNum = {};
         for (let i = 1; i <= 5; i++) {
-            subjects[i] = filteredQuestions.filter(q => q.subject === i)
-                .sort((a, b) => b.year - a.year || a.questionNumber - b.questionNumber);
+            const subjectQuestions = yearQuestions.filter(q => q.subject === i);
+            maxQuestionNum[i] = Math.max(...subjectQuestions.map(q => q.questionNumber), 0);
         }
+        const maxRows = Math.max(...Object.values(maxQuestionNum));
 
-        let html = '';
-        for (let subjectId = 1; subjectId <= 5; subjectId++) {
-            const subjectQuestions = subjects[subjectId];
-            if (subjectQuestions.length === 0) continue;
+        // テーブルHTMLを生成
+        let html = `
+            <div class="mastery-table-container">
+                <table class="mastery-table">
+                    <thead>
+                        <tr>
+                            <th>問</th>
+                            <th>計画</th>
+                            <th>環設</th>
+                            <th>法規</th>
+                            <th>構造</th>
+                            <th>施工</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
 
-            html += `
-                <div class="mastery-subject">
-                    <h4>${Utils.getSubjectShortName(subjectId)}</h4>
-                    <div class="mastery-grid">
-            `;
+        for (let qNum = 1; qNum <= maxRows; qNum++) {
+            html += `<tr><td class="mastery-row-header">${qNum}</td>`;
 
-            for (const q of subjectQuestions) {
-                const crown = Stats.getCrownForQuestion(q.id, history);
-                html += `<span class="crown ${crown.class} clickable" 
-                    data-question-id="${q.id}" 
-                    title="${Utils.toJapaneseYear(q.year)} 問${q.questionNumber}">${crown.icon}</span>`;
+            for (let subjectId = 1; subjectId <= 5; subjectId++) {
+                const question = yearQuestions.find(q =>
+                    q.subject === subjectId && q.questionNumber === qNum
+                );
+
+                if (question) {
+                    const crown = Stats.getCrownForQuestion(question.id, history);
+                    html += `<td>
+                        <span class="crown ${crown.class} clickable" 
+                            data-question-id="${question.id}" 
+                            title="問${qNum}">${crown.icon}</span>
+                    </td>`;
+                } else {
+                    html += `<td>-</td>`;
+                }
             }
-
-            html += `</div></div>`;
+            html += `</tr>`;
         }
 
-        container.innerHTML = html || '<p class="text-muted">問題データがありません</p>';
+        html += `</tbody></table></div>`;
+        container.innerHTML = html;
 
         // 王冠クリックで問題を解く
         container.querySelectorAll('.crown.clickable').forEach(crown => {
