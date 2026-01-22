@@ -98,6 +98,19 @@ const Study = {
         const question = this.questions[this.currentIndex];
         this.isAnswered = false;
 
+        // question-containerのDOM構造を復元（結果画面で破壊された場合）
+        const container = document.querySelector('.question-container');
+        if (!document.getElementById('questionText')) {
+            container.innerHTML = `
+                <div class="question-meta">
+                    <span class="question-year" id="questionYear"></span>
+                    <span class="question-number" id="questionNum"></span>
+                </div>
+                <div class="question-text" id="questionText"></div>
+                <div class="choices" id="choices"></div>
+            `;
+        }
+
         // 問題番号を更新
         document.getElementById('currentNumber').textContent = this.currentIndex + 1;
 
