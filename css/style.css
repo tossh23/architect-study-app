@@ -933,6 +933,18 @@ textarea {
     margin-bottom: var(--space-lg);
 }
 
+.mastery-year-section {
+    margin-bottom: var(--space-2xl);
+}
+
+.mastery-year-title {
+    color: var(--primary);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-xs);
+    border-bottom: 2px solid var(--primary);
+}
+
 .mastery-table-container {
     width: 100%;
     overflow-x: auto;

@@ -447,90 +447,76 @@ const Mastery = {
     },
 
     /**
-     * 達成度ページを描画
+     * 達成度ページを描画（全年度を一覧表示）
      */
     async renderMasteryPage(questions, history) {
-        const years = [...new Set(questions.map(q => q.year))].sort((a, b) => b - a);
-        const filterSelect = document.getElementById('masteryYearFilter');
-
-        // 年度フィルターを設定
-        filterSelect.innerHTML = years.map(year =>
-            `<option value="${year}">${Utils.toJapaneseYear(year)}</option>`
-        ).join('');
-
-        // イベントリスナーを再設定
-        filterSelect.onchange = () => {
-            this.updateMasteryTable(questions, history, filterSelect.value);
-        };
-
-        // 初期表示（最新年度）
-        const initialYear = years[0] || 2024;
-        filterSelect.value = initialYear;
-        this.updateMasteryTable(questions, history, initialYear);
-    },
-
-    /**
-     * 達成度テーブルを更新（行=問題番号、列=学科）
-     */
-    updateMasteryTable(questions, history, year) {
         const container = document.getElementById('masterySection');
+        const years = [...new Set(questions.map(q => q.year))].sort((a, b) => b - a);
 
-        // 指定年度の問題をフィルタ
-        const yearQuestions = questions.filter(q => q.year === parseInt(year));
-
-        if (yearQuestions.length === 0) {
-            container.innerHTML = '<p class="text-muted">この年度の問題データがありません</p>';
+        if (years.length === 0) {
+            container.innerHTML = '<p class="text-muted">問題データがありません</p>';
             return;
         }
 
-        // 問題番号の最大値を取得（各科目）
-        const maxQuestionNum = {};
-        for (let i = 1; i <= 5; i++) {
-            const subjectQuestions = yearQuestions.filter(q => q.subject === i);
-            maxQuestionNum[i] = Math.max(...subjectQuestions.map(q => q.questionNumber), 0);
-        }
-        const maxRows = Math.max(...Object.values(maxQuestionNum));
+        let html = '';
 
-        // テーブルHTMLを生成
-        let html = `
-            <div class="mastery-table-container">
-                <table class="mastery-table">
-                    <thead>
-                        <tr>
-                            <th>問</th>
-                            <th>計画</th>
-                            <th>環設</th>
-                            <th>法規</th>
-                            <th>構造</th>
-                            <th>施工</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-        `;
+        // 年度ごとにテーブルを生成（新しい年度から）
+        for (const year of years) {
+            const yearQuestions = questions.filter(q => q.year === year);
 
-        for (let qNum = 1; qNum <= maxRows; qNum++) {
-            html += `<tr><td class="mastery-row-header">${qNum}</td>`;
-
-            for (let subjectId = 1; subjectId <= 5; subjectId++) {
-                const question = yearQuestions.find(q =>
-                    q.subject === subjectId && q.questionNumber === qNum
-                );
-
-                if (question) {
-                    const crown = Stats.getCrownForQuestion(question.id, history);
-                    html += `<td>
-                        <span class="crown ${crown.class} clickable" 
-                            data-question-id="${question.id}" 
-                            title="問${qNum}">${crown.icon}</span>
-                    </td>`;
-                } else {
-                    html += `<td>-</td>`;
-                }
+            // 問題番号の最大値を取得
+            const maxQuestionNum = {};
+            for (let i = 1; i <= 5; i++) {
+                const subjectQuestions = yearQuestions.filter(q => q.subject === i);
+                maxQuestionNum[i] = Math.max(...subjectQuestions.map(q => q.questionNumber), 0);
             }
-            html += `</tr>`;
+            const maxRows = Math.max(...Object.values(maxQuestionNum));
+
+            if (maxRows === 0) continue;
+
+            html += `
+                <div class="mastery-year-section">
+                    <h3 class="mastery-year-title">${Utils.toJapaneseYear(year)}</h3>
+                    <div class="mastery-table-container">
+                        <table class="mastery-table">
+                            <thead>
+                                <tr>
+                                    <th>問</th>
+                                    <th>計画</th>
+                                    <th>環設</th>
+                                    <th>法規</th>
+                                    <th>構造</th>
+                                    <th>施工</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            `;
+
+            for (let qNum = 1; qNum <= maxRows; qNum++) {
+                html += `<tr><td class="mastery-row-header">${qNum}</td>`;
+
+                for (let subjectId = 1; subjectId <= 5; subjectId++) {
+                    const question = yearQuestions.find(q =>
+                        q.subject === subjectId && q.questionNumber === qNum
+                    );
+
+                    if (question) {
+                        const crown = Stats.getCrownForQuestion(question.id, history);
+                        html += `<td>
+                            <span class="crown ${crown.class} clickable" 
+                                data-question-id="${question.id}" 
+                                title="${Utils.toJapaneseYear(year)} 問${qNum}">${crown.icon}</span>
+                        </td>`;
+                    } else {
+                        html += `<td>-</td>`;
+                    }
+                }
+                html += `</tr>`;
+            }
+
+            html += `</tbody></table></div></div>`;
         }
 
-        html += `</tbody></table></div>`;
         container.innerHTML = html;
 
         // 王冠クリックで問題を解く
