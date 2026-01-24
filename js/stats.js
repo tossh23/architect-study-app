@@ -437,23 +437,48 @@ const Stats = {
  * 達成度ページモジュール
  */
 const Mastery = {
+    questions: [],
+    history: [],
+
     /**
      * 達成度ページを初期化
      */
     async init() {
-        const questions = await db.getAllQuestions();
-        const history = await db.getAllHistory();
-        await this.renderMasteryPage(questions, history);
+        this.questions = await db.getAllQuestions();
+        this.history = await db.getAllHistory();
+        this.setupYearFilter();
+        this.renderMasteryPage();
     },
 
     /**
-     * 達成度ページを描画（全年度を一覧表示）
+     * 年度フィルターを設定
      */
-    async renderMasteryPage(questions, history) {
-        const container = document.getElementById('masterySection');
-        const years = [...new Set(questions.map(q => q.year))].sort((a, b) => b - a);
+    setupYearFilter() {
+        const filterSelect = document.getElementById('masteryYearFilter');
+        const years = [...new Set(this.questions.map(q => q.year))].sort((a, b) => b - a);
 
-        if (years.length === 0) {
+        // 年度オプションを生成（すべての年度 + 各年度）
+        filterSelect.innerHTML = '<option value="all">すべての年度</option>' +
+            years.map(year => `<option value="${year}">${Utils.toJapaneseYear(year)}</option>`).join('');
+
+        // イベントリスナー設定
+        filterSelect.onchange = () => {
+            this.renderMasteryPage();
+        };
+    },
+
+    /**
+     * 達成度ページを描画
+     */
+    renderMasteryPage() {
+        const container = document.getElementById('masterySection');
+        const filterYear = document.getElementById('masteryYearFilter').value;
+        const years = [...new Set(this.questions.map(q => q.year))].sort((a, b) => b - a);
+
+        // フィルター適用
+        const displayYears = filterYear === 'all' ? years : [parseInt(filterYear)];
+
+        if (displayYears.length === 0) {
             container.innerHTML = '<p class="text-muted">問題データがありません</p>';
             return;
         }
@@ -461,8 +486,8 @@ const Mastery = {
         let html = '';
 
         // 年度ごとにテーブルを生成（新しい年度から）
-        for (const year of years) {
-            const yearQuestions = questions.filter(q => q.year === year);
+        for (const year of displayYears) {
+            const yearQuestions = this.questions.filter(q => q.year === year);
 
             // 問題番号の最大値を取得
             const maxQuestionNum = {};
@@ -501,7 +526,7 @@ const Mastery = {
                     );
 
                     if (question) {
-                        const crown = Stats.getCrownForQuestion(question.id, history);
+                        const crown = Stats.getCrownForQuestion(question.id, this.history);
                         html += `<td>
                             <span class="crown ${crown.class} clickable" 
                                 data-question-id="${question.id}" 
