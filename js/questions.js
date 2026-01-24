@@ -10,7 +10,16 @@ const Questions = {
      */
     async init() {
         this.setupEventListeners();
-        this.populateYearFilters();
+        await this.populateYearFilters();
+
+        // 初期表示時は最新年度と計画科目でフィルタ（パフォーマンス対策）
+        const filterYear = document.getElementById('filterYear');
+        const filterSubject = document.getElementById('filterSubject');
+        if (filterYear.options.length > 1) {
+            filterYear.value = filterYear.options[1].value; // 最新年度を選択
+        }
+        filterSubject.value = '1'; // 計画を選択
+
         await this.loadQuestions();
 
         // 管理者でない場合は編集関連ボタンを非表示
