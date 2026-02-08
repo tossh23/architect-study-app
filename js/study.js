@@ -386,6 +386,8 @@ const Study = {
      * メモを保存（Firebase + ローカル対応）
      */
     saveMemo(questionId, memo) {
+        console.log('Saving memo for question:', questionId);
+
         // ローカルに保存
         const memos = JSON.parse(localStorage.getItem('memos') || '{}');
         if (memo.trim()) {
@@ -394,10 +396,14 @@ const Study = {
             delete memos[questionId];
         }
         localStorage.setItem('memos', JSON.stringify(memos));
+        console.log('Memo saved to localStorage');
 
         // ログイン中はFirebaseにも保存
         if (typeof FirebaseSync !== 'undefined' && FirebaseSync.isLoggedIn()) {
+            console.log('User is logged in, saving to Firebase...');
             FirebaseSync.saveMemo(questionId, memo);
+        } else {
+            console.log('User not logged in, skipping Firebase sync');
         }
     }
 };
