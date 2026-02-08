@@ -262,6 +262,54 @@ class Database {
     }
 
     /**
+     * 全問題を一括削除
+     */
+    async clearAllQuestions() {
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['questions'], 'readwrite');
+            const store = transaction.objectStore('questions');
+            const request = store.clear();
+
+            request.onsuccess = () => resolve();
+            request.onerror = () => reject(request.error);
+        });
+    }
+
+    /**
+     * 複数問題を一括追加（バッチ処理）
+     */
+    async addQuestionsBatch(questions) {
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['questions'], 'readwrite');
+            const store = transaction.objectStore('questions');
+
+            for (const question of questions) {
+                store.put(question);
+            }
+
+            transaction.oncomplete = () => resolve();
+            transaction.onerror = () => reject(transaction.error);
+        });
+    }
+
+    /**
+     * 複数履歴を一括追加（バッチ処理）
+     */
+    async addHistoryBatch(historyItems) {
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['history'], 'readwrite');
+            const store = transaction.objectStore('history');
+
+            for (const item of historyItems) {
+                store.put(item);
+            }
+
+            transaction.oncomplete = () => resolve();
+            transaction.onerror = () => reject(transaction.error);
+        });
+    }
+
+    /**
      * 全データをエクスポート
      */
     async exportData() {

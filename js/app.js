@@ -6,32 +6,30 @@ const App = {
     currentPage: 'home',
 
     /**
-     * アプリを初期化
+     * アプリを初期化（最適化版：UI先行表示）
      */
     async init() {
         try {
             // データベース初期化
             await db.init();
 
-            // Firebase初期化（先に実行してログイン状態を確認）
-            await FirebaseSync.init();
-
-            // 問題データを読み込み（Firebase優先、フォールバックでビルトイン）
-            await this.loadQuestions();
-
-            // Service Worker登録
-            this.registerServiceWorker();
-
-            // イベントリスナー設定
+            // イベントリスナー設定（即座に操作可能に）
             this.setupEventListeners();
 
-            // ホーム画面の統計を更新
+            // ローカルキャッシュで即座にUI表示
             await this.updateHomeStats();
 
             // 問題管理を初期化
             await Questions.init();
 
-            console.log('App initialized successfully');
+            // Service Worker登録
+            this.registerServiceWorker();
+
+            console.log('App initialized with local cache');
+
+            // バックグラウンドでFirebase同期（非ブロッキング）
+            this.initFirebaseInBackground();
+
         } catch (error) {
             console.error('App initialization failed:', error);
             Utils.showToast('アプリの初期化に失敗しました', 'error');
@@ -39,52 +37,85 @@ const App = {
     },
 
     /**
-     * 問題データを読み込み（Firebase優先、フォールバックでビルトイン）
+     * Firebaseをバックグラウンドで初期化
      */
-    async loadQuestions() {
-        // まずFirebaseから読み込みを試行（ログイン不要）
+    async initFirebaseInBackground() {
         try {
-            const firebaseQuestions = await FirebaseSync.loadQuestions();
+            // Firebase初期化
+            await FirebaseSync.init();
 
-            if (firebaseQuestions && firebaseQuestions.length > 0) {
-                console.log(`Loading ${firebaseQuestions.length} questions from Firebase`);
+            // 問題データを非同期で読み込み・更新
+            await this.loadQuestionsOptimized();
 
-                // ローカルDBをクリアして再登録（常に最新に更新）
-                const existingQuestions = await db.getAllQuestions();
-                for (const q of existingQuestions) {
-                    await db.deleteQuestion(q.id);
-                }
+            // 統計を再更新（新しいデータがあれば反映）
+            await this.updateHomeStats();
 
-                for (const q of firebaseQuestions) {
-                    await db.addQuestion({
-                        ...q,
-                        createdAt: q.createdAt || new Date().toISOString(),
-                        updatedAt: q.updatedAt || new Date().toISOString()
-                    });
-                }
+            // 問題管理も更新
+            await Questions.loadQuestions();
 
-                localStorage.setItem('questionsVersion', `firebase_${firebaseQuestions.length}`);
-                console.log(`Synced ${firebaseQuestions.length} questions from Firebase`);
-                return;
-            }
+            console.log('Firebase sync completed in background');
         } catch (error) {
-            console.log('Could not load from Firebase, using local cache:', error.message);
-            // Firebaseに接続できない場合はローカルキャッシュを使用
-            const localQuestions = await db.getAllQuestions();
-            if (localQuestions.length > 0) {
-                console.log(`Using ${localQuestions.length} cached questions`);
-                return;
-            }
+            console.error('Background Firebase sync failed:', error);
         }
-
-        // Firebaseに問題がない場合、ビルトイン問題を使用
-        await this.loadBuiltinQuestionsToLocal();
     },
 
     /**
-     * ビルトイン問題をローカルDBに読み込み
+     * 問題データを最適化読み込み（バッチ処理版）
      */
-    async loadBuiltinQuestionsToLocal() {
+    async loadQuestionsOptimized() {
+        try {
+            const firebaseQuestions = await FirebaseSync.loadQuestions();
+
+            if (!firebaseQuestions || firebaseQuestions.length === 0) {
+                // Firebaseに問題がない場合、ビルトイン問題を使用
+                await this.loadBuiltinQuestionsOptimized();
+                return;
+            }
+
+            // ハッシュ比較で変更チェック
+            const newHash = this.computeQuestionsHash(firebaseQuestions);
+            const storedHash = localStorage.getItem('questionsHash');
+
+            if (storedHash === newHash) {
+                console.log('Questions unchanged, skipping update');
+                return;
+            }
+
+            console.log(`Updating ${firebaseQuestions.length} questions from Firebase (batch)`);
+
+            // バッチ処理で一括更新
+            await db.clearAllQuestions();
+
+            const questionsWithTimestamp = firebaseQuestions.map(q => ({
+                ...q,
+                createdAt: q.createdAt || new Date().toISOString(),
+                updatedAt: q.updatedAt || new Date().toISOString()
+            }));
+
+            await db.addQuestionsBatch(questionsWithTimestamp);
+
+            localStorage.setItem('questionsHash', newHash);
+            localStorage.setItem('questionsVersion', `firebase_${firebaseQuestions.length}`);
+            console.log(`Synced ${firebaseQuestions.length} questions from Firebase`);
+
+        } catch (error) {
+            console.log('Could not load from Firebase:', error.message);
+        }
+    },
+
+    /**
+     * 問題ハッシュを計算（変更検出用）
+     */
+    computeQuestionsHash(questions) {
+        const ids = questions.map(q => q.id).sort().join(',');
+        const updatedAts = questions.map(q => q.updatedAt || '').sort().join(',');
+        return `${questions.length}_${ids.length}_${updatedAts.length}`;
+    },
+
+    /**
+     * ビルトイン問題をローカルDBに読み込み（最適化版）
+     */
+    async loadBuiltinQuestionsOptimized() {
         if (typeof BUILTIN_QUESTIONS === 'undefined' || !BUILTIN_QUESTIONS.length) {
             return;
         }
@@ -97,23 +128,30 @@ const App = {
             return;
         }
 
-        console.log(`Loading builtin questions: ${BUILTIN_QUESTIONS.length}`);
+        console.log(`Loading builtin questions: ${BUILTIN_QUESTIONS.length} (batch)`);
 
-        const existingQuestions = await db.getAllQuestions();
-        for (const q of existingQuestions) {
-            await db.deleteQuestion(q.id);
-        }
+        // バッチ処理で一括更新
+        await db.clearAllQuestions();
 
-        for (const q of BUILTIN_QUESTIONS) {
-            await db.addQuestion({
-                ...q,
-                createdAt: new Date().toISOString(),
-                updatedAt: new Date().toISOString()
-            });
-        }
+        const questionsWithTimestamp = BUILTIN_QUESTIONS.map(q => ({
+            ...q,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        }));
+
+        await db.addQuestionsBatch(questionsWithTimestamp);
 
         localStorage.setItem('questionsVersion', builtinVersion);
         console.log(`Loaded ${BUILTIN_QUESTIONS.length} builtin questions`);
+    },
+
+    // 旧メソッド（互換性のため残す）
+    async loadQuestions() {
+        await this.loadQuestionsOptimized();
+    },
+
+    async loadBuiltinQuestionsToLocal() {
+        await this.loadBuiltinQuestionsOptimized();
     },
 
     /**

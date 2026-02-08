@@ -139,37 +139,51 @@ const FirebaseSync = {
     },
 
     /**
-     * 同期を開始
+     * 同期を開始（最適化版：バッチ処理）
      */
     async startSync() {
         if (!this.user) return;
 
         this.historyRef = this.db.ref(`users/${this.user.uid}/history`);
 
-        // クラウドの履歴を取得してローカルにマージ
-        const snapshot = await this.historyRef.once('value');
-        const cloudHistory = snapshot.val() || {};
+        try {
+            // クラウドの履歴を一括取得
+            const snapshot = await this.historyRef.once('value');
+            const cloudHistory = snapshot.val() || {};
+            const cloudHistoryIds = new Set(Object.keys(cloudHistory));
 
-        // ローカル履歴を取得
-        const localHistory = await db.getAllHistory();
+            // ローカル履歴を取得
+            const localHistory = await db.getAllHistory();
+            const localHistoryIds = new Set(localHistory.map(h => h.id));
 
-        // マージ：クラウドにないローカル履歴をアップロード
-        for (const local of localHistory) {
-            if (!cloudHistory[local.id]) {
-                await this.historyRef.child(local.id).set(local);
+            // クラウドにないローカル履歴を一括アップロード
+            const toUpload = localHistory.filter(h => !cloudHistoryIds.has(h.id));
+            if (toUpload.length > 0) {
+                const updates = {};
+                for (const item of toUpload) {
+                    updates[item.id] = item;
+                }
+                await this.historyRef.update(updates);
+                console.log(`Uploaded ${toUpload.length} history items to cloud`);
             }
-        }
 
-        // マージ：ローカルにないクラウド履歴をダウンロード
-        for (const id of Object.keys(cloudHistory)) {
-            const exists = localHistory.some(h => h.id === id);
-            if (!exists) {
-                await db.addHistory(cloudHistory[id]);
+            // ローカルにないクラウド履歴を一括ダウンロード
+            const toDownload = Object.values(cloudHistory).filter(h => !localHistoryIds.has(h.id));
+            if (toDownload.length > 0) {
+                await db.addHistoryBatch(toDownload);
+                console.log(`Downloaded ${toDownload.length} history items from cloud`);
+
+                // UIを更新（バックグラウンドで）
+                if (typeof App !== 'undefined') {
+                    App.updateHomeStats();
+                }
             }
-        }
 
-        console.log('History synced with cloud');
-        Utils.showToast('履歴を同期しました', 'success');
+            console.log('History synced with cloud');
+            Utils.showToast('履歴を同期しました', 'success');
+        } catch (error) {
+            console.error('History sync error:', error);
+        }
     },
 
     /**
