@@ -325,7 +325,10 @@ const FirebaseSync = {
      * メモをクラウドに保存
      */
     async saveMemo(questionId, memo) {
-        if (!this.user) return false;
+        if (!this.user || !this.db) {
+            console.log('Cannot save memo: user or db not available');
+            return false;
+        }
 
         try {
             const memoRef = this.db.ref(`users/${this.user.uid}/memos/${questionId}`);
@@ -334,8 +337,10 @@ const FirebaseSync = {
                     content: memo,
                     updatedAt: new Date().toISOString()
                 });
+                console.log('Memo saved to cloud:', questionId);
             } else {
                 await memoRef.remove();
+                console.log('Memo removed from cloud:', questionId);
             }
             return true;
         } catch (error) {
@@ -348,7 +353,7 @@ const FirebaseSync = {
      * クラウドからメモを取得
      */
     async getMemo(questionId) {
-        if (!this.user) return null;
+        if (!this.user || !this.db) return null;
 
         try {
             const snapshot = await this.db.ref(`users/${this.user.uid}/memos/${questionId}`).once('value');
@@ -364,7 +369,7 @@ const FirebaseSync = {
      * 全メモをクラウドから取得
      */
     async getAllMemos() {
-        if (!this.user) return {};
+        if (!this.user || !this.db) return {};
 
         try {
             const snapshot = await this.db.ref(`users/${this.user.uid}/memos`).once('value');
@@ -385,7 +390,7 @@ const FirebaseSync = {
      * ローカルとクラウドのメモを同期
      */
     async syncMemos() {
-        if (!this.user) return;
+        if (!this.user || !this.db) return;
 
         try {
             // ローカルメモを取得
