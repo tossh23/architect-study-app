@@ -374,17 +374,19 @@ const Study = {
     },
 
     /**
-     * メモを取得
+     * メモを取得（Firebase + ローカル対応）
      */
     getMemo(questionId) {
+        // まずローカルから取得（即座に表示）
         const memos = JSON.parse(localStorage.getItem('memos') || '{}');
         return memos[questionId] || '';
     },
 
     /**
-     * メモを保存
+     * メモを保存（Firebase + ローカル対応）
      */
     saveMemo(questionId, memo) {
+        // ローカルに保存
         const memos = JSON.parse(localStorage.getItem('memos') || '{}');
         if (memo.trim()) {
             memos[questionId] = memo;
@@ -392,5 +394,10 @@ const Study = {
             delete memos[questionId];
         }
         localStorage.setItem('memos', JSON.stringify(memos));
+
+        // ログイン中はFirebaseにも保存
+        if (typeof FirebaseSync !== 'undefined' && FirebaseSync.isLoggedIn()) {
+            FirebaseSync.saveMemo(questionId, memo);
+        }
     }
 };

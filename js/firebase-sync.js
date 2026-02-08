@@ -180,6 +180,10 @@ const FirebaseSync = {
             }
 
             console.log('History synced with cloud');
+
+            // メモも同期
+            await this.syncMemos();
+
             Utils.showToast('履歴を同期しました', 'success');
         } catch (error) {
             console.error('History sync error:', error);
@@ -312,6 +316,100 @@ const FirebaseSync = {
         } catch (error) {
             console.error('Error uploading questions:', error);
             Utils.showToast('アップロードに失敗しました', 'error');
+        }
+    },
+
+    // ========== メモ同期機能 ==========
+
+    /**
+     * メモをクラウドに保存
+     */
+    async saveMemo(questionId, memo) {
+        if (!this.user) return false;
+
+        try {
+            const memoRef = this.db.ref(`users/${this.user.uid}/memos/${questionId}`);
+            if (memo && memo.trim()) {
+                await memoRef.set({
+                    content: memo,
+                    updatedAt: new Date().toISOString()
+                });
+            } else {
+                await memoRef.remove();
+            }
+            return true;
+        } catch (error) {
+            console.error('Error saving memo to cloud:', error);
+            return false;
+        }
+    },
+
+    /**
+     * クラウドからメモを取得
+     */
+    async getMemo(questionId) {
+        if (!this.user) return null;
+
+        try {
+            const snapshot = await this.db.ref(`users/${this.user.uid}/memos/${questionId}`).once('value');
+            const data = snapshot.val();
+            return data ? data.content : null;
+        } catch (error) {
+            console.error('Error getting memo from cloud:', error);
+            return null;
+        }
+    },
+
+    /**
+     * 全メモをクラウドから取得
+     */
+    async getAllMemos() {
+        if (!this.user) return {};
+
+        try {
+            const snapshot = await this.db.ref(`users/${this.user.uid}/memos`).once('value');
+            const data = snapshot.val() || {};
+            // content だけを抽出
+            const memos = {};
+            for (const [questionId, memoData] of Object.entries(data)) {
+                memos[questionId] = memoData.content;
+            }
+            return memos;
+        } catch (error) {
+            console.error('Error getting all memos from cloud:', error);
+            return {};
+        }
+    },
+
+    /**
+     * ローカルとクラウドのメモを同期
+     */
+    async syncMemos() {
+        if (!this.user) return;
+
+        try {
+            // ローカルメモを取得
+            const localMemos = JSON.parse(localStorage.getItem('memos') || '{}');
+
+            // クラウドメモを取得
+            const cloudMemos = await this.getAllMemos();
+
+            // マージ（両方を結合、クラウド優先）
+            const mergedMemos = { ...localMemos, ...cloudMemos };
+
+            // ローカルにないクラウドメモをローカルに保存
+            localStorage.setItem('memos', JSON.stringify(mergedMemos));
+
+            // クラウドにないローカルメモをアップロード
+            for (const [questionId, memo] of Object.entries(localMemos)) {
+                if (!cloudMemos[questionId] && memo) {
+                    await this.saveMemo(questionId, memo);
+                }
+            }
+
+            console.log('Memos synced with cloud');
+        } catch (error) {
+            console.error('Error syncing memos:', error);
         }
     }
 };
