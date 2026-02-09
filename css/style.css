@@ -441,6 +441,33 @@ textarea {
     flex-wrap: wrap;
 }
 
+/* Year-Subject Selection */
+.year-subject-selection {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    border: 1px solid var(--bg-tertiary);
+}
+
+.selection-row {
+    display: flex;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+}
+
+.selection-row .form-group {
+    flex: 1;
+    min-width: 150px;
+    margin-bottom: 0;
+}
+
+.selection-actions {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
 /* =============================================
    Buttons
    ============================================= */
@@ -787,6 +814,27 @@ textarea {
 .no-explanation {
     color: var(--text-muted);
     font-style: italic;
+}
+
+/* Memo Section */
+.memo-section {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    border: 1px solid var(--bg-tertiary);
+    margin-bottom: var(--space-lg);
+}
+
+.memo-section h3 {
+    margin-bottom: var(--space-md);
+    color: var(--accent-primary);
+}
+
+.memo-textarea {
+    min-height: 100px;
+    max-height: 400px;
+    resize: vertical;
+    margin-bottom: var(--space-md);
 }
 
 .answer-actions {

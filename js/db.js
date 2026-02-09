@@ -149,6 +149,21 @@ class Database {
     }
 
     /**
+     * 年度と科目で問題を取得
+     */
+    async getQuestionsByYearAndSubject(year, subject) {
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['questions'], 'readonly');
+            const store = transaction.objectStore('questions');
+            const index = store.index('subjectYear');
+            const request = index.getAll([parseInt(subject), parseInt(year)]);
+
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+        });
+    }
+
+    /**
      * 学習履歴を追加
      */
     async addHistory(history) {

@@ -25,6 +25,21 @@ const Study = {
             const wrongIds = await db.getWrongQuestionIds();
             const allQuestions = await db.getAllQuestions();
             questions = allQuestions.filter(q => wrongIds.includes(q.id));
+        } else if (this.mode === 'yearSubject') {
+            // 年度・科目別
+            const year = options.year;
+            const subject = options.subject;
+            if (year && subject) {
+                questions = await db.getQuestionsByYearAndSubject(year, subject);
+            } else if (year) {
+                questions = await db.getQuestionsByYear(year);
+            } else if (subject) {
+                questions = await db.getQuestionsBySubject(subject);
+            } else {
+                questions = await db.getAllQuestions();
+            }
+            // 問番号順にソート
+            questions.sort((a, b) => a.questionNumber - b.questionNumber);
         } else if (this.mode === 'subject' && this.selectedSubject) {
             // 科目別
             questions = await db.getQuestionsBySubject(this.selectedSubject);
@@ -38,8 +53,16 @@ const Study = {
             return false;
         }
 
-        // シャッフル
-        this.questions = Utils.shuffle(questions);
+        // シャッフル（yearSubjectモードではshuffle optionで制御）
+        if (this.mode === 'yearSubject') {
+            if (options.shuffle) {
+                this.questions = Utils.shuffle(questions);
+            } else {
+                this.questions = questions;
+            }
+        } else {
+            this.questions = Utils.shuffle(questions);
+        }
 
         // 学習画面のヘッダーを更新
         this.updateHeader();
@@ -90,6 +113,9 @@ const Study = {
      * 問題を表示
      */
     showQuestion() {
+        // ページ先頭にスクロール
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
         if (this.currentIndex >= this.questions.length) {
             this.showResults();
             return;
@@ -246,7 +272,8 @@ const Study = {
         // 解説を表示
         const explanationContent = document.getElementById('explanationContent');
         if (question.explanation) {
-            let content = question.explanation;
+            // 改行を<br>に変換
+            let content = question.explanation.replace(/\n/g, '<br>');
 
             // 画像を追加
             if (question.explanationImages && question.explanationImages.length > 0) {

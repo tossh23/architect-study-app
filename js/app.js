@@ -231,6 +231,36 @@ const App = {
             }
         });
 
+        // 年度・科目別出題（問番号順）
+        document.getElementById('startYearSubjectSequential').addEventListener('click', async () => {
+            const year = document.getElementById('yearSelectHome').value;
+            const subject = document.getElementById('subjectSelectHome').value;
+            const success = await Study.start({
+                mode: 'yearSubject',
+                year: year ? parseInt(year) : null,
+                subject: subject ? parseInt(subject) : null,
+                shuffle: false
+            });
+            if (success) {
+                this.showPage('study');
+            }
+        });
+
+        // 年度・科目別出題（ランダム）
+        document.getElementById('startYearSubjectRandom').addEventListener('click', async () => {
+            const year = document.getElementById('yearSelectHome').value;
+            const subject = document.getElementById('subjectSelectHome').value;
+            const success = await Study.start({
+                mode: 'yearSubject',
+                year: year ? parseInt(year) : null,
+                subject: subject ? parseInt(subject) : null,
+                shuffle: true
+            });
+            if (success) {
+                this.showPage('study');
+            }
+        });
+
         // 学習画面の戻るボタン
         document.getElementById('backToHome').addEventListener('click', () => {
             Study.abort();
@@ -343,6 +373,23 @@ const App = {
             card.querySelector('.subject-accuracy').textContent =
                 s.totalAnswered > 0 ? `正答率 ${s.accuracy}%` : '--';
         });
+
+        // 年度ドロップダウンを更新
+        const yearSelect = document.getElementById('yearSelectHome');
+        if (yearSelect && questions.length > 0) {
+            const years = [...new Set(questions.map(q => q.year))].sort((a, b) => b - a);
+            const currentValue = yearSelect.value;
+            yearSelect.innerHTML = '<option value="">すべての年度</option>';
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = Utils.toJapaneseYear(year);
+                yearSelect.appendChild(option);
+            });
+            if (currentValue) {
+                yearSelect.value = currentValue;
+            }
+        }
     },
 
     /**

@@ -134,6 +134,39 @@
                         間違えた問題のみ
                     </button>
                 </div>
+
+                <h2 class="section-title" style="margin-top: var(--space-2xl);">年度・科目を選んで出題</h2>
+                <div class="year-subject-selection">
+                    <div class="selection-row">
+                        <div class="form-group">
+                            <label for="yearSelectHome">年度</label>
+                            <select id="yearSelectHome" class="select">
+                                <option value="">すべての年度</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="subjectSelectHome">科目</label>
+                            <select id="subjectSelectHome" class="select">
+                                <option value="">すべての科目</option>
+                                <option value="1">学科Ⅰ（計画）</option>
+                                <option value="2">学科Ⅱ（環境・設備）</option>
+                                <option value="3">学科Ⅲ（法規）</option>
+                                <option value="4">学科Ⅳ（構造）</option>
+                                <option value="5">学科Ⅴ（施工）</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="selection-actions">
+                        <button class="btn btn-primary" id="startYearSubjectSequential">
+                            <span class="btn-icon">📋</span>
+                            問番号順で出題
+                        </button>
+                        <button class="btn btn-secondary" id="startYearSubjectRandom">
+                            <span class="btn-icon">🎲</span>
+                            ランダムで出題
+                        </button>
+                    </div>
+                </div>
             </section>
 
             <!-- 学習画面 -->
@@ -172,7 +205,7 @@
                     <div class="memo-section">
                         <h3>📝 自分メモ</h3>
                         <textarea id="questionMemo" class="textarea memo-textarea"
-                            placeholder="この問題に関するメモを入力してください（ログイン中は他の端末と同期されます）" rows="3"></textarea>
+                            placeholder="この問題に関するメモを入力してください（ログイン中は他の端末と同期されます）" rows="4"></textarea>
                         <button class="btn btn-secondary btn-small" id="saveMemo">メモを保存</button>
                     </div>
                     <div class="answer-actions">
