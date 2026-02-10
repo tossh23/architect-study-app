@@ -1,4 +1,4 @@
-const CACHE_NAME = 'architect-study-v37';
+const CACHE_NAME = 'architect-study-v38';
 const ASSETS = [
     './',
     './index.html',
@@ -37,25 +37,24 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// フェッチ時にキャッシュファーストで応答
+// フェッチ時にネットワークファーストで応答（オフライン時はキャッシュ）
 self.addEventListener('fetch', (event) => {
     event.respondWith(
-        caches.match(event.request)
+        fetch(event.request)
             .then((response) => {
-                if (response) {
-                    return response;
-                }
-                return fetch(event.request).then((response) => {
-                    if (!response || response.status !== 200 || response.type !== 'basic') {
-                        return response;
-                    }
+                // ネットワーク成功時、キャッシュも更新
+                if (response && response.status === 200 && response.type === 'basic') {
                     const responseToCache = response.clone();
                     caches.open(CACHE_NAME)
                         .then((cache) => {
                             cache.put(event.request, responseToCache);
                         });
-                    return response;
-                });
+                }
+                return response;
+            })
+            .catch(() => {
+                // オフライン時はキャッシュから返す
+                return caches.match(event.request);
             })
     );
 });
