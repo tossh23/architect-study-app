@@ -171,7 +171,7 @@ const Study = {
             `;
         }).join('');
 
-        // 回答ボタンを生成
+        // 回答ボタンとスキップボタンを生成
         choicesContainer.innerHTML += `
             <div class="answer-buttons">
                 <span class="answer-label">回答:</span>
@@ -179,6 +179,7 @@ const Study = {
                 <button class="answer-btn" data-answer="2">2</button>
                 <button class="answer-btn" data-answer="3">3</button>
                 <button class="answer-btn" data-answer="4">4</button>
+                <button class="skip-btn" id="skipQuestion">⏭ スキップ</button>
             </div>
         `;
 
@@ -199,6 +200,16 @@ const Study = {
                 }
             });
         });
+
+        // スキップボタン
+        const skipBtn = document.getElementById('skipQuestion');
+        if (skipBtn) {
+            skipBtn.addEventListener('click', () => {
+                if (!this.isAnswered) {
+                    this.skipQuestion();
+                }
+            });
+        }
 
         // 解答セクションを非表示
         document.getElementById('answerSection').classList.add('hidden');
@@ -317,6 +328,29 @@ const Study = {
      */
     nextQuestion() {
         this.currentIndex++;
+
+        if (this.currentIndex >= this.questions.length) {
+            this.showResults();
+        } else {
+            this.showQuestion();
+        }
+    },
+
+    /**
+     * 問題をスキップ（履歴に記録せず次へ）
+     */
+    skipQuestion() {
+        // スキップした問題をリストから除外
+        this.questions.splice(this.currentIndex, 1);
+
+        // 総数を更新
+        document.getElementById('totalNumber').textContent = this.questions.length;
+
+        if (this.questions.length === 0) {
+            Utils.showToast('すべての問題をスキップしました', 'info');
+            App.showPage('home');
+            return;
+        }
 
         if (this.currentIndex >= this.questions.length) {
             this.showResults();

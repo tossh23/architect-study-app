@@ -737,6 +737,24 @@ textarea {
     transform: scale(0.95);
 }
 
+.skip-btn {
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-lg);
+    background: transparent;
+    border: 2px solid var(--text-muted);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    margin-left: auto;
+}
+
+.skip-btn:hover {
+    border-color: var(--text-secondary);
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+}
+
 .answer-buttons.hidden {
     display: none;
 }
