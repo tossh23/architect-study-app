@@ -434,8 +434,18 @@ const App = {
         if (!confirmed) return;
 
         try {
+            // Firebaseから先に削除（ログイン中の場合）
+            // ローカルより先に削除することで、再読み込み時の再同期を防ぐ
+            if (FirebaseSync.isLoggedIn()) {
+                FirebaseSync.stopSync();
+                await FirebaseSync.deleteAllHistory();
+                await FirebaseSync.deleteAllMemos();
+            }
+
+            // ローカルデータを削除
             await db.deleteHistoryData();
             localStorage.removeItem('memos'); // メモも削除
+
             await this.updateHomeStats();
             Utils.showToast('学習履歴を削除しました', 'success');
         } catch (error) {

@@ -319,6 +319,37 @@ const FirebaseSync = {
         }
     },
 
+    /**
+     * クラウドの全学習履歴を削除
+     */
+    async deleteAllHistory() {
+        if (!this.user || !this.db) return;
+
+        try {
+            await this.db.ref(`users/${this.user.uid}/history`).remove();
+            this.historyRef = null;
+            console.log('All history deleted from cloud');
+        } catch (error) {
+            console.error('Error deleting history from cloud:', error);
+            throw error;
+        }
+    },
+
+    /**
+     * クラウドの全メモを削除
+     */
+    async deleteAllMemos() {
+        if (!this.user || !this.db) return;
+
+        try {
+            await this.db.ref(`users/${this.user.uid}/memos`).remove();
+            console.log('All memos deleted from cloud');
+        } catch (error) {
+            console.error('Error deleting memos from cloud:', error);
+            throw error;
+        }
+    },
+
     // ========== メモ同期機能 ==========
 
     /**
