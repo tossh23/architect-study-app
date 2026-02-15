@@ -1903,3 +1903,65 @@ textarea {
 .mastery-cell {
     width: 50px;
 }
+
+/* =============================================
+   Format Toolbar (書式設定ツールバー)
+   ============================================= */
+.format-toolbar {
+    display: flex;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    border: 1px solid var(--bg-tertiary);
+    border-bottom: none;
+}
+
+.format-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 28px;
+    padding: 0 var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+.format-btn:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+}
+
+.format-btn-bold {
+    font-weight: 800;
+    font-size: var(--font-size-md);
+}
+
+.format-btn-red {
+    color: #ef4444;
+}
+
+.format-btn-red:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}
+
+.format-btn-blue {
+    color: #3b82f6;
+}
+
+.format-btn-blue:hover {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+}
+
+.format-toolbar+.textarea {
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+}

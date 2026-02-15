@@ -119,6 +119,51 @@ const Questions = {
                 this.closeModal();
             }
         });
+
+        // 書式設定ツールバー
+        document.querySelectorAll('.format-toolbar').forEach(toolbar => {
+            const targetId = toolbar.dataset.target;
+            toolbar.querySelectorAll('.format-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (btn.classList.contains('format-btn-bold')) {
+                        this.wrapSelectedText(targetId, 'b');
+                    } else if (btn.classList.contains('format-btn-red')) {
+                        this.wrapSelectedText(targetId, 'span', 'color:red');
+                    } else if (btn.classList.contains('format-btn-blue')) {
+                        this.wrapSelectedText(targetId, 'span', 'color:blue');
+                    }
+                });
+            });
+        });
+    },
+
+    /**
+     * テキストエリアの選択範囲をHTMLタグで囲む
+     */
+    wrapSelectedText(textareaId, tag, style = null) {
+        const textarea = document.getElementById(textareaId);
+        if (!textarea) return;
+
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const text = textarea.value;
+        const selectedText = text.substring(start, end);
+
+        if (!selectedText) {
+            Utils.showToast('テキストを選択してください', 'warning');
+            return;
+        }
+
+        const openTag = style ? `<${tag} style="${style}">` : `<${tag}>`;
+        const closeTag = `</${tag}>`;
+        const wrapped = openTag + selectedText + closeTag;
+
+        textarea.value = text.substring(0, start) + wrapped + text.substring(end);
+
+        // カーソルを書式設定後のテキスト末尾に移動
+        const newCursorPos = start + wrapped.length;
+        textarea.focus();
+        textarea.setSelectionRange(newCursorPos, newCursorPos);
     },
 
     /**

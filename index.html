@@ -204,6 +204,14 @@
                     </div>
                     <div class="memo-section">
                         <h3>📝 自分メモ</h3>
+                        <div class="format-toolbar">
+                            <button type="button" class="format-btn format-btn-bold" title="太字"
+                                onclick="Questions.wrapSelectedText('questionMemo', 'b')">B</button>
+                            <button type="button" class="format-btn format-btn-red" title="赤字"
+                                onclick="Questions.wrapSelectedText('questionMemo', 'span', 'color:red')">A</button>
+                            <button type="button" class="format-btn format-btn-blue" title="青字"
+                                onclick="Questions.wrapSelectedText('questionMemo', 'span', 'color:blue')">A</button>
+                        </div>
                         <textarea id="questionMemo" class="textarea memo-textarea"
                             placeholder="この問題に関するメモを入力してください（ログイン中は他の端末と同期されます）" rows="4"></textarea>
                         <button class="btn btn-secondary btn-small" id="saveMemo">メモを保存</button>
@@ -290,6 +298,11 @@
 
                         <div class="form-group">
                             <label for="qText">問題文</label>
+                            <div class="format-toolbar" data-target="qText">
+                                <button type="button" class="format-btn format-btn-bold" title="太字">B</button>
+                                <button type="button" class="format-btn format-btn-red" title="赤字">A</button>
+                                <button type="button" class="format-btn format-btn-blue" title="青字">A</button>
+                            </div>
                             <textarea id="qText" class="textarea" rows="4" required></textarea>
                         </div>
 
@@ -357,6 +370,11 @@
 
                         <div class="form-group">
                             <label for="qExplanation">解説（任意）</label>
+                            <div class="format-toolbar" data-target="qExplanation">
+                                <button type="button" class="format-btn format-btn-bold" title="太字">B</button>
+                                <button type="button" class="format-btn format-btn-red" title="赤字">A</button>
+                                <button type="button" class="format-btn format-btn-blue" title="青字">A</button>
+                            </div>
                             <textarea id="qExplanation" class="textarea" rows="4"></textarea>
                         </div>
 
