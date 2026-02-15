@@ -1965,3 +1965,25 @@ textarea {
 .format-toolbar+.textarea {
     border-radius: 0 0 var(--radius-md) var(--radius-md);
 }
+
+/* Richtext Editor (contenteditable) */
+.richtext-editor {
+    min-height: 100px;
+    max-height: 300px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+.richtext-editor:empty::before {
+    content: attr(data-placeholder);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.richtext-editor:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}

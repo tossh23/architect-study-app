@@ -206,14 +206,14 @@
                         <h3>📝 自分メモ</h3>
                         <div class="format-toolbar">
                             <button type="button" class="format-btn format-btn-bold" title="太字"
-                                onclick="Questions.wrapSelectedText('questionMemo', 'b')">B</button>
+                                onclick="Questions.applyFormat('bold')">B</button>
                             <button type="button" class="format-btn format-btn-red" title="赤字"
-                                onclick="Questions.wrapSelectedText('questionMemo', 'span', 'color:red')">A</button>
+                                onclick="Questions.applyFormat('red')">A</button>
                             <button type="button" class="format-btn format-btn-blue" title="青字"
-                                onclick="Questions.wrapSelectedText('questionMemo', 'span', 'color:blue')">A</button>
+                                onclick="Questions.applyFormat('blue')">A</button>
                         </div>
-                        <textarea id="questionMemo" class="textarea memo-textarea"
-                            placeholder="この問題に関するメモを入力してください（ログイン中は他の端末と同期されます）" rows="4"></textarea>
+                        <div id="questionMemo" class="textarea richtext-editor memo-textarea" contenteditable="true"
+                            data-placeholder="この問題に関するメモを入力してください（ログイン中は他の端末と同期されます）"></div>
                         <button class="btn btn-secondary btn-small" id="saveMemo">メモを保存</button>
                     </div>
                     <div class="answer-actions">
@@ -303,7 +303,8 @@
                                 <button type="button" class="format-btn format-btn-red" title="赤字">A</button>
                                 <button type="button" class="format-btn format-btn-blue" title="青字">A</button>
                             </div>
-                            <textarea id="qText" class="textarea" rows="4" required></textarea>
+                            <div id="qText" class="textarea richtext-editor" contenteditable="true"
+                                data-placeholder="問題文を入力してください"></div>
                         </div>
 
                         <div class="form-group">
@@ -375,7 +376,8 @@
                                 <button type="button" class="format-btn format-btn-red" title="赤字">A</button>
                                 <button type="button" class="format-btn format-btn-blue" title="青字">A</button>
                             </div>
-                            <textarea id="qExplanation" class="textarea" rows="4"></textarea>
+                            <div id="qExplanation" class="textarea richtext-editor" contenteditable="true"
+                                data-placeholder="解説を入力してください"></div>
                         </div>
 
                         <div class="form-group">

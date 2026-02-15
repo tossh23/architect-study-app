@@ -123,47 +123,42 @@ const Questions = {
         // 書式設定ツールバー
         document.querySelectorAll('.format-toolbar').forEach(toolbar => {
             const targetId = toolbar.dataset.target;
-            toolbar.querySelectorAll('.format-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    if (btn.classList.contains('format-btn-bold')) {
-                        this.wrapSelectedText(targetId, 'b');
-                    } else if (btn.classList.contains('format-btn-red')) {
-                        this.wrapSelectedText(targetId, 'span', 'color:red');
-                    } else if (btn.classList.contains('format-btn-blue')) {
-                        this.wrapSelectedText(targetId, 'span', 'color:blue');
-                    }
+            if (targetId) {
+                toolbar.querySelectorAll('.format-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        // 対象のcontenteditable divにフォーカスを戻す
+                        const target = document.getElementById(targetId);
+                        if (target) target.focus();
+                        if (btn.classList.contains('format-btn-bold')) {
+                            this.applyFormat('bold');
+                        } else if (btn.classList.contains('format-btn-red')) {
+                            this.applyFormat('red');
+                        } else if (btn.classList.contains('format-btn-blue')) {
+                            this.applyFormat('blue');
+                        }
+                    });
                 });
-            });
+            }
         });
     },
 
     /**
-     * テキストエリアの選択範囲をHTMLタグで囲む
+     * contenteditable要素の選択範囲に書式を適用
      */
-    wrapSelectedText(textareaId, tag, style = null) {
-        const textarea = document.getElementById(textareaId);
-        if (!textarea) return;
-
-        const start = textarea.selectionStart;
-        const end = textarea.selectionEnd;
-        const text = textarea.value;
-        const selectedText = text.substring(start, end);
-
-        if (!selectedText) {
+    applyFormat(type) {
+        const selection = window.getSelection();
+        if (!selection.rangeCount || selection.isCollapsed) {
             Utils.showToast('テキストを選択してください', 'warning');
             return;
         }
 
-        const openTag = style ? `<${tag} style="${style}">` : `<${tag}>`;
-        const closeTag = `</${tag}>`;
-        const wrapped = openTag + selectedText + closeTag;
-
-        textarea.value = text.substring(0, start) + wrapped + text.substring(end);
-
-        // カーソルを書式設定後のテキスト末尾に移動
-        const newCursorPos = start + wrapped.length;
-        textarea.focus();
-        textarea.setSelectionRange(newCursorPos, newCursorPos);
+        if (type === 'bold') {
+            document.execCommand('bold', false, null);
+        } else if (type === 'red') {
+            document.execCommand('foreColor', false, 'red');
+        } else if (type === 'blue') {
+            document.execCommand('foreColor', false, 'blue');
+        }
     },
 
     /**
@@ -273,6 +268,10 @@ const Questions = {
         preview.innerHTML = '';
         questionPreview.innerHTML = '';
 
+        // contenteditable divをクリア
+        document.getElementById('qText').innerHTML = '';
+        document.getElementById('qExplanation').innerHTML = '';
+
         // 選択肢画像プレビューをクリア
         for (let i = 1; i <= 4; i++) {
             document.getElementById(`choiceImagePreview${i}`).innerHTML = '';
@@ -287,12 +286,12 @@ const Questions = {
             document.getElementById('qYear').value = question.year;
             document.getElementById('qSubject').value = question.subject;
             document.getElementById('qNumber').value = question.questionNumber;
-            document.getElementById('qText').value = question.questionText;
+            document.getElementById('qText').innerHTML = question.questionText || '';
             document.getElementById('choice1').value = question.choices[0] || '';
             document.getElementById('choice2').value = question.choices[1] || '';
             document.getElementById('choice3').value = question.choices[2] || '';
             document.getElementById('choice4').value = question.choices[3] || '';
-            document.getElementById('qExplanation').value = question.explanation || '';
+            document.getElementById('qExplanation').innerHTML = question.explanation || '';
 
             // 正解を設定
             const correctRadio = document.querySelector(`input[name="correctAnswer"][value="${question.correctAnswer}"]`);
@@ -343,7 +342,7 @@ const Questions = {
         const year = parseInt(document.getElementById('qYear').value);
         const subject = parseInt(document.getElementById('qSubject').value);
         const questionNumber = parseInt(document.getElementById('qNumber').value);
-        const questionText = document.getElementById('qText').value.trim();
+        const questionText = document.getElementById('qText').innerHTML.trim();
         const choices = [
             document.getElementById('choice1').value.trim(),
             document.getElementById('choice2').value.trim(),
@@ -351,7 +350,7 @@ const Questions = {
             document.getElementById('choice4').value.trim()
         ];
         const correctAnswer = parseInt(document.querySelector('input[name="correctAnswer"]:checked').value);
-        const explanation = document.getElementById('qExplanation').value.trim();
+        const explanation = document.getElementById('qExplanation').innerHTML.trim();
 
         // 問題図を収集
         const questionImages = [];

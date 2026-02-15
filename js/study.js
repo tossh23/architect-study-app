@@ -301,14 +301,14 @@ const Study = {
         }
 
         // メモを読み込み
-        const memoTextarea = document.getElementById('questionMemo');
+        const memoEl = document.getElementById('questionMemo');
         const savedMemo = this.getMemo(question.id);
-        memoTextarea.value = savedMemo || '';
+        memoEl.innerHTML = savedMemo || '';
 
         // メモ保存ボタンの設定
         const saveMemoBtn = document.getElementById('saveMemo');
         saveMemoBtn.onclick = () => {
-            this.saveMemo(question.id, memoTextarea.value);
+            this.saveMemo(question.id, memoEl.innerHTML);
             Utils.showToast('メモを保存しました', 'success');
         };
 
