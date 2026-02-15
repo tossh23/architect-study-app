@@ -147,6 +147,11 @@ const FirebaseSync = {
         this.historyRef = this.db.ref(`users/${this.user.uid}/history`);
 
         try {
+            // 削除マーカーを確認
+            const metaSnapshot = await this.db.ref(`users/${this.user.uid}/meta`).once('value');
+            const meta = metaSnapshot.val() || {};
+            const historyClearedAt = meta.historyClearedAt || null;
+
             // クラウドの履歴を一括取得
             const snapshot = await this.historyRef.once('value');
             const cloudHistory = snapshot.val() || {};
@@ -156,26 +161,36 @@ const FirebaseSync = {
             const localHistory = await db.getAllHistory();
             const localHistoryIds = new Set(localHistory.map(h => h.id));
 
-            // クラウドにないローカル履歴を一括アップロード
-            const toUpload = localHistory.filter(h => !cloudHistoryIds.has(h.id));
-            if (toUpload.length > 0) {
-                const updates = {};
-                for (const item of toUpload) {
-                    updates[item.id] = item;
-                }
-                await this.historyRef.update(updates);
-                console.log(`Uploaded ${toUpload.length} history items to cloud`);
-            }
-
-            // ローカルにないクラウド履歴を一括ダウンロード
-            const toDownload = Object.values(cloudHistory).filter(h => !localHistoryIds.has(h.id));
-            if (toDownload.length > 0) {
-                await db.addHistoryBatch(toDownload);
-                console.log(`Downloaded ${toDownload.length} history items from cloud`);
-
-                // UIを更新（バックグラウンドで）
+            // 削除マーカーがある場合、ローカルの古いデータをクリア
+            if (historyClearedAt && localHistory.length > 0 && Object.keys(cloudHistory).length === 0) {
+                // クラウドが空で削除マーカーがある場合、他の端末で削除された
+                await db.deleteHistoryData();
+                console.log('Local history cleared due to cloud deletion marker');
                 if (typeof App !== 'undefined') {
                     App.updateHomeStats();
+                }
+            } else {
+                // クラウドにないローカル履歴を一括アップロード
+                const toUpload = localHistory.filter(h => !cloudHistoryIds.has(h.id));
+                if (toUpload.length > 0) {
+                    const updates = {};
+                    for (const item of toUpload) {
+                        updates[item.id] = item;
+                    }
+                    await this.historyRef.update(updates);
+                    console.log(`Uploaded ${toUpload.length} history items to cloud`);
+                }
+
+                // ローカルにないクラウド履歴を一括ダウンロード
+                const toDownload = Object.values(cloudHistory).filter(h => !localHistoryIds.has(h.id));
+                if (toDownload.length > 0) {
+                    await db.addHistoryBatch(toDownload);
+                    console.log(`Downloaded ${toDownload.length} history items from cloud`);
+
+                    // UIを更新（バックグラウンドで）
+                    if (typeof App !== 'undefined') {
+                        App.updateHomeStats();
+                    }
                 }
             }
 
@@ -327,8 +342,10 @@ const FirebaseSync = {
 
         try {
             await this.db.ref(`users/${this.user.uid}/history`).remove();
+            // 削除マーカーを設定（他の端末が同期時に再アップロードしないように）
+            await this.db.ref(`users/${this.user.uid}/meta/historyClearedAt`).set(new Date().toISOString());
             this.historyRef = null;
-            console.log('All history deleted from cloud');
+            console.log('All history deleted from cloud (with deletion marker)');
         } catch (error) {
             console.error('Error deleting history from cloud:', error);
             throw error;
@@ -343,7 +360,9 @@ const FirebaseSync = {
 
         try {
             await this.db.ref(`users/${this.user.uid}/memos`).remove();
-            console.log('All memos deleted from cloud');
+            // 削除マーカーを設定
+            await this.db.ref(`users/${this.user.uid}/meta/memosClearedAt`).set(new Date().toISOString());
+            console.log('All memos deleted from cloud (with deletion marker)');
         } catch (error) {
             console.error('Error deleting memos from cloud:', error);
             throw error;
@@ -424,22 +443,32 @@ const FirebaseSync = {
         if (!this.user || !this.db) return;
 
         try {
+            // 削除マーカーを確認
+            const metaSnapshot = await this.db.ref(`users/${this.user.uid}/meta/memosClearedAt`).once('value');
+            const memosClearedAt = metaSnapshot.val() || null;
+
             // ローカルメモを取得
             const localMemos = JSON.parse(localStorage.getItem('memos') || '{}');
 
             // クラウドメモを取得
             const cloudMemos = await this.getAllMemos();
 
-            // マージ（両方を結合、クラウド優先）
-            const mergedMemos = { ...localMemos, ...cloudMemos };
+            // 削除マーカーがありクラウドが空の場合、ローカルもクリア
+            if (memosClearedAt && Object.keys(localMemos).length > 0 && Object.keys(cloudMemos).length === 0) {
+                localStorage.setItem('memos', '{}');
+                console.log('Local memos cleared due to cloud deletion marker');
+            } else {
+                // マージ（両方を結合、クラウド優先）
+                const mergedMemos = { ...localMemos, ...cloudMemos };
 
-            // ローカルにないクラウドメモをローカルに保存
-            localStorage.setItem('memos', JSON.stringify(mergedMemos));
+                // ローカルにないクラウドメモをローカルに保存
+                localStorage.setItem('memos', JSON.stringify(mergedMemos));
 
-            // クラウドにないローカルメモをアップロード
-            for (const [questionId, memo] of Object.entries(localMemos)) {
-                if (!cloudMemos[questionId] && memo) {
-                    await this.saveMemo(questionId, memo);
+                // クラウドにないローカルメモをアップロード
+                for (const [questionId, memo] of Object.entries(localMemos)) {
+                    if (!cloudMemos[questionId] && memo) {
+                        await this.saveMemo(questionId, memo);
+                    }
                 }
             }
 
