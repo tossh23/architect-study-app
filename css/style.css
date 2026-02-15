@@ -1945,21 +1945,21 @@ textarea {
 }
 
 .format-btn-red {
-    color: #ef4444;
+    color: #f87171;
 }
 
 .format-btn-red:hover {
-    background: rgba(239, 68, 68, 0.15);
-    color: #ef4444;
+    background: rgba(248, 113, 113, 0.15);
+    color: #f87171;
 }
 
 .format-btn-blue {
-    color: #3b82f6;
+    color: #60a5fa;
 }
 
 .format-btn-blue:hover {
-    background: rgba(59, 130, 246, 0.15);
-    color: #3b82f6;
+    background: rgba(96, 165, 250, 0.15);
+    color: #60a5fa;
 }
 
 .format-btn-default {

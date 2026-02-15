@@ -157,9 +157,9 @@ const Questions = {
         if (type === 'bold') {
             document.execCommand('bold', false, null);
         } else if (type === 'red') {
-            document.execCommand('foreColor', false, 'red');
+            document.execCommand('foreColor', false, '#f87171');
         } else if (type === 'blue') {
-            document.execCommand('foreColor', false, 'blue');
+            document.execCommand('foreColor', false, '#60a5fa');
         } else if (type === 'default') {
             document.execCommand('foreColor', false, '#f8fafc');
         }
