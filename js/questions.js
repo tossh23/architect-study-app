@@ -161,7 +161,7 @@ const Questions = {
         } else if (type === 'blue') {
             document.execCommand('foreColor', false, 'blue');
         } else if (type === 'default') {
-            document.execCommand('removeFormat', false, null);
+            document.execCommand('foreColor', false, '#f8fafc');
         }
     },
 
