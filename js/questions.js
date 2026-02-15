@@ -135,6 +135,8 @@ const Questions = {
                             this.applyFormat('red');
                         } else if (btn.classList.contains('format-btn-blue')) {
                             this.applyFormat('blue');
+                        } else if (btn.classList.contains('format-btn-default')) {
+                            this.applyFormat('default');
                         }
                     });
                 });
@@ -158,6 +160,8 @@ const Questions = {
             document.execCommand('foreColor', false, 'red');
         } else if (type === 'blue') {
             document.execCommand('foreColor', false, 'blue');
+        } else if (type === 'default') {
+            document.execCommand('removeFormat', false, null);
         }
     },
 

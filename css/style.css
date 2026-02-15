@@ -1962,6 +1962,16 @@ textarea {
     color: #3b82f6;
 }
 
+.format-btn-default {
+    color: var(--text-primary);
+    border: 1px dashed var(--text-muted);
+}
+
+.format-btn-default:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+}
+
 .format-toolbar+.textarea {
     border-radius: 0 0 var(--radius-md) var(--radius-md);
 }
