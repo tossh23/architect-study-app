@@ -10,10 +10,16 @@
     "orientation": "any",
     "icons": [
         {
-            "src": "./icons/Gemini_Generated_Image_t78is6t78is6t78i.png",
+            "src": "./icons/Gemini_Generated_Image_twt0eftwt0eftwt0.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any"
+        },
+        {
+            "src": "./icons/Gemini_Generated_Image_twt0eftwt0eftwt0.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
         },
         {
             "src": "./icons/icon.svg",
