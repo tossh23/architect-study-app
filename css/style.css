@@ -4,35 +4,35 @@
 
 /* CSS Variables */
 :root {
-    /* Colors - Dark Theme */
-    --bg-primary: #0f172a;
-    --bg-secondary: #1e293b;
-    --bg-tertiary: #334155;
-    --bg-card: #1e293b;
-    --bg-card-hover: #334155;
+    /* Colors - Dark Theme (charcoal + navy) */
+    --bg-primary: #1c2030;
+    --bg-secondary: #232838;
+    --bg-tertiary: #2e3448;
+    --bg-card: #232838;
+    --bg-card-hover: #2e3448;
 
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
+    --text-primary: #e8ecf4;
+    --text-secondary: #8a9abb;
+    --text-muted: #5a6a85;
 
-    --accent-primary: #3b82f6;
-    --accent-primary-hover: #2563eb;
-    --accent-secondary: #8b5cf6;
+    --accent-primary: #3d5590;
+    --accent-primary-hover: #2a4070;
+    --accent-secondary: #4a6590;
     --accent-success: #22c55e;
     --accent-warning: #f59e0b;
     --accent-danger: #ef4444;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    --gradient-primary: linear-gradient(135deg, #3d5590 0%, #4a6590 100%);
     --gradient-success: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
     --gradient-danger: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
 
     /* Subject Colors */
-    --subject-1: #3b82f6;
+    --subject-1: #3d5590;
     --subject-2: #22c55e;
     --subject-3: #f59e0b;
     --subject-4: #ef4444;
-    --subject-5: #8b5cf6;
+    --subject-5: #7a8899;
 
     /* Spacing */
     --space-xs: 0.25rem;
@@ -53,7 +53,7 @@
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+    --shadow-glow: 0 0 20px rgba(61, 85, 144, 0.3);
 
     /* Transitions */
     --transition-fast: 150ms ease;

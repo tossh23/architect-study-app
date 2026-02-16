@@ -1,24 +1,77 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3b82f6"/>
-      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    <linearGradient id="penGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3d5590"/>
+      <stop offset="100%" style="stop-color:#2a4070"/>
+    </linearGradient>
+    <linearGradient id="buildGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a6590"/>
+      <stop offset="100%" style="stop-color:#2a3f6b"/>
+    </linearGradient>
+    <linearGradient id="greyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7a8899"/>
+      <stop offset="100%" style="stop-color:#556677"/>
     </linearGradient>
   </defs>
-  <rect width="512" height="512" rx="80" fill="url(#bgGrad)"/>
-  <g fill="none" stroke="#fff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Building/Architecture icon -->
-    <path d="M256 80 L256 432"/>
-    <path d="M176 160 L176 432"/>
-    <path d="M336 160 L336 432"/>
-    <path d="M96 240 L96 432"/>
-    <path d="M416 240 L416 432"/>
-    <path d="M96 432 L416 432"/>
-    <!-- Roof/Triangle -->
-    <path d="M256 80 L96 240"/>
-    <path d="M256 80 L416 240"/>
-    <path d="M176 160 L256 80 L336 160"/>
-    <!-- Windows -->
-    <rect x="216" y="280" width="80" height="100" rx="8" fill="#fff" fill-opacity="0.3"/>
+
+  <!-- Background -->
+  <rect width="512" height="512" fill="#1c2030"/>
+
+  <!-- Building -->
+  <g transform="translate(130, 100) rotate(-45, 80, 120)">
+    <!-- Main building body -->
+    <rect x="30" y="40" width="100" height="180" rx="2" fill="url(#buildGrad)" stroke="#8a9abb" stroke-width="2.5"/>
+    <!-- Building top/spire -->
+    <polygon points="80,10 60,40 100,40" fill="url(#buildGrad)" stroke="#8a9abb" stroke-width="2.5"/>
+    <rect x="75" y="0" width="10" height="15" fill="url(#buildGrad)" stroke="#8a9abb" stroke-width="2"/>
+    <!-- Windows row 1 -->
+    <rect x="45" y="60" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <rect x="65" y="60" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <rect x="85" y="60" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <rect x="105" y="60" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <!-- Windows row 2 -->
+    <rect x="45" y="85" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <rect x="65" y="85" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <rect x="85" y="85" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <rect x="105" y="85" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <!-- Windows row 3 -->
+    <rect x="45" y="110" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <rect x="65" y="110" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <rect x="85" y="110" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <rect x="105" y="110" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <!-- Windows row 4 -->
+    <rect x="45" y="135" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <rect x="65" y="135" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <rect x="85" y="135" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <rect x="105" y="135" width="14" height="14" rx="1" fill="#1c2030" opacity="0.6"/>
+    <!-- Side panel -->
+    <rect x="30" y="100" width="100" height="4" fill="#8a9abb" opacity="0.3"/>
+    <rect x="30" y="160" width="100" height="4" fill="#8a9abb" opacity="0.3"/>
+  </g>
+
+  <!-- Pen -->
+  <g transform="translate(256, 256) rotate(-45) translate(-130, -20)">
+    <!-- Pen body -->
+    <rect x="40" y="0" width="220" height="40" rx="8" fill="url(#penGrad)" stroke="#8a9abb" stroke-width="2.5"/>
+    <!-- Pen grip section -->
+    <rect x="40" y="0" width="80" height="40" rx="8" fill="url(#greyGrad)" stroke="#8a9abb" stroke-width="2.5"/>
+    <!-- Pen clip -->
+    <rect x="200" y="-8" width="50" height="8" rx="3" fill="#4a6590" stroke="#8a9abb" stroke-width="1.5"/>
+    <circle cx="245" cy="-4" r="5" fill="#3d5590" stroke="#8a9abb" stroke-width="1.5"/>
+    <!-- Pen cap -->
+    <rect x="230" y="0" width="40" height="40" rx="8" fill="#2a4070" stroke="#8a9abb" stroke-width="2.5"/>
+    <circle cx="265" cy="20" r="6" fill="#556677" stroke="#8a9abb" stroke-width="1.5"/>
+    <!-- Pen tip -->
+    <polygon points="40,5 40,35 15,20" fill="#7a8899" stroke="#8a9abb" stroke-width="2"/>
+    <polygon points="20,17 20,23 8,20" fill="#c0c8d0"/>
+    <!-- Pen detail lines -->
+    <line x1="120" y1="0" x2="120" y2="40" stroke="#8a9abb" stroke-width="1.5" opacity="0.5"/>
+    <line x1="175" y1="0" x2="175" y2="40" stroke="#8a9abb" stroke-width="1.5" opacity="0.5"/>
+  </g>
+
+  <!-- Sparkle -->
+  <g transform="translate(430, 430)">
+    <path d="M0,-12 L3,-3 L12,0 L3,3 L0,12 L-3,3 L-12,0 L-3,-3 Z" fill="#8a9abb" opacity="0.7"/>
   </g>
 </svg>
