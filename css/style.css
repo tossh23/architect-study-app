@@ -2079,6 +2079,10 @@ textarea {
         min-width: 0;
     }
 
+    .stats-row>.stats-details {
+        margin-bottom: 0;
+    }
+
     .stats-row>.stats-card-large {
         display: flex;
         flex-direction: column;
