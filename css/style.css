@@ -2077,4 +2077,15 @@ textarea {
         flex: 1;
         min-width: 0;
     }
+
+    .stats-row>.stats-card-large {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .stats-row>.stats-card-large .chart-container {
+        flex: 1;
+        height: auto;
+        min-height: 200px;
+    }
 }
