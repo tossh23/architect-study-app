@@ -161,9 +161,13 @@ const Stats = {
         tbody.innerHTML = fieldStats.map(s => {
             const isCategory = s.type === 'category';
             if (isCategory) {
+                // この大分類に小分類があるかチェック
+                const hasChildren = fieldStats.some(f => f.type === 'field' && f.id.startsWith(s.id + '-'));
+                const toggleHtml = hasChildren ? '<span class="category-toggle">▶</span> ' : '';
+                const cursorStyle = hasChildren ? 'cursor: pointer;' : '';
                 return `
-                <tr class="field-category-row" data-category-id="${s.id}" style="font-weight: bold; background: var(--bg-tertiary); cursor: pointer;">
-                    <td><span class="category-toggle">▶</span> ${s.name}</td>
+                <tr class="field-category-row${hasChildren ? ' has-children' : ''}" data-category-id="${s.id}" style="font-weight: bold; background: var(--bg-tertiary); ${cursorStyle}">
+                    <td>${toggleHtml}${s.name}</td>
                     <td>${s.totalQuestions}</td>
                     <td>${s.totalAnswered}</td>
                     <td>${s.correctCount}</td>
@@ -183,8 +187,8 @@ const Stats = {
             }
         }).join('');
 
-        // カテゴリ行クリックで小分類を展開/折りたたみ
-        tbody.querySelectorAll('.field-category-row').forEach(row => {
+        // 小分類がある大分類行のみクリックで展開/折りたたみ
+        tbody.querySelectorAll('.field-category-row.has-children').forEach(row => {
             row.addEventListener('click', () => {
                 const catId = row.dataset.categoryId;
                 const subRows = tbody.querySelectorAll(`.field-sub-row[data-parent-category="${catId}"]`);
