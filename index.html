@@ -448,36 +448,35 @@
                     </div>
                 </div>
 
-                <!-- 分類別詳細 -->
-                <div class="stats-details">
-                    <h3>分類別詳細</h3>
-                    <div class="field-stats-filter">
-                        <select id="fieldStatsSubject" class="select">
-                            <option value="1">学科Ⅰ（計画）</option>
-                            <option value="2">学科Ⅱ（環境・設備）</option>
-                            <option value="3">学科Ⅲ（法規）</option>
-                            <option value="4">学科Ⅳ（構造）</option>
-                            <option value="5">学科Ⅴ（施工）</option>
-                        </select>
+                <!-- 分類別詳細 + 分類別正答率（PC横並び） -->
+                <div class="stats-row-wide">
+                    <div class="stats-details">
+                        <h3>分類別詳細</h3>
+                        <div class="field-stats-filter">
+                            <select id="fieldStatsSubject" class="select">
+                                <option value="1">学科Ⅰ（計画）</option>
+                                <option value="2">学科Ⅱ（環境・設備）</option>
+                                <option value="3">学科Ⅲ（法規）</option>
+                                <option value="4">学科Ⅳ（構造）</option>
+                                <option value="5">学科Ⅴ（施工）</option>
+                            </select>
+                        </div>
+                        <table class="stats-table">
+                            <thead>
+                                <tr>
+                                    <th>分類</th>
+                                    <th>問題数</th>
+                                    <th>解答数</th>
+                                    <th>正解数</th>
+                                    <th>正答率</th>
+                                </tr>
+                            </thead>
+                            <tbody id="fieldStatsTableBody">
+                                <!-- 動的に生成 -->
+                            </tbody>
+                        </table>
                     </div>
-                    <table class="stats-table">
-                        <thead>
-                            <tr>
-                                <th>分類</th>
-                                <th>問題数</th>
-                                <th>解答数</th>
-                                <th>正解数</th>
-                                <th>正答率</th>
-                            </tr>
-                        </thead>
-                        <tbody id="fieldStatsTableBody">
-                            <!-- 動的に生成 -->
-                        </tbody>
-                    </table>
-                </div>
 
-                <!-- 分類別正答率 -->
-                <div class="stats-cards">
                     <div class="stats-card-large">
                         <h3>分類別正答率</h3>
                         <div class="field-stats-filter">
@@ -493,18 +492,15 @@
                     </div>
                 </div>
 
-                <!-- 年度別正答率 -->
-                <div class="stats-cards">
+                <!-- 年度別正答率 + 学習推移（PC横並び） -->
+                <div class="stats-row-wide">
                     <div class="stats-card-large">
                         <h3>年度別正答率</h3>
                         <div class="chart-container">
                             <canvas id="yearChart"></canvas>
                         </div>
                     </div>
-                </div>
 
-                <!-- 学習推移 -->
-                <div class="stats-cards">
                     <div class="stats-card-large">
                         <h3>学習推移（直近30日）</h3>
                         <div class="chart-container">

@@ -2094,3 +2094,47 @@ textarea {
         min-height: 200px;
     }
 }
+
+/* Stats row wide: より幅が必要なセクション用 */
+.stats-row-wide {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.stats-row-wide>.stats-details,
+.stats-row-wide>.stats-card-large {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    border: 1px solid var(--bg-tertiary);
+}
+
+@media (min-width: 1200px) {
+    .stats-row-wide {
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    .stats-row-wide>.stats-details,
+    .stats-row-wide>.stats-card-large {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .stats-row-wide>.stats-details {
+        margin-bottom: 0;
+    }
+
+    .stats-row-wide>.stats-card-large {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .stats-row-wide>.stats-card-large .chart-container {
+        flex: 1;
+        height: auto;
+        min-height: 200px;
+    }
+}
