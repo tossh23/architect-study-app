@@ -2037,3 +2037,15 @@ textarea {
     background: var(--accent-primary);
     color: #fff;
 }
+
+.category-toggle {
+    display: inline-block;
+    width: 1em;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+}
+
+.field-category-row:hover {
+    background: var(--bg-hover) !important;
+}

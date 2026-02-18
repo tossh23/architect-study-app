@@ -160,18 +160,40 @@ const Stats = {
 
         tbody.innerHTML = fieldStats.map(s => {
             const isCategory = s.type === 'category';
-            const indent = isCategory ? '' : '　　';
-            const style = isCategory ? 'font-weight: bold; background: var(--bg-tertiary);' : '';
-            return `
-                <tr style="${style}">
-                    <td>${indent}${s.name}</td>
+            if (isCategory) {
+                return `
+                <tr class="field-category-row" data-category-id="${s.id}" style="font-weight: bold; background: var(--bg-tertiary); cursor: pointer;">
+                    <td><span class="category-toggle">▶</span> ${s.name}</td>
                     <td>${s.totalQuestions}</td>
                     <td>${s.totalAnswered}</td>
                     <td>${s.correctCount}</td>
                     <td>${s.totalAnswered > 0 ? s.accuracy + '%' : '--'}</td>
-                </tr>
-            `;
+                </tr>`;
+            } else {
+                // 小分類のカテゴリIDを取得（例: "1-1-2" → "1-1"）
+                const catId = typeof getCategoryId === 'function' ? getCategoryId(s.id) : '';
+                return `
+                <tr class="field-sub-row" data-parent-category="${catId}" style="display: none;">
+                    <td>\u3000\u3000${s.name}</td>
+                    <td>${s.totalQuestions}</td>
+                    <td>${s.totalAnswered}</td>
+                    <td>${s.correctCount}</td>
+                    <td>${s.totalAnswered > 0 ? s.accuracy + '%' : '--'}</td>
+                </tr>`;
+            }
         }).join('');
+
+        // カテゴリ行クリックで小分類を展開/折りたたみ
+        tbody.querySelectorAll('.field-category-row').forEach(row => {
+            row.addEventListener('click', () => {
+                const catId = row.dataset.categoryId;
+                const subRows = tbody.querySelectorAll(`.field-sub-row[data-parent-category="${catId}"]`);
+                const toggle = row.querySelector('.category-toggle');
+                const isExpanded = toggle.textContent === '▼';
+                toggle.textContent = isExpanded ? '▶' : '▼';
+                subRows.forEach(r => r.style.display = isExpanded ? 'none' : '');
+            });
+        });
     },
 
     /**
