@@ -277,6 +277,56 @@ class Database {
     }
 
     /**
+     * 分野別統計を取得（指定科目）
+     */
+    async getStatsByField(subject) {
+        const questions = await this.getAllQuestions();
+        const history = await this.getAllHistory();
+
+        // 指定科目の問題のみ
+        const subjectQuestions = questions.filter(q => q.subject === subject);
+
+        // 分野リストを取得
+        if (typeof getAllFieldsList !== 'function') return [];
+        const fieldsList = getAllFieldsList(subject);
+
+        // 問題IDからquestionオブジェクトへのマップ
+        const questionMap = {};
+        for (const q of subjectQuestions) {
+            questionMap[q.id] = q;
+        }
+
+        // 各分野の統計を計算
+        const stats = fieldsList.map(fieldDef => {
+            // この分野に属する問題を集計
+            const fieldQuestions = subjectQuestions.filter(q =>
+                typeof matchesField === 'function' && matchesField(q.field, fieldDef.id)
+            );
+
+            let totalAnswered = 0;
+            let correctCount = 0;
+
+            for (const h of history) {
+                const q = questionMap[h.questionId];
+                if (q && typeof matchesField === 'function' && matchesField(q.field, fieldDef.id)) {
+                    totalAnswered++;
+                    if (h.isCorrect) correctCount++;
+                }
+            }
+
+            return {
+                ...fieldDef,
+                totalQuestions: fieldQuestions.length,
+                totalAnswered,
+                correctCount,
+                accuracy: totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0
+            };
+        });
+
+        return stats;
+    }
+
+    /**
      * 全問題を一括削除
      */
     async clearAllQuestions() {

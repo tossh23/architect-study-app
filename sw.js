@@ -1,4 +1,4 @@
-const CACHE_NAME = 'architect-study-v40';
+const CACHE_NAME = 'architect-study-v41';
 const ASSETS = [
     './',
     './index.html',
@@ -10,6 +10,7 @@ const ASSETS = [
     './js/study.js',
     './js/stats.js',
     './js/builtin-questions.js',
+    './js/field-definitions.js',
     './js/firebase-sync.js',
     './manifest.json',
     './icons/icon.svg'

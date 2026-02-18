@@ -136,7 +136,7 @@
                     </button>
                 </div>
 
-                <h2 class="section-title" style="margin-top: var(--space-2xl);">年度・科目を選んで出題</h2>
+                <h2 class="section-title" style="margin-top: var(--space-2xl);">年度・科目・分野を選んで出題</h2>
                 <div class="year-subject-selection">
                     <div class="selection-row">
                         <div class="form-group">
@@ -154,6 +154,12 @@
                                 <option value="3">学科Ⅲ（法規）</option>
                                 <option value="4">学科Ⅳ（構造）</option>
                                 <option value="5">学科Ⅴ（施工）</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fieldSelectHome">分野</label>
+                            <select id="fieldSelectHome" class="select" disabled>
+                                <option value="">すべての分野</option>
                             </select>
                         </div>
                     </div>
@@ -297,6 +303,13 @@
                                 <label for="qNumber">問題番号</label>
                                 <input type="number" id="qNumber" class="input" min="1" required>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="qField">分野（任意）</label>
+                            <select id="qField" class="select">
+                                <option value="">未設定</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
@@ -448,6 +461,36 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="stats-details">
+                    <h3>分野別正答率</h3>
+                    <div class="field-stats-filter">
+                        <select id="fieldStatsSubject" class="select">
+                            <option value="1">学科Ⅰ（計画）</option>
+                            <option value="2">学科Ⅱ（環境・設備）</option>
+                            <option value="3">学科Ⅲ（法規）</option>
+                            <option value="4">学科Ⅳ（構造）</option>
+                            <option value="5">学科Ⅴ（施工）</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="fieldChart"></canvas>
+                    </div>
+                    <table class="stats-table">
+                        <thead>
+                            <tr>
+                                <th>分野</th>
+                                <th>問題数</th>
+                                <th>解答数</th>
+                                <th>正解数</th>
+                                <th>正答率</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fieldStatsTableBody">
+                            <!-- 動的に生成 -->
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
             <!-- 達成度画面 -->
@@ -564,6 +607,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/field-definitions.js"></script>
     <script src="js/builtin-questions.js"></script>
     <script src="js/db.js"></script>
     <script src="js/utils.js"></script>

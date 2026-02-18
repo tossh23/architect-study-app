@@ -11,6 +11,21 @@ const Questions = {
     async init() {
         this.setupEventListeners();
         await this.populateYearFilters();
+        this.updateAdminUI();
+
+        // 科目変更時に分野ドロップダウンを更新（問題編集モーダル用）
+        const qSubjectSelect = document.getElementById('qSubject');
+        if (qSubjectSelect) {
+            qSubjectSelect.addEventListener('change', () => {
+                const subject = qSubjectSelect.value;
+                const qFieldSelect = document.getElementById('qField');
+                if (subject && typeof getFieldOptionsHtml === 'function') {
+                    qFieldSelect.innerHTML = getFieldOptionsHtml(parseInt(subject));
+                } else {
+                    qFieldSelect.innerHTML = '<option value="">未設定</option>';
+                }
+            });
+        }
 
         // 初期表示時は最新年度と計画科目でフィルタ（パフォーマンス対策）
         const filterYear = document.getElementById('filterYear');
@@ -21,9 +36,6 @@ const Questions = {
         filterSubject.value = '1'; // 計画を選択
 
         await this.loadQuestions();
-
-        // 管理者でない場合は編集関連ボタンを非表示
-        this.updateAdminUI();
     },
 
     /**
@@ -290,6 +302,14 @@ const Questions = {
             document.getElementById('qYear').value = question.year;
             document.getElementById('qSubject').value = question.subject;
             document.getElementById('qNumber').value = question.questionNumber;
+
+            // 分野ドロップダウンを更新してから値を設定
+            const qFieldSelect = document.getElementById('qField');
+            if (question.subject && typeof getFieldOptionsHtml === 'function') {
+                qFieldSelect.innerHTML = getFieldOptionsHtml(question.subject);
+            }
+            qFieldSelect.value = question.field || '';
+
             document.getElementById('qText').innerHTML = question.questionText || '';
             document.getElementById('choice1').value = question.choices[0] || '';
             document.getElementById('choice2').value = question.choices[1] || '';
@@ -346,6 +366,7 @@ const Questions = {
         const year = parseInt(document.getElementById('qYear').value);
         const subject = parseInt(document.getElementById('qSubject').value);
         const questionNumber = parseInt(document.getElementById('qNumber').value);
+        const field = document.getElementById('qField').value || '';
         const questionText = document.getElementById('qText').innerHTML.trim();
         const choices = [
             document.getElementById('choice1').value.trim(),
@@ -383,6 +404,7 @@ const Questions = {
             year,
             subject,
             questionNumber,
+            field,
             questionText,
             questionImages,
             choices,

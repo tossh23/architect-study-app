@@ -6,6 +6,7 @@ const Stats = {
     subjectChart: null,
     progressChart: null,
     yearChart: null,
+    fieldChart: null,
 
     /**
      * 統計ページを初期化
@@ -26,7 +27,132 @@ const Stats = {
         this.renderProgressChart(history);
         this.renderStatsTable(stats);
         await this.renderYearChart(questions, history);
-        // 達成度は別ページ（Mastery）に移動
+        await this.loadFieldStats();
+    },
+
+    /**
+     * 分野別統計を読み込み・表示
+     */
+    async loadFieldStats() {
+        const subjectSelect = document.getElementById('fieldStatsSubject');
+        if (!subjectSelect) return;
+
+        const subject = parseInt(subjectSelect.value) || 1;
+        const fieldStats = await db.getStatsByField(subject);
+
+        this.renderFieldChart(fieldStats, subject);
+        this.renderFieldStatsTable(fieldStats);
+
+        // 科目切り替えイベント（初回のみ登録）
+        if (!subjectSelect._fieldListener) {
+            subjectSelect._fieldListener = true;
+            subjectSelect.addEventListener('change', () => this.loadFieldStats());
+        }
+    },
+
+    /**
+     * 分野別正答率チャートを描画
+     */
+    renderFieldChart(fieldStats, subject) {
+        const ctx = document.getElementById('fieldChart');
+        if (!ctx) return;
+
+        // 大分類のみ表示（type === 'category')
+        const categoryStats = fieldStats.filter(s => s.type === 'category');
+
+        if (categoryStats.length === 0) {
+            if (this.fieldChart) this.fieldChart.destroy();
+            this.fieldChart = null;
+            return;
+        }
+
+        const labels = categoryStats.map(s => s.name);
+        const data = categoryStats.map(s => s.accuracy);
+
+        // 科目ごとの色
+        const subjectColors = {
+            1: '#3b82f6', 2: '#22c55e', 3: '#f59e0b', 4: '#ef4444', 5: '#8b5cf6'
+        };
+        const baseColor = subjectColors[subject] || '#3b82f6';
+
+        if (this.fieldChart) {
+            this.fieldChart.destroy();
+        }
+
+        this.fieldChart = new Chart(ctx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '正答率 (%)',
+                    data: data,
+                    backgroundColor: baseColor + '80',
+                    borderColor: baseColor,
+                    borderWidth: 2,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            afterLabel: (context) => {
+                                const stat = categoryStats[context.dataIndex];
+                                return `問題数: ${stat.totalQuestions} / 解答数: ${stat.totalAnswered}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: { color: '#334155' },
+                        ticks: { color: '#94a3b8', callback: v => v + '%' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            color: '#94a3b8',
+                            maxRotation: 45,
+                            minRotation: 0,
+                            font: { size: 11 }
+                        }
+                    }
+                }
+            }
+        });
+    },
+
+    /**
+     * 分野別統計テーブルを描画
+     */
+    renderFieldStatsTable(fieldStats) {
+        const tbody = document.getElementById('fieldStatsTableBody');
+        if (!tbody) return;
+
+        if (fieldStats.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">分野データがありません</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = fieldStats.map(s => {
+            const isCategory = s.type === 'category';
+            const indent = isCategory ? '' : '　　';
+            const style = isCategory ? 'font-weight: bold; background: var(--bg-tertiary);' : '';
+            return `
+                <tr style="${style}">
+                    <td>${indent}${s.name}</td>
+                    <td>${s.totalQuestions}</td>
+                    <td>${s.totalAnswered}</td>
+                    <td>${s.correctCount}</td>
+                    <td>${s.totalAnswered > 0 ? s.accuracy + '%' : '--'}</td>
+                </tr>
+            `;
+        }).join('');
     },
 
     /**
