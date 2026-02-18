@@ -327,7 +327,8 @@ const Stats = {
                             color: '#334155'
                         },
                         ticks: {
-                            color: '#94a3b8'
+                            color: '#94a3b8',
+                            stepSize: 1
                         }
                     },
                     x: {

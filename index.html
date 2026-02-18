@@ -420,21 +420,7 @@
                     <h1>学習統計</h1>
                 </div>
 
-                <div class="stats-cards">
-                    <div class="stats-card-large">
-                        <h3>科目別正答率</h3>
-                        <div class="chart-container">
-                            <canvas id="subjectChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="stats-card-large">
-                        <h3>学習推移（直近30日）</h3>
-                        <div class="chart-container">
-                            <canvas id="progressChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- 科目別詳細 -->
                 <div class="stats-details">
                     <h3>科目別詳細</h3>
                     <table class="stats-table">
@@ -453,17 +439,19 @@
                     </table>
                 </div>
 
+                <!-- 科目別正答率 -->
                 <div class="stats-cards">
                     <div class="stats-card-large">
-                        <h3>年度別正答率</h3>
+                        <h3>科目別正答率</h3>
                         <div class="chart-container">
-                            <canvas id="yearChart"></canvas>
+                            <canvas id="subjectChart"></canvas>
                         </div>
                     </div>
                 </div>
 
+                <!-- 分類別詳細 -->
                 <div class="stats-details">
-                    <h3>分類別正答率</h3>
+                    <h3>分類別詳細</h3>
                     <div class="field-stats-filter">
                         <select id="fieldStatsSubject" class="select">
                             <option value="1">学科Ⅰ（計画）</option>
@@ -472,14 +460,6 @@
                             <option value="4">学科Ⅳ（構造）</option>
                             <option value="5">学科Ⅴ（施工）</option>
                         </select>
-                        <div class="field-chart-toggle">
-                            <button class="toggle-btn active" id="fieldChartCategoryBtn"
-                                data-level="category">大分類</button>
-                            <button class="toggle-btn" id="fieldChartFieldBtn" data-level="field">小分類</button>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="fieldChart"></canvas>
                     </div>
                     <table class="stats-table">
                         <thead>
@@ -495,6 +475,43 @@
                             <!-- 動的に生成 -->
                         </tbody>
                     </table>
+                </div>
+
+                <!-- 分類別正答率 -->
+                <div class="stats-cards">
+                    <div class="stats-card-large">
+                        <h3>分類別正答率</h3>
+                        <div class="field-stats-filter">
+                            <div class="field-chart-toggle">
+                                <button class="toggle-btn active" id="fieldChartCategoryBtn"
+                                    data-level="category">大分類</button>
+                                <button class="toggle-btn" id="fieldChartFieldBtn" data-level="field">小分類</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="fieldChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 年度別正答率 -->
+                <div class="stats-cards">
+                    <div class="stats-card-large">
+                        <h3>年度別正答率</h3>
+                        <div class="chart-container">
+                            <canvas id="yearChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 学習推移 -->
+                <div class="stats-cards">
+                    <div class="stats-card-large">
+                        <h3>学習推移（直近30日）</h3>
+                        <div class="chart-container">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </section>
 
