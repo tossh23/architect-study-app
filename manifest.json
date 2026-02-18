@@ -1,7 +1,7 @@
 {
-    "name": "一級建築士 学習アプリ",
-    "short_name": "建築士学習",
-    "description": "一級建築士試験の過去問題を使って効率的に学習できるアプリ",
+    "name": "一級建築士試験 過去問学習アプリ「Architest」",
+    "short_name": "Architest",
+    "description": "一級建築士試験の過去問題を使って効率的に学習できるアプリ「Architest」",
     "start_url": "./index.html",
     "scope": "./",
     "display": "standalone",
