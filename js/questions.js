@@ -417,6 +417,11 @@ const Questions = {
             this.closeModal();
             await this.loadQuestions();
             await App.updateHomeStats();
+
+            // 学習画面が表示中の場合、現在の問題を再描画
+            if (App.currentPage === 'study') {
+                await Study.refreshCurrentQuestion();
+            }
         } catch (error) {
             console.error('Save error:', error);
             Utils.showToast('保存に失敗しました', 'error');
@@ -740,4 +745,3 @@ const Questions = {
         return null;
     }
 };
-

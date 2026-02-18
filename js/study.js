@@ -425,6 +425,78 @@ const Study = {
     },
 
     /**
+     * 現在表示中の問題をDBから再取得して画面を更新（編集後の反映用）
+     */
+    async refreshCurrentQuestion() {
+        if (this.currentIndex >= this.questions.length) return;
+
+        const currentId = this.questions[this.currentIndex].id;
+        const updatedQuestion = await db.getQuestion(currentId);
+        if (!updatedQuestion) return;
+
+        // メモリ上の問題データを更新
+        this.questions[this.currentIndex] = updatedQuestion;
+
+        // 問題文を更新
+        let questionContent = updatedQuestion.questionText;
+        if (updatedQuestion.questionImages && updatedQuestion.questionImages.length > 0) {
+            questionContent += '<div class="question-images">';
+            updatedQuestion.questionImages.forEach(img => {
+                questionContent += `<img src="${img}" alt="問題図" class="question-image">`;
+            });
+            questionContent += '</div>';
+        }
+        document.getElementById('questionText').innerHTML = questionContent;
+
+        // 問題メタ情報を更新
+        document.getElementById('questionYear').textContent = Utils.toJapaneseYear(updatedQuestion.year);
+        document.getElementById('questionNum').textContent = `問${updatedQuestion.questionNumber}`;
+
+        // 選択肢の表示を更新（回答済みの状態を維持）
+        const items = document.querySelectorAll('.choice-item');
+        items.forEach((item, index) => {
+            const choiceImage = updatedQuestion.choiceImages && updatedQuestion.choiceImages[index];
+            const choiceContent = choiceImage
+                ? `<img src="${choiceImage}" alt="選択肢${index + 1}" class="choice-image">`
+                : `<span class="choice-text">${updatedQuestion.choices[index]}</span>`;
+
+            // choice-numberは維持し、コンテンツ部分のみ更新
+            const textEl = item.querySelector('.choice-text');
+            const imgEl = item.querySelector('.choice-image');
+            if (textEl) {
+                textEl.innerHTML = updatedQuestion.choices[index];
+            } else if (imgEl && choiceImage) {
+                imgEl.src = choiceImage;
+            }
+        });
+
+        // 解説を更新
+        const explanationContent = document.getElementById('explanationContent');
+        if (updatedQuestion.explanation) {
+            let content = updatedQuestion.explanation.replace(/\\n/g, '<br>');
+            if (updatedQuestion.explanationImages && updatedQuestion.explanationImages.length > 0) {
+                content += '<div class="explanation-images">';
+                updatedQuestion.explanationImages.forEach(img => {
+                    content += `<img src="${img}" alt="解説画像">`;
+                });
+                content += '</div>';
+            }
+            explanationContent.innerHTML = content;
+        } else {
+            explanationContent.innerHTML = '<p class="no-explanation">解説は登録されていません</p>';
+        }
+
+        // 正解/不正解表示も更新（正解番号が変わっている可能性）
+        const resultEl = document.getElementById('answerResult');
+        if (resultEl && resultEl.classList.contains('wrong')) {
+            resultEl.innerHTML = `
+                <div class="result-icon">❌</div>
+                <div class="result-text">不正解（正解: ${updatedQuestion.correctAnswer}）</div>
+            `;
+        }
+    },
+
+    /**
      * 現在の問題を取得
      */
     getCurrentQuestion() {
