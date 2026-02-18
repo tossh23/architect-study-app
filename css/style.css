@@ -1302,6 +1302,7 @@ textarea {
     border-radius: var(--radius-xl);
     padding: var(--space-xl);
     border: 1px solid var(--bg-tertiary);
+    margin-bottom: var(--space-lg);
 }
 
 .stats-details h3 {
@@ -1315,7 +1316,7 @@ textarea {
 
 .stats-table th,
 .stats-table td {
-    padding: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
     text-align: left;
     border-bottom: 1px solid var(--bg-tertiary);
 }
