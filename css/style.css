@@ -2111,7 +2111,7 @@ textarea {
     border: 1px solid var(--bg-tertiary);
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1800px) {
     .stats-row-wide {
         flex-direction: row;
         align-items: stretch;
