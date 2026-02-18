@@ -2049,3 +2049,31 @@ textarea {
 .field-category-row:hover {
     background: var(--bg-hover) !important;
 }
+
+/* Stats row: PC横並びレイアウト */
+.stats-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.stats-row>.stats-details,
+.stats-row>.stats-card-large {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    border: 1px solid var(--bg-tertiary);
+}
+
+@media (min-width: 900px) {
+    .stats-row {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .stats-row>.stats-details,
+    .stats-row>.stats-card-large {
+        flex: 1;
+        min-width: 0;
+    }
+}

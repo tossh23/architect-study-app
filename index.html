@@ -420,27 +420,26 @@
                     <h1>学習統計</h1>
                 </div>
 
-                <!-- 科目別詳細 -->
-                <div class="stats-details">
-                    <h3>科目別詳細</h3>
-                    <table class="stats-table">
-                        <thead>
-                            <tr>
-                                <th>科目</th>
-                                <th>問題数</th>
-                                <th>解答数</th>
-                                <th>正解数</th>
-                                <th>正答率</th>
-                            </tr>
-                        </thead>
-                        <tbody id="statsTableBody">
-                            <!-- 動的に生成 -->
-                        </tbody>
-                    </table>
-                </div>
+                <!-- 科目別詳細 + 科目別正答率（PC横並び） -->
+                <div class="stats-row">
+                    <div class="stats-details">
+                        <h3>科目別詳細</h3>
+                        <table class="stats-table">
+                            <thead>
+                                <tr>
+                                    <th>科目</th>
+                                    <th>問題数</th>
+                                    <th>解答数</th>
+                                    <th>正解数</th>
+                                    <th>正答率</th>
+                                </tr>
+                            </thead>
+                            <tbody id="statsTableBody">
+                                <!-- 動的に生成 -->
+                            </tbody>
+                        </table>
+                    </div>
 
-                <!-- 科目別正答率 -->
-                <div class="stats-cards">
                     <div class="stats-card-large">
                         <h3>科目別正答率</h3>
                         <div class="chart-container">
