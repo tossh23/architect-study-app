@@ -136,7 +136,7 @@
                     </button>
                 </div>
 
-                <h2 class="section-title" style="margin-top: var(--space-2xl);">年度・科目・分野を選んで出題</h2>
+                <h2 class="section-title" style="margin-top: var(--space-2xl);">年度・科目・分類を選んで出題</h2>
                 <div class="year-subject-selection">
                     <div class="selection-row">
                         <div class="form-group">
@@ -157,9 +157,9 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="fieldSelectHome">分野</label>
+                            <label for="fieldSelectHome">分類</label>
                             <select id="fieldSelectHome" class="select" disabled>
-                                <option value="">すべての分野</option>
+                                <option value="">すべての分類</option>
                             </select>
                         </div>
                     </div>
@@ -306,7 +306,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="qField">分野（任意）</label>
+                            <label for="qField">分類（任意）</label>
                             <select id="qField" class="select">
                                 <option value="">未設定</option>
                             </select>
@@ -463,7 +463,7 @@
                 </div>
 
                 <div class="stats-details">
-                    <h3>分野別正答率</h3>
+                    <h3>分類別正答率</h3>
                     <div class="field-stats-filter">
                         <select id="fieldStatsSubject" class="select">
                             <option value="1">学科Ⅰ（計画）</option>
@@ -472,6 +472,11 @@
                             <option value="4">学科Ⅳ（構造）</option>
                             <option value="5">学科Ⅴ（施工）</option>
                         </select>
+                        <div class="field-chart-toggle">
+                            <button class="toggle-btn active" id="fieldChartCategoryBtn"
+                                data-level="category">大分類</button>
+                            <button class="toggle-btn" id="fieldChartFieldBtn" data-level="field">小分類</button>
+                        </div>
                     </div>
                     <div class="chart-container">
                         <canvas id="fieldChart"></canvas>
@@ -479,7 +484,7 @@
                     <table class="stats-table">
                         <thead>
                             <tr>
-                                <th>分野</th>
+                                <th>分類</th>
                                 <th>問題数</th>
                                 <th>解答数</th>
                                 <th>正解数</th>

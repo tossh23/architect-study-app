@@ -2002,8 +2002,38 @@ textarea {
 /* Field Stats Filter */
 .field-stats-filter {
     margin-bottom: var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
 }
 
 .field-stats-filter .select {
     max-width: 250px;
+}
+
+.field-chart-toggle {
+    display: flex;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--bg-tertiary);
+}
+
+.field-chart-toggle .toggle-btn {
+    padding: 6px 16px;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.field-chart-toggle .toggle-btn:hover {
+    background: var(--bg-tertiary);
+}
+
+.field-chart-toggle .toggle-btn.active {
+    background: var(--accent-primary);
+    color: #fff;
 }

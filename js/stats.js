@@ -7,6 +7,7 @@ const Stats = {
     progressChart: null,
     yearChart: null,
     fieldChart: null,
+    fieldChartLevel: 'category', // 'category' or 'field'
 
     /**
      * 統計ページを初期化
@@ -31,7 +32,7 @@ const Stats = {
     },
 
     /**
-     * 分野別統計を読み込み・表示
+     * 分類別統計を読み込み・表示
      */
     async loadFieldStats() {
         const subjectSelect = document.getElementById('fieldStatsSubject');
@@ -40,34 +41,52 @@ const Stats = {
         const subject = parseInt(subjectSelect.value) || 1;
         const fieldStats = await db.getStatsByField(subject);
 
-        this.renderFieldChart(fieldStats, subject);
+        this.renderFieldChart(fieldStats, subject, this.fieldChartLevel);
         this.renderFieldStatsTable(fieldStats);
 
         // 科目切り替えイベント（初回のみ登録）
         if (!subjectSelect._fieldListener) {
             subjectSelect._fieldListener = true;
             subjectSelect.addEventListener('change', () => this.loadFieldStats());
+
+            // 大分類/小分類トグルボタン
+            const categoryBtn = document.getElementById('fieldChartCategoryBtn');
+            const fieldBtn = document.getElementById('fieldChartFieldBtn');
+            if (categoryBtn && fieldBtn) {
+                categoryBtn.addEventListener('click', () => {
+                    this.fieldChartLevel = 'category';
+                    categoryBtn.classList.add('active');
+                    fieldBtn.classList.remove('active');
+                    this.loadFieldStats();
+                });
+                fieldBtn.addEventListener('click', () => {
+                    this.fieldChartLevel = 'field';
+                    fieldBtn.classList.add('active');
+                    categoryBtn.classList.remove('active');
+                    this.loadFieldStats();
+                });
+            }
         }
     },
 
     /**
-     * 分野別正答率チャートを描画
+     * 分類別正答率チャートを描画
      */
-    renderFieldChart(fieldStats, subject) {
+    renderFieldChart(fieldStats, subject, level = 'category') {
         const ctx = document.getElementById('fieldChart');
         if (!ctx) return;
 
-        // 大分類のみ表示（type === 'category')
-        const categoryStats = fieldStats.filter(s => s.type === 'category');
+        // レベルに応じてフィルタ
+        const displayStats = fieldStats.filter(s => s.type === level);
 
-        if (categoryStats.length === 0) {
+        if (displayStats.length === 0) {
             if (this.fieldChart) this.fieldChart.destroy();
             this.fieldChart = null;
             return;
         }
 
-        const labels = categoryStats.map(s => s.name);
-        const data = categoryStats.map(s => s.accuracy);
+        const labels = displayStats.map(s => s.name);
+        const data = displayStats.map(s => s.accuracy);
 
         // 科目ごとの色
         const subjectColors = {
@@ -100,7 +119,7 @@ const Stats = {
                     tooltip: {
                         callbacks: {
                             afterLabel: (context) => {
-                                const stat = categoryStats[context.dataIndex];
+                                const stat = displayStats[context.dataIndex];
                                 return `問題数: ${stat.totalQuestions} / 解答数: ${stat.totalAnswered}`;
                             }
                         }
@@ -128,14 +147,14 @@ const Stats = {
     },
 
     /**
-     * 分野別統計テーブルを描画
+     * 分類別統計テーブルを描画
      */
     renderFieldStatsTable(fieldStats) {
         const tbody = document.getElementById('fieldStatsTableBody');
         if (!tbody) return;
 
         if (fieldStats.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">分野データがありません</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">分類データがありません</td></tr>';
             return;
         }
 

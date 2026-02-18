@@ -231,23 +231,23 @@ const App = {
             }
         });
 
-        // ホーム画面の科目選択で分野ドロップダウンを更新
+        // ホーム画面の科目選択で分類ドロップダウンを更新
         const subjectSelectHome = document.getElementById('subjectSelectHome');
         const fieldSelectHome = document.getElementById('fieldSelectHome');
         if (subjectSelectHome && fieldSelectHome) {
             subjectSelectHome.addEventListener('change', () => {
                 const subject = subjectSelectHome.value;
                 if (subject && typeof getFieldOptionsHtml === 'function') {
-                    fieldSelectHome.innerHTML = '<option value="">すべての分野</option>' + getFieldOptionsHtml(parseInt(subject)).replace('<option value="">未設定</option>', '');
+                    fieldSelectHome.innerHTML = '<option value="">すべての分類</option>' + getFieldOptionsHtml(parseInt(subject)).replace('<option value="">未設定</option>', '');
                     fieldSelectHome.disabled = false;
                 } else {
-                    fieldSelectHome.innerHTML = '<option value="">すべての分野</option>';
+                    fieldSelectHome.innerHTML = '<option value="">すべての分類</option>';
                     fieldSelectHome.disabled = true;
                 }
             });
         }
 
-        // 年度・科目・分野別出題（問番号順）
+        // 年度・科目・分類別出題（問番号順）
         document.getElementById('startYearSubjectSequential').addEventListener('click', async () => {
             const year = document.getElementById('yearSelectHome').value;
             const subject = document.getElementById('subjectSelectHome').value;
@@ -264,7 +264,7 @@ const App = {
             }
         });
 
-        // 年度・科目・分野別出題（ランダム）
+        // 年度・科目・分類別出題（ランダム）
         document.getElementById('startYearSubjectRandom').addEventListener('click', async () => {
             const year = document.getElementById('yearSelectHome').value;
             const subject = document.getElementById('subjectSelectHome').value;

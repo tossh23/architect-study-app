@@ -13,7 +13,7 @@ const Questions = {
         await this.populateYearFilters();
         this.updateAdminUI();
 
-        // 科目変更時に分野ドロップダウンを更新（問題編集モーダル用）
+        // 科目変更時に分類ドロップダウンを更新（問題編集モーダル用）
         const qSubjectSelect = document.getElementById('qSubject');
         if (qSubjectSelect) {
             qSubjectSelect.addEventListener('change', () => {
@@ -303,7 +303,7 @@ const Questions = {
             document.getElementById('qSubject').value = question.subject;
             document.getElementById('qNumber').value = question.questionNumber;
 
-            // 分野ドロップダウンを更新してから値を設定
+            // 分類ドロップダウンを更新してから値を設定
             const qFieldSelect = document.getElementById('qField');
             if (question.subject && typeof getFieldOptionsHtml === 'function') {
                 qFieldSelect.innerHTML = getFieldOptionsHtml(question.subject);

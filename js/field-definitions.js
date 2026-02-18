@@ -1,5 +1,5 @@
 /**
- * 分野定義マスターデータ
+ * 分類定義マスターデータ
  * 各科目の大分類・小分類を定義
  */
 
@@ -185,7 +185,7 @@ const FIELD_DEFINITIONS = {
 };
 
 /**
- * 分野IDから分野名を取得
+ * 分類IDから分類名を取得
  */
 function getFieldName(fieldId) {
     if (!fieldId) return '未設定';
@@ -202,7 +202,7 @@ function getFieldName(fieldId) {
 }
 
 /**
- * 分野IDから大分類（カテゴリ）IDを取得
+ * 分類IDから大分類（カテゴリ）IDを取得
  */
 function getCategoryId(fieldId) {
     if (!fieldId) return null;
@@ -219,7 +219,7 @@ function getCategoryId(fieldId) {
 }
 
 /**
- * 分野IDから大分類名を取得
+ * 分類IDから大分類名を取得
  */
 function getCategoryName(fieldId) {
     const catId = getCategoryId(fieldId);
@@ -234,7 +234,7 @@ function getCategoryName(fieldId) {
 }
 
 /**
- * 指定した分野ID（大分類または小分類）に属する問題かどうかを判定
+ * 指定した分類ID（大分類または小分類）に属する問題かどうかを判定
  */
 function matchesField(questionField, targetFieldId) {
     if (!questionField || !targetFieldId) return false;
@@ -246,7 +246,7 @@ function matchesField(questionField, targetFieldId) {
 }
 
 /**
- * 科目に対応する分野選択肢を生成（select要素用）
+ * 科目に対応する分類選択肢を生成（select要素用）
  * optgroupで大分類をグループ化し、小分類がある場合はその下に表示
  * 大分類自体も選択可能にする
  */
@@ -272,7 +272,7 @@ function getFieldOptionsHtml(subject) {
 }
 
 /**
- * 全分野のフラットなリストを取得（統計用）
+ * 全分類のフラットなリストを取得（統計用）
  * 大分類と小分類の両方を含む
  */
 function getAllFieldsList(subject) {

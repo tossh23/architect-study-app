@@ -39,7 +39,7 @@ const Study = {
             } else {
                 questions = await db.getAllQuestions();
             }
-            // 分野フィルター
+            // 分類フィルター
             if (this.selectedField && typeof matchesField === 'function') {
                 questions = questions.filter(q => matchesField(q.field, this.selectedField));
             }
@@ -108,7 +108,7 @@ const Study = {
         } else if (this.mode === 'subject' && this.selectedSubject) {
             subjectEl.textContent = Utils.getSubjectName(this.selectedSubject);
         } else if (this.mode === 'yearSubject' && this.selectedField) {
-            // 分野が指定されている場合、分野名を表示
+            // 分類が指定されている場合、分類名を表示
             const fieldName = typeof getFieldName === 'function' ? getFieldName(this.selectedField) : '';
             if (this.selectedSubject) {
                 subjectEl.textContent = Utils.getSubjectName(this.selectedSubject) + ' - ' + fieldName;

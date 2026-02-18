@@ -277,7 +277,7 @@ class Database {
     }
 
     /**
-     * 分野別統計を取得（指定科目）
+     * 分類別統計を取得（指定科目）
      */
     async getStatsByField(subject) {
         const questions = await this.getAllQuestions();
@@ -286,7 +286,7 @@ class Database {
         // 指定科目の問題のみ
         const subjectQuestions = questions.filter(q => q.subject === subject);
 
-        // 分野リストを取得
+        // 分類リストを取得
         if (typeof getAllFieldsList !== 'function') return [];
         const fieldsList = getAllFieldsList(subject);
 
@@ -296,9 +296,9 @@ class Database {
             questionMap[q.id] = q;
         }
 
-        // 各分野の統計を計算
+        // 各分類の統計を計算
         const stats = fieldsList.map(fieldDef => {
-            // この分野に属する問題を集計
+            // この分類に属する問題を集計
             const fieldQuestions = subjectQuestions.filter(q =>
                 typeof matchesField === 'function' && matchesField(q.field, fieldDef.id)
             );
