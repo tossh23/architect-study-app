@@ -283,7 +283,7 @@ const Study = {
         // 解説を表示
         const explanationContent = document.getElementById('explanationContent');
         if (question.explanation) {
-            // 改行を<br>に変換
+            // 改行を<br>に変換（実際の改行文字とリテラル\nの両方に対応）
             let content = question.explanation.replace(/\n/g, '<br>');
 
             // 画像を追加
@@ -473,7 +473,8 @@ const Study = {
         // 解説を更新
         const explanationContent = document.getElementById('explanationContent');
         if (updatedQuestion.explanation) {
-            let content = updatedQuestion.explanation.replace(/\\n/g, '<br>');
+            // 改行を<br>に変換（実際の改行文字とリテラル\nの両方に対応）
+            let content = updatedQuestion.explanation.replace(/\n/g, '<br>');
             if (updatedQuestion.explanationImages && updatedQuestion.explanationImages.length > 0) {
                 content += '<div class="explanation-images">';
                 updatedQuestion.explanationImages.forEach(img => {

@@ -828,6 +828,7 @@ textarea {
 .explanation-content {
     color: var(--text-secondary);
     line-height: 1.8;
+    white-space: pre-line;
 }
 
 .explanation-content img {
