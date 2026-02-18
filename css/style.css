@@ -2055,6 +2055,7 @@ textarea {
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
 }
 
 .stats-row>.stats-details,
@@ -2068,7 +2069,7 @@ textarea {
 @media (min-width: 900px) {
     .stats-row {
         flex-direction: row;
-        align-items: flex-start;
+        align-items: stretch;
     }
 
     .stats-row>.stats-details,
