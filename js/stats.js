@@ -504,29 +504,61 @@ const Stats = {
 
             // フィルター変更時のイベント
             yearFilter.addEventListener('change', () => {
-                this.updateMasteryTable(questions, history, parseInt(yearFilter.value));
+                this.updateMasteryDisplay(questions, history, yearFilter.value, years);
             });
         }
 
-        // 初期表示は最新年度
-        const selectedYear = parseInt(yearFilter.value) || years[0];
-        this.updateMasteryTable(questions, history, selectedYear);
+        // 初期表示
+        this.updateMasteryDisplay(questions, history, yearFilter.value, years);
     },
 
     /**
-     * 達成度テーブルを更新
+     * 達成度表示を更新（全年度 or 単一年度）
      */
-    updateMasteryTable(questions, history, year) {
+    updateMasteryDisplay(questions, history, filterValue, years) {
         const container = document.getElementById('masterySection');
         if (!container) return;
 
-        // 選択年度の問題を取得
+        if (filterValue === 'all') {
+            // 全年度をグリッドで表示
+            let html = '<div class="mastery-grid">';
+            years.forEach(year => {
+                html += `<div class="mastery-year-card">`;
+                html += `<h3>${Utils.toJapaneseYear(year)}</h3>`;
+                html += this.buildMasteryTableHtml(questions, history, year);
+                html += `</div>`;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        } else {
+            // 単一年度
+            const year = parseInt(filterValue);
+            container.innerHTML = this.buildMasteryTableHtml(questions, history, year);
+        }
+
+        // 王冠クリックで問題を解く
+        container.querySelectorAll('.crown.clickable').forEach(crown => {
+            crown.addEventListener('click', async () => {
+                const questionId = crown.dataset.questionId;
+                if (questionId) {
+                    const question = await db.getQuestion(questionId);
+                    if (question) {
+                        Study.startWithQuestion(question);
+                        App.showPage('study');
+                    }
+                }
+            });
+        });
+    },
+
+    /**
+     * 達成度テーブルHTML生成
+     */
+    buildMasteryTableHtml(questions, history, year) {
         const yearQuestions = questions.filter(q => q.year === year);
+        if (yearQuestions.length === 0) return '<p class="text-muted">問題データがありません</p>';
 
-        // 最大問題番号を取得（科目ごと）
         const maxQuestionNum = Math.max(...yearQuestions.map(q => q.questionNumber), 0);
-
-        // 科目名
         const subjectNames = ['計画', '環設', '法規', '構造', '施工'];
 
         let html = `<table class="mastery-table">
@@ -541,7 +573,6 @@ const Stats = {
         for (let num = 1; num <= maxQuestionNum; num++) {
             html += `<tr>`;
             html += `<td class="mastery-num-cell">${num}</td>`;
-
             for (let subject = 1; subject <= 5; subject++) {
                 const q = yearQuestions.find(q => q.subject === subject && q.questionNumber === num);
                 html += `<td class="mastery-cell">`;
@@ -557,23 +588,7 @@ const Stats = {
         }
 
         html += `</tbody></table>`;
-
-        container.innerHTML = html || '<p class="text-muted">問題データがありません</p>';
-
-        // 王冠クリックで問題を解く
-        container.querySelectorAll('.crown.clickable').forEach(crown => {
-            crown.addEventListener('click', async () => {
-                const questionId = crown.dataset.questionId;
-                if (questionId) {
-                    // 指定した問題を1問だけ解くモードで学習開始
-                    const question = await db.getQuestion(questionId);
-                    if (question) {
-                        Study.startWithQuestion(question);
-                        App.showPage('study');
-                    }
-                }
-            });
-        });
+        return html;
     },
 
     /**
@@ -655,7 +670,8 @@ const Mastery = {
             return;
         }
 
-        let html = '';
+        const isAllYears = filterYear === 'all';
+        let html = isAllYears ? '<div class="mastery-grid">' : '';
 
         // 年度ごとにテーブルを生成（新しい年度から）
         for (const year of displayYears) {
@@ -714,6 +730,7 @@ const Mastery = {
             html += `</tbody></table></div></div>`;
         }
 
+        if (isAllYears) html += '</div>';
         container.innerHTML = html;
 
         // 王冠クリックで問題を解く

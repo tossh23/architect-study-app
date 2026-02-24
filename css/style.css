@@ -2138,3 +2138,54 @@ textarea {
         min-height: 200px;
     }
 }
+
+/* Mastery Grid: 達成度テーブル横並びレイアウト */
+.mastery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+}
+
+.mastery-grid>.mastery-year-section,
+.mastery-grid>.mastery-year-card {
+    flex: 1 1 300px;
+    min-width: 280px;
+    max-width: 100%;
+}
+
+.mastery-year-section,
+.mastery-year-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--space-lg);
+    border: 1px solid var(--bg-tertiary);
+}
+
+.mastery-year-section h3,
+.mastery-year-card h3 {
+    margin-bottom: var(--space-md);
+    color: var(--text-secondary);
+}
+
+.mastery-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.mastery-table th,
+.mastery-table td {
+    padding: var(--space-xs) var(--space-sm);
+    text-align: center;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.mastery-table th {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.mastery-table tr:last-child td {
+    border-bottom: none;
+}
