@@ -149,6 +149,8 @@ const Questions = {
                             this.applyFormat('blue');
                         } else if (btn.classList.contains('format-btn-default')) {
                             this.applyFormat('default');
+                        } else if (btn.classList.contains('format-btn-subscript')) {
+                            this.applyFormat('subscript');
                         }
                     });
                 });
@@ -174,6 +176,8 @@ const Questions = {
             document.execCommand('foreColor', false, '#60a5fa');
         } else if (type === 'default') {
             document.execCommand('foreColor', false, '#f8fafc');
+        } else if (type === 'subscript') {
+            document.execCommand('subscript', false, null);
         }
     },
 

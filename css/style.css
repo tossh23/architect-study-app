@@ -1974,6 +1974,16 @@ textarea {
     color: var(--text-primary);
 }
 
+.format-btn-subscript {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+}
+
+.format-btn-subscript:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+}
+
 .format-toolbar+.textarea {
     border-radius: 0 0 var(--radius-md) var(--radius-md);
 }
