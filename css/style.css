@@ -2010,6 +2010,29 @@ textarea {
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
+/* Richtext Choice (contenteditable inline) */
+.richtext-choice {
+    min-height: 2.2em;
+    max-height: 100px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.6;
+    flex: 1;
+}
+
+.richtext-choice:empty::before {
+    content: attr(data-placeholder);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.richtext-choice:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
 /* Field Stats Filter */
 .field-stats-filter {
     margin-bottom: var(--space-lg);

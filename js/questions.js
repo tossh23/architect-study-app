@@ -133,14 +133,28 @@ const Questions = {
         });
 
         // 書式設定ツールバー
+        this.lastFocusedChoice = null;
+
+        // 選択肢のフォーカス追跡
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById(`choice${i}`).addEventListener('focus', () => {
+                this.lastFocusedChoice = document.getElementById(`choice${i}`);
+            });
+        }
+
         document.querySelectorAll('.format-toolbar').forEach(toolbar => {
             const targetId = toolbar.dataset.target;
             if (targetId) {
                 toolbar.querySelectorAll('.format-btn').forEach(btn => {
                     btn.addEventListener('click', () => {
                         // 対象のcontenteditable divにフォーカスを戻す
-                        const target = document.getElementById(targetId);
-                        if (target) target.focus();
+                        if (targetId === 'choices') {
+                            // 選択肢ツールバー：最後にフォーカスしていた選択肢に戻す
+                            if (this.lastFocusedChoice) this.lastFocusedChoice.focus();
+                        } else {
+                            const target = document.getElementById(targetId);
+                            if (target) target.focus();
+                        }
                         if (btn.classList.contains('format-btn-bold')) {
                             this.applyFormat('bold');
                         } else if (btn.classList.contains('format-btn-red')) {
@@ -291,6 +305,9 @@ const Questions = {
         // contenteditable divをクリア
         document.getElementById('qText').innerHTML = '';
         document.getElementById('qExplanation').innerHTML = '';
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById(`choice${i}`).innerHTML = '';
+        }
 
         // 選択肢画像プレビューをクリア
         for (let i = 1; i <= 4; i++) {
@@ -315,10 +332,10 @@ const Questions = {
             qFieldSelect.value = question.field || '';
 
             document.getElementById('qText').innerHTML = question.questionText || '';
-            document.getElementById('choice1').value = question.choices[0] || '';
-            document.getElementById('choice2').value = question.choices[1] || '';
-            document.getElementById('choice3').value = question.choices[2] || '';
-            document.getElementById('choice4').value = question.choices[3] || '';
+            document.getElementById('choice1').innerHTML = question.choices[0] || '';
+            document.getElementById('choice2').innerHTML = question.choices[1] || '';
+            document.getElementById('choice3').innerHTML = question.choices[2] || '';
+            document.getElementById('choice4').innerHTML = question.choices[3] || '';
             document.getElementById('qExplanation').innerHTML = question.explanation || '';
 
             // 正解を設定
@@ -373,10 +390,10 @@ const Questions = {
         const field = document.getElementById('qField').value || '';
         const questionText = document.getElementById('qText').innerHTML.trim();
         const choices = [
-            document.getElementById('choice1').value.trim(),
-            document.getElementById('choice2').value.trim(),
-            document.getElementById('choice3').value.trim(),
-            document.getElementById('choice4').value.trim()
+            document.getElementById('choice1').innerHTML.trim(),
+            document.getElementById('choice2').innerHTML.trim(),
+            document.getElementById('choice3').innerHTML.trim(),
+            document.getElementById('choice4').innerHTML.trim()
         ];
         const correctAnswer = parseInt(document.querySelector('input[name="correctAnswer"]:checked').value);
         const explanation = document.getElementById('qExplanation').innerHTML.trim();

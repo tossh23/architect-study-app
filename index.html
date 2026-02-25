@@ -338,11 +338,20 @@
 
                         <div class="form-group">
                             <label>選択肢（テキストまたは画像）</label>
+                            <div class="format-toolbar" data-target="choices">
+                                <button type="button" class="format-btn format-btn-bold" title="太字">B</button>
+                                <button type="button" class="format-btn format-btn-red" title="赤字">A</button>
+                                <button type="button" class="format-btn format-btn-blue" title="青字">A</button>
+                                <button type="button" class="format-btn format-btn-default" title="デフォルト色">A</button>
+                                <button type="button" class="format-btn format-btn-subscript"
+                                    title="下付き文字">X<sub>2</sub></button>
+                            </div>
                             <div class="choices-input">
                                 <div class="choice-input-group">
                                     <div class="choice-input">
                                         <span class="choice-label">1.</span>
-                                        <input type="text" id="choice1" class="input" placeholder="テキストまたは画像">
+                                        <div id="choice1" class="input richtext-choice" contenteditable="true"
+                                            data-placeholder="テキストまたは画像"></div>
                                         <input type="radio" name="correctAnswer" value="1" required>
                                         <span class="correct-label">正解</span>
                                     </div>
@@ -354,7 +363,8 @@
                                 <div class="choice-input-group">
                                     <div class="choice-input">
                                         <span class="choice-label">2.</span>
-                                        <input type="text" id="choice2" class="input" placeholder="テキストまたは画像">
+                                        <div id="choice2" class="input richtext-choice" contenteditable="true"
+                                            data-placeholder="テキストまたは画像"></div>
                                         <input type="radio" name="correctAnswer" value="2">
                                         <span class="correct-label">正解</span>
                                     </div>
@@ -366,7 +376,8 @@
                                 <div class="choice-input-group">
                                     <div class="choice-input">
                                         <span class="choice-label">3.</span>
-                                        <input type="text" id="choice3" class="input" placeholder="テキストまたは画像">
+                                        <div id="choice3" class="input richtext-choice" contenteditable="true"
+                                            data-placeholder="テキストまたは画像"></div>
                                         <input type="radio" name="correctAnswer" value="3">
                                         <span class="correct-label">正解</span>
                                     </div>
@@ -378,7 +389,8 @@
                                 <div class="choice-input-group">
                                     <div class="choice-input">
                                         <span class="choice-label">4.</span>
-                                        <input type="text" id="choice4" class="input" placeholder="テキストまたは画像">
+                                        <div id="choice4" class="input richtext-choice" contenteditable="true"
+                                            data-placeholder="テキストまたは画像"></div>
                                         <input type="radio" name="correctAnswer" value="4">
                                         <span class="correct-label">正解</span>
                                     </div>
